@@ -1,0 +1,146 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const values = [
+  { icon: "🛠️", title: "Built for contractors", text: "We're web designers who specialize with contractors. Every decision is made for people who'd rather be on a job site." },
+  { icon: "📱", title: "Leads over dashboards", text: "We text leads straight to your phone. No app to check, no dashboard to learn." },
+  { icon: "🤝", title: "No contracts", text: "Month-to-month, cancel anytime. We earn your business every single month." },
+  { icon: "⚡", title: "Fast to launch", text: "Most contractors are online within a week. Onboarding takes about five minutes." },
+];
+
+const numbers = [
+  { value: "4.4★", label: "Trustpilot rating" },
+  { value: "~1 wk", label: "Time to go live" },
+  { value: "$99", label: "Starting price /mo" },
+  { value: "0", label: "Long-term contracts" },
+];
+---
+
+<Layout
+  title="About — Stacked"
+  description="Stacked builds simple, affordable marketing systems for home-service businesses. No agency runaround, no contracts, no bull."
+>
+  <section class="page-hero">
+    <div class="container center-narrow text-center">
+      <span class="eyebrow">About</span>
+      <h1>Websites built for contractors, by people who get it</h1>
+      <p class="lead" style="margin: 0 auto;">
+        Stacked is built by SWE Contracting — web designers who specialize with
+        contractors. We make sites that load fast, rank high, and send leads
+        straight to your phone.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 about-split">
+        <div>
+          <span class="eyebrow">Our story</span>
+          <h2>We got tired of watching good contractors lose work to bad websites</h2>
+          <p>
+            Too many hard-working pros were overpaying for slow, pretty sites
+            that never generated a single lead. As web designers who work with
+            contractors every day, we knew there was a better way.
+          </p>
+          <p>
+            So we built Stacked: done-for-you websites that load fast, rank on
+            Google, and text every new lead straight to your phone. No
+            dashboards to babysit, no contracts, no excuses — just more booked
+            jobs. Most contractors are online within a week.
+          </p>
+        </div>
+        <div class="numbers">
+          {
+            numbers.map((n) => (
+              <div class="num-card">
+                <span class="num-value">{n.value}</span>
+                <span class="num-label">{n.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-soft">
+    <div class="container">
+      <div class="text-center center-narrow">
+        <span class="eyebrow">What we stand for</span>
+        <h2>The principles behind everything we build</h2>
+      </div>
+      <div class="grid grid-4 values" style="margin-top: 44px;">
+        {
+          values.map((v) => (
+            <article class="card">
+              <div class="icon-badge">{v.icon}</div>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Let's get your site live"
+    text="Start your 7-day free trial today. No contracts, cancel anytime."
+  />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--surface-soft);
+    padding: 80px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-split {
+    align-items: center;
+    gap: 56px;
+  }
+
+  .numbers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .num-card {
+    background: var(--bg);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 30px 24px;
+    text-align: center;
+  }
+
+  .num-value {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, var(--brand), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .num-label {
+    color: #aab6cd;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 980px) {
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,181 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const testimonials = [
+  { name: "Glenn Robertson", date: "Mar 4, 2026", quote: "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!" },
+  { name: "Chris Kick", company: "Jordan Marine Construction", date: "Mar 15, 2026", quote: "My experience with STACKED has been excellent. Sebastian and his team are quick, responsive, knowledgeable and honest. We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED." },
+  { name: "Chelsea Casarez", date: "Mar 16, 2026", quote: "I love my stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already! I really recommend them honestly." },
+  { name: "Maria Ramirez", date: "Feb 26, 2026", quote: "The website works PERFECT. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment." },
+  { name: "Donovin Flores", date: "Mar 11, 2026", quote: "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better." },
+  { name: "Ethan Del Angel", date: "Dec 15, 2025", quote: "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!" },
+];
+
+const stats = [
+  { value: "4.4", label: "Trustpilot rating" },
+  { value: "Excellent", label: "Rated on Trustpilot" },
+  { value: "~1 wk", label: "Time to go live" },
+  { value: "0", label: "Long-term contracts" },
+];
+---
+
+<Layout
+  title="Testimonials — Stacked"
+  description="Real reviews from contractors who grew their business with Stacked's marketing systems."
+>
+  <section class="page-hero">
+    <div class="container center-narrow text-center">
+      <span class="eyebrow">Testimonials</span>
+      <h1>The proof is in the pudding</h1>
+      <p class="lead" style="margin: 0 auto;">
+        Don't take our word for it — here's what contractors across the country
+        say about working with Stacked.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="grid grid-4 stats">
+        {
+          stats.map((s) => (
+            <div class="stat">
+              <span class="stat-value">{s.value}</span>
+              <span class="stat-label">{s.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 24px;">
+    <div class="container">
+      <div class="masonry">
+        {
+          testimonials.map((t) => (
+            <blockquote class="card t-card">
+              <span class="stars">★★★★★</span>
+              <p>"{t.quote}"</p>
+              <footer>
+                <span class="avatar">{t.name.charAt(0)}</span>
+                <span class="t-meta">
+                  <span class="t-name">{t.name}</span>
+                  <span class="t-sub">
+                    {t.company ? `${t.company} · ` : ""}Verified · {t.date}
+                  </span>
+                </span>
+              </footer>
+            </blockquote>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want results like these?"
+    text="Start your 7-day free trial and get your site live within a week. No contracts, cancel anytime."
+  />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--surface-soft);
+    padding: 80px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stats {
+    text-align: center;
+  }
+
+  .stat {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 16px;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, var(--brand), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stat-label {
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .masonry {
+    columns: 3;
+    column-gap: 24px;
+  }
+
+  .t-card {
+    break-inside: avoid;
+    margin-bottom: 24px;
+  }
+
+  .t-card p {
+    color: var(--ink);
+    margin: 12px 0 18px;
+  }
+
+  .t-card footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+  }
+
+  .t-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .t-name {
+    font-weight: 700;
+  }
+
+  .t-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 980px) {
+    .masonry {
+      columns: 2;
+    }
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 620px) {
+    .masonry {
+      columns: 1;
+    }
+  }
+</style>

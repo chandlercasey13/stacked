@@ -1,0 +1,337 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const plans = [
+  {
+    name: "Launch",
+    price: "$99",
+    cadence: "/mo",
+    blurb: "Everything you need to get online and start catching leads.",
+    featured: false,
+    cta: "Start Free Trial",
+    features: [
+      { label: "Max leads per month", value: "30" },
+      { label: "SEO pages", value: false },
+      { label: "Hosting & support", value: true },
+      { label: "Custom domain", value: true },
+      { label: "SMS lead notifications", value: true },
+      { label: "Website editor", value: true },
+      { label: "About Us page", value: true },
+      { label: "Embedded reviews", value: true },
+      { label: "Review collection", value: false },
+    ],
+  },
+  {
+    name: "Max",
+    price: "$250",
+    cadence: "/mo",
+    blurb: "Unlimited leads, full SEO, and review collection to scale.",
+    featured: true,
+    cta: "Start Free Trial",
+    features: [
+      { label: "Max leads per month", value: "Unlimited" },
+      { label: "SEO pages", value: "Unlimited" },
+      { label: "Hosting & support", value: true },
+      { label: "Custom domain", value: true },
+      { label: "SMS lead notifications", value: true },
+      { label: "Website editor", value: true },
+      { label: "About Us page", value: true },
+      { label: "Embedded reviews", value: true },
+      { label: "Review collection", value: true },
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: "Is there really a free trial?",
+    a: "Yes — every plan includes a 7-day free trial. Get your site live and see the leads come in before you pay a cent.",
+  },
+  {
+    q: "Are there any contracts?",
+    a: "No contracts, ever. It's month-to-month and you can cancel anytime.",
+  },
+  {
+    q: "How fast can I go live?",
+    a: "Onboarding takes about 5 minutes. Most contractors are online within a week of signing up.",
+  },
+  {
+    q: "What happens when I get a lead?",
+    a: "We text it straight to your phone the moment someone requests a quote, signs a contract, completes a payment, or books a meeting. No dashboard required.",
+  },
+  {
+    q: "Why is it so affordable?",
+    a: "We charge less than your current website costs you in missed leads. Do the math — one extra job usually covers it for months.",
+  },
+];
+---
+
+<Layout
+  title="Pricing — Stacked"
+  description="Simple pricing for contractor websites. Launch at $99/mo or Max at $250/mo. 7-day free trial, no contracts, cancel anytime."
+>
+  <section class="page-hero">
+    <div class="container center-narrow text-center">
+      <span class="eyebrow">Pricing</span>
+      <h1>One price. Zero excuses.</h1>
+      <p class="lead" style="margin: 0 auto;">
+        We charge less than your current website charges you in missed leads. Do
+        the math — then start your 7-day free trial.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="pricing-grid">
+        {
+          plans.map((p) => (
+            <article class:list={["plan", { featured: p.featured }]}>
+              {p.featured && <span class="badge">Most Popular</span>}
+              <h3 class="plan-name">{p.name}</h3>
+              <p class="plan-blurb">{p.blurb}</p>
+              <div class="plan-price">
+                <span class="amount">{p.price}</span>
+                <span class="cadence">{p.cadence}</span>
+              </div>
+              <span class="trial">7-day free trial included</span>
+              <a
+                href="/contact"
+                class:list={[
+                  "btn",
+                  "plan-cta",
+                  p.featured ? "btn-primary" : "btn-outline",
+                ]}
+              >
+                {p.cta}
+              </a>
+              <ul class="plan-features">
+                {p.features.map((f) => (
+                  <li class:list={{ off: f.value === false }}>
+                    <span class="feat-label">{f.label}</span>
+                    <span class="feat-value">
+                      {f.value === true ? (
+                        <span class="yes">✓</span>
+                      ) : f.value === false ? (
+                        <span class="no">—</span>
+                      ) : (
+                        f.value
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+      <p class="text-center" style="margin-top: 28px; color: var(--muted);">
+        No contracts. Cancel anytime.
+      </p>
+    </div>
+  </section>
+
+  <section class="section surface-soft">
+    <div class="container center-narrow">
+      <div class="text-center">
+        <span class="eyebrow">Questions</span>
+        <h2>Pricing FAQ</h2>
+      </div>
+      <div class="faq" style="margin-top: 32px;">
+        {
+          faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Start your 7-day free trial"
+    text="Get your site live, see the leads come in, then decide. No contracts, cancel anytime."
+  />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--surface-soft);
+    padding: 80px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 28px;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .plan {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 34px 30px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .plan:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .plan.featured {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  .plan-name {
+    font-size: 1.3rem;
+  }
+
+  .plan-blurb {
+    min-height: 48px;
+    margin-bottom: 12px;
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .amount {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+
+  .cadence {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .trial {
+    display: block;
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+
+  .plan-cta {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .plan-features li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+
+  .plan-features li:last-child {
+    border-bottom: 0;
+  }
+
+  .plan-features li.off .feat-label {
+    color: var(--muted);
+  }
+
+  .feat-label {
+    color: var(--ink);
+  }
+
+  .feat-value {
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .yes {
+    color: var(--brand);
+  }
+
+  .no {
+    color: var(--muted);
+  }
+
+  .faq {
+    display: grid;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 4px 20px;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 16px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.4rem;
+    color: var(--brand);
+    font-weight: 400;
+  }
+
+  .faq-item[open] summary::after {
+    content: "−";
+  }
+
+  .faq-item p {
+    padding-bottom: 16px;
+    margin: 0;
+  }
+
+  @media (max-width: 760px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

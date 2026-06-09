@@ -1,0 +1,218 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const features = [
+  {
+    icon: "📱",
+    title: "SMS Lead Notifications",
+    text: "Who checks email anymore — especially the spam folder where lead alerts end up? We text you the second something happens.",
+    points: [
+      "Instant text when a quote is requested",
+      "Alerts when a contract is signed",
+      "Pings when a payment completes",
+      "Notifications when a meeting is booked",
+    ],
+  },
+  {
+    icon: "⚡",
+    title: "Load Fast",
+    text: "Slow sites lose leads. Stacked sites are built on a modern, lightning-fast stack so visitors never bounce.",
+    points: [
+      "Optimized, modern build",
+      "Fast on mobile and desktop",
+      "Hosting & support included",
+      "SSL secured out of the box",
+    ],
+  },
+  {
+    icon: "🔍",
+    title: "Rank High (SEO)",
+    text: "A pretty site is useless if no one finds it. We build SEO pages and get you in front of Google.",
+    points: [
+      "Dedicated SEO pages",
+      "Clean, search-friendly structure",
+      "Submitted to Google Search Console",
+      "Custom domain configured for you",
+    ],
+  },
+  {
+    icon: "✍️",
+    title: "Website Editor",
+    text: "Need to tweak your hours, services, or photos? Edit your own site anytime — or let us handle it.",
+    points: [
+      "Simple, no-code editor",
+      "Update content in minutes",
+      "About Us page included",
+      "Or hand it off to our team",
+    ],
+  },
+  {
+    icon: "⭐",
+    title: "Reviews & Social Proof",
+    text: "Trust closes deals. Collect new reviews and showcase your best ones right on your site.",
+    points: [
+      "Review collection built in",
+      "Embed your best reviews",
+      "Build instant credibility",
+      "Turn happy clients into proof",
+    ],
+  },
+  {
+    icon: "🌐",
+    title: "Done For You",
+    text: "You share your business info — we handle the rest. Most contractors are online within a week.",
+    points: [
+      "Custom domain & DNS setup",
+      "Hosting & SSL handled",
+      "~5 minute onboarding",
+      "Live in days, not months",
+    ],
+  },
+];
+---
+
+<Layout
+  title="Features — Stacked"
+  description="Every tool you need to get found, follow up, and fill your calendar: websites, review funnels, missed-call text back, campaigns, and local SEO."
+>
+  <section class="page-hero">
+    <div class="container center-narrow text-center">
+      <span class="eyebrow">Features</span>
+      <h1>One website that does the heavy lifting</h1>
+      <p class="lead" style="margin: 0 auto;">
+        Stacked bundles everything a contractor needs to get found, build trust,
+        and turn visitors into texted leads — all done for you.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container feature-list">
+      {
+        features.map((f, i) => (
+          <article class:list={["feature-row", { reverse: i % 2 === 1 }]}>
+            <div class="feature-copy">
+              <div class="icon-badge">{f.icon}</div>
+              <h2>{f.title}</h2>
+              <p class="lead">{f.text}</p>
+              <ul class="check-list">
+                {f.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="feature-visual" aria-hidden="true">
+              <div class="visual-card">
+                <span class="visual-icon">{f.icon}</span>
+                <span class="visual-title">{f.title}</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready to see it in action?"
+    text="Start your 7-day free trial. Most contractors are online within a week — no contracts, cancel anytime."
+  />
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--surface-soft);
+    padding: 80px 0 56px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .feature-list {
+    display: grid;
+    gap: 72px;
+  }
+
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .feature-row.reverse .feature-visual {
+    order: -1;
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .check-list li {
+    position: relative;
+    padding-left: 30px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--brand);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .feature-visual {
+    display: grid;
+    place-items: center;
+  }
+
+  .visual-card {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    background: radial-gradient(
+        500px 300px at 30% 0%,
+        rgba(37, 99, 235, 0.18),
+        transparent
+      ),
+      linear-gradient(160deg, #131d33, #0b1120);
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .visual-icon {
+    font-size: 3.5rem;
+  }
+
+  .visual-title {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 860px) {
+    .feature-row,
+    .feature-row.reverse {
+      grid-template-columns: 1fr;
+    }
+    .feature-row.reverse .feature-visual {
+      order: 0;
+    }
+  }
+</style>

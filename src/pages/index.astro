@@ -1,0 +1,1316 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const trustChips = [
+  "Roofing",
+  "Plumbing",
+  "HVAC",
+  "Landscaping",
+  "Electrical",
+  "Remodeling",
+  "Marine Construction",
+];
+
+// Alternating section A — Rank High (visual left, copy right)
+const seoTabs = [
+  {
+    label: "SEO Pages",
+    title: "Pages built to rank",
+    text: "Dedicated, keyword-rich pages for every service and service area so Google knows exactly what you do.",
+  },
+  {
+    label: "Search Console",
+    title: "Submitted to Google",
+    text: "We submit your site to Google Search Console on day one so you start getting indexed right away.",
+  },
+  {
+    label: "Custom Domain",
+    title: "Your own domain",
+    text: "We configure your custom domain, DNS, and SSL — your site looks legit and loads securely.",
+  },
+  {
+    label: "Fast Loading",
+    title: "Lightning fast",
+    text: "A modern, optimized build means pages load instantly so visitors never bounce before they convert.",
+  },
+];
+
+// Alternating section B — SMS leads (copy left, visual right)
+const leadTabs = [
+  {
+    label: "Quote requests",
+    badge: "STACKED",
+    msg: "New quote request from Maria R. — Kitchen remodel. Tap to call (555) 012-3456",
+  },
+  {
+    label: "Contracts",
+    badge: "STACKED",
+    msg: "✍️ Contract signed by Chris K. — Jordan Marine Construction",
+  },
+  {
+    label: "Payments",
+    badge: "STACKED",
+    msg: "💰 Payment completed — $2,400 deposit from Glenn R.",
+  },
+  {
+    label: "Bookings",
+    badge: "STACKED",
+    msg: "📅 New meeting booked for Thu 9:00 AM",
+  },
+];
+
+// Features grid
+const included = [
+  "Custom Domain",
+  "Hosting",
+  "SSL",
+  "DNS Setup",
+  "Search Console",
+  "About Us Page",
+];
+
+const smallFeatures = [
+  {
+    icon: "📱",
+    title: "Leads to your phone",
+    text: "Quote requests, signed contracts, and payments texted to you the moment they happen.",
+  },
+  {
+    icon: "⭐",
+    title: "Reviews that convert",
+    text: "Collect new reviews and embed your best ones to build instant trust with visitors.",
+  },
+  {
+    icon: "⚡",
+    title: "Load fast everywhere",
+    text: "Optimized on mobile and desktop so you never lose a lead to a slow page.",
+  },
+];
+
+// Pricing (condensed)
+const plans = [
+  {
+    name: "Launch",
+    price: "$99",
+    blurb: "Everything you need to get online and start catching leads.",
+    featured: false,
+    features: [
+      "Up to 30 leads / mo",
+      "Hosting & support",
+      "Custom domain",
+      "SMS lead notifications",
+      "Website editor",
+    ],
+  },
+  {
+    name: "Max",
+    price: "$250",
+    blurb: "Unlimited leads, full SEO, and review collection to scale.",
+    featured: true,
+    features: [
+      "Unlimited leads",
+      "Unlimited SEO pages",
+      "Everything in Launch",
+      "Review collection",
+      "Priority support",
+    ],
+  },
+];
+
+// Big testimonial + grid
+const bigQuote = {
+  quote:
+    "We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED.",
+  name: "Chris Kick",
+  role: "Jordan Marine Construction",
+};
+
+const reviews = [
+  {
+    name: "Glenn Robertson",
+    quote:
+      "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!",
+  },
+  {
+    name: "Maria Ramirez",
+    quote:
+      "The website works PERFECT. Was cheaper than I thought, and I definitely saw a rise in traffic, bookings and sales.",
+  },
+  {
+    name: "Ethan Del Angel",
+    quote:
+      "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up.",
+  },
+  {
+    name: "Chelsea Casarez",
+    quote:
+      "I love my Stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already!",
+  },
+];
+
+// Blog / ideas
+const posts = [
+  {
+    tag: "Featured",
+    title: "How contractors win more local leads in 2026",
+    kind: "Must Read",
+  },
+  { tag: "Speed", title: "Why a slow website is costing you jobs", kind: "Tips" },
+  {
+    tag: "Reviews",
+    title: "Turning happy customers into 5-star reviews",
+    kind: "Growth",
+  },
+  {
+    tag: "Follow-up",
+    title: "Answer the phone or text back? What converts more",
+    kind: "Sales",
+  },
+];
+---
+
+<Layout>
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="container hero-inner text-center">
+      <h1 class="anim-in" style="--delay: 60ms;">
+        Load Fast. <span class="hl">Rank High.</span> Get Paid.
+      </h1>
+      <p class="lead hero-lead anim-in" style="--delay: 200ms;">
+        Stacked builds done-for-you websites that load fast, rank on Google, and
+        send every new lead straight to your phone by text. Live in days, not
+        months.
+      </p>
+      <div class="hero-actions anim-in" style="--delay: 340ms;">
+        <a href="/pricing" class="btn btn-primary">Start 7-Day Free Trial</a>
+        <a href="/features" class="btn btn-outline">See features</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-visual anim-pop" style="--delay: 480ms;" aria-hidden="true">
+        <div class="browser float-soft">
+          <div class="browser-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"
+            ></span>
+            <span class="url">yourcompany.com</span>
+          </div>
+          <div class="browser-body">
+            <div class="bb-hero">
+              <span class="bb-pill">★★★★★ 4.4 Excellent</span>
+              <span class="bb-h">Top-Rated Local Contractor</span>
+              <span class="bb-sub">Free quotes · Same-week scheduling</span>
+              <span class="bb-cta">Get a Free Quote</span>
+            </div>
+            <div class="bb-cards">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Trusted by -->
+  <section class="trusted">
+    <div class="container text-center">
+      <p class="trusted-label" data-reveal>
+        Rated 4.4 Excellent on Trustpilot · trusted by contractors in every
+        trade
+      </p>
+      <div class="trusted-row" data-reveal-stagger>
+        {trustChips.map((c) => <span class="trusted-chip">{c}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Stay in sync (device toggle) -->
+  <section class="section surface-soft">
+    <div class="container text-center center-narrow" data-reveal>
+      <span class="eyebrow">Seamless across devices</span>
+      <h2>Get leads anywhere, stay in sync</h2>
+      <p class="lead" style="margin: 0 auto;">
+        Your site works beautifully on every screen, and every lead lands on
+        your phone the instant it comes in.
+      </p>
+    </div>
+
+    <div class="container" data-reveal style="--reveal-delay: 120ms;">
+      <div class="device-toggle" data-toggle>
+        <button class="device-btn active" data-device="phone">Phone</button>
+        <button class="device-btn" data-device="web">Web</button>
+      </div>
+
+      <div class="device-stage">
+        <div class="device-panel active" data-device-panel="phone">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="sms sms-in">
+              <span class="sms-label">STACKED</span>
+              New quote request from Maria R. — Kitchen remodel. Tap to call.
+            </div>
+            <div class="sms sms-in">
+              <span class="sms-label">STACKED</span>
+              💰 Payment completed — $2,400 deposit from Glenn R.
+            </div>
+            <div class="sms sms-in">
+              <span class="sms-label">STACKED</span>
+              📅 New meeting booked for Thu 9:00 AM
+            </div>
+          </div>
+        </div>
+
+        <div class="device-panel" data-device-panel="web">
+          <div class="browser browser-dark">
+            <div class="browser-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"
+              ></span>
+              <span class="url">yourcompany.com</span>
+            </div>
+            <div class="browser-body">
+              <div class="bb-hero">
+                <span class="bb-pill">★★★★★ 4.4 Excellent</span>
+                <span class="bb-h">Book Your Project Today</span>
+                <span class="bb-sub">Fast, local, fully insured</span>
+                <span class="bb-cta">Get a Free Quote</span>
+              </div>
+              <div class="bb-cards"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Alternating section A — Rank High -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 alt-row" data-tabset data-reveal>
+        <div class="alt-visual">
+          {
+            seoTabs.map((t, i) => (
+              <div
+                class:list={["mock-ui", { active: i === 0 }]}
+                data-panel={i}
+              >
+                <span class="mock-icon">🔍</span>
+                <span class="mock-title">{t.title}</span>
+                <p class="mock-text">{t.text}</p>
+                <div class="mock-lines">
+                  <span /> <span /> <span />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+        <div class="alt-copy">
+          <span class="eyebrow">Get found on Google</span>
+          <h2>Rank high and get found</h2>
+          <p class="lead">
+            A great-looking site is useless if nobody finds it. Stacked sites are
+            built to rank, so customers searching for your services find you
+            first.
+          </p>
+          <a href="/pricing" class="btn btn-primary">Start Free Trial</a>
+          <div class="tab-pills">
+            {
+              seoTabs.map((t, i) => (
+                <button
+                  class:list={["tab-pill", { active: i === 0 }]}
+                  data-tab={i}
+                >
+                  {t.label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Alternating section B — SMS leads -->
+  <section class="section surface-soft">
+    <div class="container">
+      <div class="grid grid-2 alt-row" data-tabset data-reveal>
+        <div class="alt-copy">
+          <span class="eyebrow">Never miss a lead</span>
+          <h2>Leads straight to your phone</h2>
+          <p class="lead">
+            Who checks email anymore — especially the spam folder where lead
+            alerts end up? We text you the moment a customer takes action so you
+            respond in minutes, not hours.
+          </p>
+          <a href="/pricing" class="btn btn-primary">Start Free Trial</a>
+          <div class="tab-pills">
+            {
+              leadTabs.map((t, i) => (
+                <button
+                  class:list={["tab-pill", { active: i === 0 }]}
+                  data-tab={i}
+                >
+                  {t.label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div class="alt-visual">
+          {
+            leadTabs.map((t, i) => (
+              <div
+                class:list={["mock-ui mock-sms", { active: i === 0 }]}
+                data-panel={i}
+              >
+                <div class="sms sms-in">
+                  <span class="sms-label">{t.badge}</span>
+                  {t.msg}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Features grid -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center center-narrow" data-reveal>
+        <span class="eyebrow">Features</span>
+        <h2>Built for contractors, powered by simplicity</h2>
+        <p class="lead" style="margin: 0 auto;">
+          Smart, flexible, and built around how contractors actually work.
+        </p>
+      </div>
+
+      <div class="feature-grid" data-reveal-stagger>
+        <article class="card feat-big">
+          <div class="icon-badge">✍️</div>
+          <h3>Make it yours</h3>
+          <p>
+            Edit every detail with a simple website editor — your services,
+            hours, photos, and copy. No tech skills required, or let us handle
+            it for you.
+          </p>
+          <div class="editor-mock">
+            <span class="em-row"></span><span class="em-row short"></span><span
+              class="em-row"></span>
+          </div>
+        </article>
+
+        <article class="card feat-int">
+          <div class="icon-badge">🌐</div>
+          <h3>Everything handled for you</h3>
+          <p>
+            You share your business info — we set up the rest so you're online in
+            days, not months.
+          </p>
+          <div class="int-chips">
+            {included.map((c) => <span class="int-chip">{c}</span>)}
+          </div>
+        </article>
+
+        {
+          smallFeatures.map((f) => (
+            <article class="card feat-small">
+              <div class="icon-badge">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Testimonials -->
+  <section class="section surface-soft">
+    <div class="container">
+      <blockquote class="big-quote" data-reveal>
+        <span class="stars">★★★★★</span>
+        <p>"{bigQuote.quote}"</p>
+        <footer>
+          <span class="bq-name">{bigQuote.name}</span>
+          <span class="bq-role">{bigQuote.role}</span>
+        </footer>
+      </blockquote>
+
+      <div class="grid grid-2 review-grid" data-reveal-stagger>
+        {
+          reviews.map((r) => (
+            <blockquote class="card quote">
+              <span class="stars">★★★★★</span>
+              <p>"{r.quote}"</p>
+              <footer>— {r.name}</footer>
+            </blockquote>
+          ))
+        }
+      </div>
+      <div class="text-center" style="margin-top: 36px;">
+        <a href="/testimonials" class="btn btn-outline">Read all reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Pricing -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center center-narrow" data-reveal>
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple plans for serious work</h2>
+        <p class="lead" style="margin: 0 auto;">
+          One price, zero excuses. 7-day free trial, no contracts, cancel
+          anytime.
+        </p>
+      </div>
+
+      <div class="home-pricing" data-reveal-stagger>
+        {
+          plans.map((p) => (
+            <article class:list={["plan", { featured: p.featured }]}>
+              {p.featured && <span class="badge">Most Popular</span>}
+              <h3 class="plan-name">{p.name}</h3>
+              <p class="plan-blurb">{p.blurb}</p>
+              <div class="plan-price">
+                <span class="amount">{p.price}</span>
+                <span class="cadence">/mo</span>
+              </div>
+              <a
+                href="/pricing"
+                class:list={[
+                  "btn",
+                  "plan-cta",
+                  p.featured ? "btn-primary" : "btn-outline",
+                ]}
+              >
+                Start Free Trial
+              </a>
+              <ul class="plan-features">
+                {p.features.map((f) => (
+                  <li>{f}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Blog / Ideas -->
+  <section class="section surface-soft">
+    <div class="container">
+      <div class="text-center center-narrow" data-reveal>
+        <span class="eyebrow">Blog</span>
+        <h2>Ideas to get more jobs</h2>
+      </div>
+      <div class="blog-grid" data-reveal-stagger>
+        {
+          posts.map((p, i) => (
+            <article class:list={["blog-card", { feature: i === 0 }]}>
+              <div class="blog-thumb">
+                <span class="blog-tag">{p.tag}</span>
+              </div>
+              <div class="blog-body">
+                <span class="blog-kind">{p.kind}</span>
+                <h3>{p.title}</h3>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Community / Stay in the loop -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center center-narrow" data-reveal>
+        <span class="eyebrow">Community</span>
+        <h2>Stay in the loop</h2>
+      </div>
+      <div class="grid grid-2 community" data-reveal-stagger>
+        <article class="card comm-card">
+          <span class="comm-icon">★</span>
+          <div>
+            <strong>4.4 Excellent</strong>
+            <p>
+              See what contractors are saying about Stacked across 10 verified
+              reviews on Trustpilot.
+            </p>
+            <a href="/testimonials" class="btn btn-outline btn-sm">Read reviews</a>
+          </div>
+        </article>
+        <article class="card comm-card">
+          <span class="comm-icon">📲</span>
+          <div>
+            <strong>Don't believe it? Try it.</strong>
+            <p>
+              Enter your number and we'll text you a sample lead notification —
+              the same one you'd get from a real customer.
+            </p>
+            <a href="/contact" class="btn btn-outline btn-sm">Get a demo text</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Ready to get your site live?"
+    text="Most contractors are online within a week of signing up. Start your 7-day free trial — no contracts, cancel anytime."
+  />
+</Layout>
+
+<style>
+  /* 1. Hero */
+  .hero {
+    background: radial-gradient(
+        900px 380px at 80% -20%,
+        rgba(59, 130, 246, 0.18),
+        transparent
+      ),
+      radial-gradient(
+        900px 420px at 10% 0%,
+        rgba(37, 99, 235, 0.16),
+        transparent
+      ),
+      var(--surface-soft);
+    padding: 80px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .hero-lead {
+    margin: 0 auto;
+  }
+
+  .hl {
+    background: linear-gradient(120deg, var(--brand), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 28px 0 0;
+  }
+
+  /* Browser mockup */
+  .hero-visual {
+    margin-top: 48px;
+  }
+
+  .browser {
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: #fff;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    background: var(--surface-soft);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .browser-bar .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d1d5db;
+  }
+
+  .browser-bar .url {
+    margin-left: 12px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 14px;
+  }
+
+  .browser-body {
+    padding: 40px 32px;
+    background: linear-gradient(160deg, #eaf1ff, #ffffff);
+  }
+
+  .bb-hero {
+    display: grid;
+    gap: 10px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .bb-pill {
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 0.78rem;
+    background: var(--brand-tint);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .bb-h {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .bb-sub {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .bb-cta {
+    margin-top: 6px;
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
+
+  .bb-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 28px;
+  }
+
+  .bb-cards span {
+    height: 70px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+
+  .browser-dark .browser-body {
+    background: linear-gradient(160deg, #0f1830, #0b1120);
+  }
+
+  .browser-dark .bb-h {
+    color: #fff;
+  }
+
+  .browser-dark .bb-sub {
+    color: #aab6cd;
+  }
+
+  .browser-dark .bb-cards span {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* 2. Trusted */
+  .trusted {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .trusted-label {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+
+  .trusted-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .trusted-chip {
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+  }
+
+  .surface-soft {
+    background: var(--surface-soft);
+  }
+
+  /* 3. Device toggle */
+  .device-toggle {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    margin: 40px auto 32px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .device-stage,
+  .device-toggle {
+    display: flex;
+    justify-content: center;
+  }
+
+  .device-stage {
+    margin-top: 8px;
+  }
+
+  .device-btn {
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-weight: 700;
+    color: var(--ink-soft);
+    padding: 9px 26px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .device-btn.active {
+    background: var(--brand);
+    color: #fff;
+  }
+
+  .device-panel {
+    display: none;
+  }
+
+  .device-panel.active {
+    display: block;
+    width: 100%;
+  }
+
+  .device-panel[data-device-panel="web"] .browser {
+    max-width: 760px;
+  }
+
+  /* Phone mockup */
+  .phone {
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 36px;
+    padding: 34px 18px 26px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    display: grid;
+    gap: 12px;
+  }
+
+  .phone-notch {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .sms {
+    border-radius: 16px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .sms-in {
+    background: #fff;
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+  }
+
+  .sms-label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 4px;
+  }
+
+  /* 4 & 5. Alternating tab sections */
+  .alt-row {
+    align-items: center;
+    gap: 56px;
+  }
+
+  .alt-copy .btn {
+    margin-top: 8px;
+  }
+
+  .tab-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+  .tab-pill {
+    border: 1px solid var(--line);
+    background: #fff;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .tab-pill:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .tab-pill.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+  .alt-visual {
+    position: relative;
+    min-height: 280px;
+    display: grid;
+  }
+
+  .mock-ui {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+    background: linear-gradient(160deg, #131d33, #0b1120);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-lg);
+    color: #fff;
+    align-content: center;
+  }
+
+  .mock-ui.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mock-icon {
+    font-size: 2.4rem;
+  }
+
+  .mock-title {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 14px 0 8px;
+  }
+
+  .mock-text {
+    color: #aab6cd;
+    margin: 0;
+  }
+
+  .mock-lines {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .mock-lines span {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mock-lines span:nth-child(2) {
+    width: 80%;
+  }
+
+  .mock-lines span:nth-child(3) {
+    width: 60%;
+  }
+
+  .mock-sms {
+    background: var(--bg);
+    align-content: start;
+  }
+
+  .mock-sms .sms-in {
+    background: #fff;
+  }
+
+  /* 6. Features grid */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .feat-big {
+    grid-column: span 2;
+  }
+
+  .editor-mock {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+  }
+
+  .em-row {
+    height: 14px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+  }
+
+  .em-row.short {
+    width: 55%;
+  }
+
+  .int-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .int-chip {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--brand);
+    background: var(--brand-tint);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  /* 7. Testimonials */
+  .big-quote {
+    margin: 0 auto 32px;
+    max-width: 820px;
+    text-align: center;
+  }
+
+  .big-quote p {
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 14px 0 18px;
+  }
+
+  .big-quote .bq-name {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .big-quote .bq-role {
+    color: var(--muted);
+    margin-left: 8px;
+  }
+
+  .review-grid {
+    gap: 24px;
+  }
+
+  .quote p {
+    color: var(--ink);
+    font-size: 1.02rem;
+    margin: 12px 0;
+  }
+
+  .quote footer {
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  /* 8. Pricing */
+  .home-pricing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    gap: 28px;
+    justify-content: center;
+    align-items: start;
+    margin-top: 48px;
+  }
+
+  .plan {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 34px 30px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .plan.featured {
+    border-color: var(--brand);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  .plan-name {
+    font-size: 1.3rem;
+  }
+
+  .plan-blurb {
+    min-height: 48px;
+    margin-bottom: 8px;
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .amount {
+    font-size: 2.6rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .cadence {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .plan-cta {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .plan-features li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .plan-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--brand);
+    font-weight: 800;
+  }
+
+  /* 9. Blog */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .blog-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .blog-card.feature {
+    grid-row: span 2;
+    grid-column: span 1;
+  }
+
+  .blog-thumb {
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(150deg, var(--brand), var(--accent));
+    position: relative;
+  }
+
+  .blog-card.feature .blog-thumb {
+    aspect-ratio: 16 / 14;
+  }
+
+  .blog-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 0.74rem;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .blog-body {
+    padding: 20px 22px 24px;
+  }
+
+  .blog-kind {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  .blog-body h3 {
+    margin: 8px 0 0;
+    font-size: 1.1rem;
+  }
+
+  /* 10. Community */
+  .community {
+    margin-top: 48px;
+    gap: 24px;
+  }
+
+  .comm-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .comm-icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--brand-tint);
+    color: var(--brand);
+    font-size: 1.4rem;
+  }
+
+  .comm-card strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .btn-sm {
+    padding: 9px 18px;
+    font-size: 0.88rem;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .alt-row {
+      grid-template-columns: 1fr;
+    }
+    .alt-row .alt-visual {
+      order: 2;
+    }
+    .feature-grid,
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+    .feat-big {
+      grid-column: auto;
+    }
+    .blog-card.feature {
+      grid-row: auto;
+    }
+    .home-pricing {
+      grid-template-columns: 1fr;
+    }
+    .review-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Tab pill groups (alternating feature sections)
+  document.querySelectorAll<HTMLElement>("[data-tabset]").forEach((set) => {
+    const pills = set.querySelectorAll<HTMLElement>(".tab-pill");
+    const panels = set.querySelectorAll<HTMLElement>("[data-panel]");
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const idx = pill.getAttribute("data-tab");
+        pills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+        panels.forEach((panel) => {
+          panel.classList.toggle(
+            "active",
+            panel.getAttribute("data-panel") === idx
+          );
+        });
+      });
+    });
+  });
+
+  // Device toggle (phone / web)
+  document.querySelectorAll<HTMLElement>("[data-toggle]").forEach((toggle) => {
+    const section = toggle.closest("section");
+    const btns = toggle.querySelectorAll<HTMLElement>(".device-btn");
+    btns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const device = btn.getAttribute("data-device");
+        btns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        section
+          ?.querySelectorAll<HTMLElement>("[data-device-panel]")
+          .forEach((panel) => {
+            panel.classList.toggle(
+              "active",
+              panel.getAttribute("data-device-panel") === device
+            );
+          });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,102 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/open-runde/400.css";
+import "@fontsource/open-runde/500.css";
+import "@fontsource/open-runde/600.css";
+import "@fontsource/open-runde/700.css";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Stacked — Websites for Contractors. Load Fast. Rank High. Get Paid.",
+  description = "Stacked builds done-for-you websites for contractors that load fast, rank on Google, and send every new lead straight to your phone by text.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import Lenis from "lenis";
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (!reduceMotion) {
+        const lenis = new Lenis({
+          duration: 1.35,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          wheelMultiplier: 0.9,
+        });
+
+        function raf(time: number) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Smooth in-page anchor jumps
+        document
+          .querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+          .forEach((anchor) => {
+            anchor.addEventListener("click", (e) => {
+              const id = anchor.getAttribute("href");
+              if (!id || id.length < 2) return;
+              const target = document.querySelector(id);
+              if (target) {
+                e.preventDefault();
+                lenis.scrollTo(target as HTMLElement, { offset: -80 });
+              }
+            });
+          });
+      }
+    </script>
+
+    <script>
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const targets = document.querySelectorAll<HTMLElement>(
+        "[data-reveal], [data-reveal-stagger]"
+      );
+
+      if (prefersReduced || !("IntersectionObserver" in window)) {
+        targets.forEach((el) => el.classList.add("is-visible"));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>
