@@ -10,8 +10,7 @@ client site [stacked.site](https://stacked.site/) and uses their brand colors
 
 | Route            | Description                                                  |
 | ---------------- | ----------------------------------------------------------- |
-| `/`              | Home — hero, SMS-leads demo, features, process, reviews, CTA |
-| `/features`      | Detailed breakdown of each feature                          |
+| `/`              | Home — hero, SMS-leads demo, full features, reviews, pricing, CTA |
 | `/pricing`       | Launch ($99/mo) & Max ($250/mo) plans + pricing FAQ         |
 | `/testimonials`  | Real Trustpilot reviews and stats                          |
 | `/about`         | Story, values, and the numbers                              |

@@ -1,7 +1,6 @@
 ---
 const { pathname } = Astro.url;
 const links = [
-  { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/about", label: "About" },
@@ -14,8 +13,14 @@ const isActive = (href: string) =>
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand" aria-label="Stacked home">
-      <span class="brand-mark">▚</span>
-      <span class="brand-name">Stacked</span>
+      <span class="brand-name">STACKED</span>
+      <svg class="brand-icon" viewBox="165 115 430 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="currentColor" stroke="var(--surface)" stroke-width="18" stroke-linejoin="round">
+          <path d="M275 124.5H579C592.531 124.5 603.5 135.469 603.5 149V373C603.5 386.531 592.531 397.5 579 397.5H275C261.469 397.5 250.5 386.531 250.5 373V149C250.5 135.469 261.469 124.5 275 124.5Z"/>
+          <path d="M235 164.5H539C552.531 164.5 563.5 175.469 563.5 189V413C563.5 426.531 552.531 437.5 539 437.5H235C221.469 437.5 210.5 426.531 210.5 413V189C210.5 175.469 221.469 164.5 235 164.5Z"/>
+          <path d="M195 204.5H499C512.531 204.5 523.5 215.469 523.5 229V453C523.5 466.531 512.531 477.5 499 477.5H195C181.469 477.5 170.5 466.531 170.5 453V229C170.5 215.469 181.469 204.5 195 204.5Z"/>
+        </g>
+      </svg>
     </a>
 
     <nav class="nav" aria-label="Primary">
@@ -29,6 +34,16 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="header-cta">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <!-- Sun icon (light mode) -->
+        <svg class="theme-icon theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <!-- Moon icon (dark mode) -->
+        <svg class="theme-icon theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
       <a href="/pricing" class="btn btn-primary btn-sm">Start Free Trial</a>
     </div>
 
@@ -48,9 +63,16 @@ const isActive = (href: string) =>
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255, 255, 255, 0.85);
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
     backdrop-filter: saturate(180%) blur(12px);
     border-bottom: 1px solid var(--line);
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  }
+
+  .site-header.nav-transparent {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
   }
 
   .header-inner {
@@ -63,22 +85,26 @@ const isActive = (href: string) =>
   .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.8rem;
     letter-spacing: -0.03em;
   }
 
-  .brand-mark {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
-    color: #fff;
-    font-size: 1.1rem;
-    transform: rotate(0deg);
+  .brand-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: var(--brand);
+    overflow: visible;
+    align-self: center;
+    transform: translateY(-2px);
+  }
+
+  .brand-name {
+    line-height: 1;
+    align-self: center;
   }
 
   .nav {
@@ -105,9 +131,57 @@ const isActive = (href: string) =>
     background: var(--brand-tint);
   }
 
+  .header-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   .btn-sm {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface-soft);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    background: var(--line);
+    color: var(--ink);
+  }
+
+  .theme-icon {
+    position: absolute;
+    display: flex;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .theme-icon-dark {
+    opacity: 0;
+    transform: scale(0.5) rotate(-30deg);
+  }
+
+  [data-theme="dark"] .theme-icon-light {
+    opacity: 0;
+    transform: scale(0.5) rotate(30deg);
+  }
+
+  [data-theme="dark"] .theme-icon-dark {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 
   .nav-toggle {
@@ -134,7 +208,7 @@ const isActive = (href: string) =>
     gap: 8px;
     padding: 16px 24px 24px;
     border-bottom: 1px solid var(--line);
-    background: #fff;
+    background: var(--surface);
   }
 
   .mobile-menu.open {
@@ -158,8 +232,46 @@ const isActive = (href: string) =>
   }
 </style>
 
+<script is:inline>
+  (function () {
+    // Apply saved theme immediately to avoid flash
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (saved === "dark" || (!saved && prefersDark)) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+    // Apply transparent nav on home page before first paint
+    if (window.location.pathname === "/") {
+      document.querySelector(".site-header")?.classList.add("nav-transparent");
+    }
+  })();
+</script>
+
 <script>
   const toggle = document.getElementById("navToggle");
   const menu = document.getElementById("mobileMenu");
   toggle?.addEventListener("click", () => menu?.classList.toggle("open"));
+
+  const themeBtn = document.getElementById("themeToggle");
+  themeBtn?.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const next = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+
+  // Transparent nav on home page hero
+  const header = document.querySelector<HTMLElement>(".site-header");
+  if (header && window.location.pathname === "/") {
+    const applyTransparency = () => {
+      if (window.scrollY < 10) {
+        header.classList.add("nav-transparent");
+      } else {
+        header.classList.remove("nav-transparent");
+      }
+    };
+    applyTransparency();
+    window.addEventListener("scroll", applyTransparency, { passive: true });
+  }
 </script>
