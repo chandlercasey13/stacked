@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PrismBg from "../components/PrismBg.astro";
 
 const trades = [
   "Landscaping",
@@ -22,6 +23,7 @@ const trades = [
   description="Book a 20-minute demo call with Stacked. We'll answer your questions and show you live client results."
 >
   <section class="page-hero">
+    <PrismBg />
     <div class="container center-narrow text-center">
       <span class="eyebrow">Contact</span>
       <h1>Let's get your site live</h1>
@@ -35,7 +37,7 @@ const trades = [
   <!-- SMS demo -->
   <section class="section-tight">
     <div class="container">
-      <div class="sms-demo">
+      <div class="sms-demo" data-reveal>
         <div class="sms-demo-copy">
           <span class="eyebrow">Don't believe it? Try it.</span>
           <h2>Get a demo text right now</h2>
@@ -165,6 +167,17 @@ const trades = [
     background: var(--surface-soft);
     padding: 80px 0 56px;
     border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .page-hero {
+    background: var(--bg);
+  }
+
+  .page-hero > .container {
+    position: relative;
+    z-index: 1;
   }
 
   .sr-only {
@@ -179,6 +192,7 @@ const trades = [
   }
 
   .sms-demo {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
@@ -188,6 +202,49 @@ const trades = [
     border-radius: var(--radius-lg);
     padding: 40px;
     box-shadow: var(--shadow-lg);
+  }
+
+  /* iMessage-style bubble tail (bottom-left) */
+  .sms-demo::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    bottom: 16px;
+    width: 26px;
+    height: 26px;
+    background: var(--bg);
+    border-bottom-left-radius: 24px;
+    -webkit-mask: radial-gradient(circle at 0 0, transparent 18px, #000 19px);
+    mask: radial-gradient(circle at 0 0, transparent 18px, #000 19px);
+    transform: rotate(8deg);
+    z-index: -1;
+  }
+
+  /* iMessage pop-in on reveal */
+  @media (prefers-reduced-motion: no-preference) {
+    .sms-demo[data-reveal] {
+      opacity: 0;
+      transform: scale(0.4);
+      transform-origin: left bottom;
+      transition: opacity 0.32s ease,
+        transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .sms-demo[data-reveal].is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* stagger the inner content so text/form fade up after the bubble lands */
+    .sms-demo[data-reveal] .sms-demo-copy,
+    .sms-demo[data-reveal] .sms-demo-form {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease 0.28s, transform 0.4s ease 0.28s;
+    }
+    .sms-demo[data-reveal].is-visible .sms-demo-copy,
+    .sms-demo[data-reveal].is-visible .sms-demo-form {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .sms-demo-copy h2 {

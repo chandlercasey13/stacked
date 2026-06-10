@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CtaBand from "../components/CtaBand.astro";
+import PrismBg from "../components/PrismBg.astro";
 
 const plans = [
   {
@@ -72,12 +73,13 @@ const faqs = [
   description="Simple pricing for contractor websites. Launch at $99/mo or Max at $250/mo. 7-day free trial, no contracts, cancel anytime."
 >
   <section class="page-hero">
+    <PrismBg />
     <div class="container center-narrow text-center">
       <span class="eyebrow">Pricing</span>
       <h1>One price. Zero excuses.</h1>
       <p class="lead" style="margin: 0 auto;">
-        We charge less than your current website charges you in missed leads. Do
-        the math — then start your 7-day free trial.
+        We charge less than your current website costs you in missed leads.
+        Do the math, then start your 7-day free trial.
       </p>
     </div>
   </section>
@@ -152,7 +154,7 @@ const faqs = [
   </section>
 
   <CtaBand
-    title="Start your 7-day free trial"
+    title="Ready to build your stack?"
     text="Get your site live, see the leads come in, then decide. No contracts, cancel anytime."
   />
 </Layout>
@@ -162,6 +164,17 @@ const faqs = [
     background: var(--surface-soft);
     padding: 80px 0 56px;
     border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .page-hero {
+    background: var(--bg);
+  }
+
+  .page-hero > .container {
+    position: relative;
+    z-index: 1;
   }
 
   .pricing-grid {

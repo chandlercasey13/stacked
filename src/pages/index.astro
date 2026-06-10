@@ -1,25 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CtaBand from "../components/CtaBand.astro";
+import PrismBg from "../components/PrismBg.astro";
 
-const trustChips = [
-  "Roofing",
-  "Plumbing",
-  "HVAC",
-  "Landscaping",
-  "Electrical",
-  "Remodeling",
-  "Marine Construction",
+// Example client wordmarks for the logo marquee
+const clientLogos = [
+  { name: "Summit Roofing Co.", trade: "Roofing" },
+  { name: "Ironclad Plumbing", trade: "Plumbing" },
+  { name: "Evergreen Landscapes", trade: "Landscaping" },
+  { name: "BlueLine Electric", trade: "Electrical" },
+  { name: "Cornerstone Remodeling", trade: "Remodeling" },
+  { name: "Harbor Marine Co.", trade: "Marine" },
+  { name: "TrueNorth HVAC", trade: "HVAC" },
+  { name: "Oakwood Exteriors", trade: "Siding" },
+  { name: "Apex Concrete", trade: "Concrete" },
+  { name: "Riverstone Builders", trade: "General" },
 ];
 
 // Benefit cards — sticky stacking on scroll
 const painPoints = [
   {
-    eyebrow: "Seamless across devices",
-    title: "Get leads anywhere, stay in sync",
-    text: "Your site works beautifully on every screen, and every lead lands on your phone the instant it comes in.",
-    points: ["Works on every screen", "Leads land on your phone instantly"],
-    visual: "devices",
+    eyebrow: "Get more 5-star reviews",
+    title: "5-Star Magic Review Funnel",
+    text: "\"Sure I'll leave you a review,\" but the truth is people forget. We'll gently remind them for a few weeks until they remember.",
+    points: [
+      {
+        t: "5-Star Reviews Only",
+        d: "You can't make everyone happy, but our magic funnel sure can. Five stars, every time.",
+      },
+      {
+        t: "Automatic Follow-Up Reminders",
+        d: "People forget, so we gently remind them for a few weeks until they leave that review.",
+      },
+      {
+        t: "Ask For Reviews In One Click",
+        d: "As promised, we keep it simple. One tap and your customer is on their way to leaving a review.",
+      },
+      {
+        t: "Stop Worrying About Bad Reviews",
+        d: "We take the guesswork out by guiding every happy customer straight to a 5-star review.",
+      },
+    ],
+    visual: "reviews",
   },
   {
     eyebrow: "Get found on Google",
@@ -29,36 +51,53 @@ const painPoints = [
     visual: "search",
   },
   {
-    eyebrow: "Never miss a lead",
-    title: "Leads straight to your phone",
-    text: "Who checks email anymore — especially the spam folder where lead alerts end up? We text you the moment a customer takes action so you respond in minutes, not hours.",
-    points: ["Texted the moment a lead acts", "Respond in minutes, not hours"],
+    eyebrow: "Never lose a missed call",
+    title: "Missed Call Text Back",
+    text: "Everyone misses calls, but not everyone texts back. Be the one who does. Outshine your competition.",
+    points: [
+      {
+        t: "Stand out from your competition",
+        d: "Everyone misses calls, but not everyone texts back. Be the one who does and outshine your competition.",
+      },
+      {
+        t: "No More Lost Leads",
+        d: "On a job site and can't answer the phone? No problem, we'll fire off a text and start the conversation for you.",
+      },
+      {
+        t: "Show Customers You Care",
+        d: "Missed their call? At least send a text so they know you care and you'll get right back to them.",
+      },
+      {
+        t: "Be available 24/7",
+        d: "Missed a call after hours? No worries, we'll make sure everyone feels looked after even while you sleep.",
+      },
+    ],
     visual: "sms",
   },
 ];
 
-// Features / how it works (quote → book → pay)
+// How it works (book a call → we build → you go live)
 const howItWorks = [
   {
     step: "01",
-    title: "Get the quote request",
-    text: "Visitors request a quote from your site and it's texted straight to your phone — no missed leads.",
-    stat: "Instant",
-    statLabel: "Lead to your phone",
+    title: "Book your call",
+    text: "Pick a time that works and hop on a quick call. We learn about your trade, your service area, and what you want your site to do.",
+    stat: "15 min",
+    statLabel: "Discovery call",
   },
   {
     step: "02",
-    title: "Book the job",
-    text: "Lock in the meeting with built-in scheduling and automated reminders so nobody no-shows.",
-    stat: "Auto",
-    statLabel: "Reminders sent",
+    title: "We build it for you",
+    text: "We design and build your site end to end — copy, photos, lead texting, and SEO all done for you. You just review and approve.",
+    stat: "Done-for-you",
+    statLabel: "Zero busywork",
   },
   {
     step: "03",
-    title: "Get paid",
-    text: "Send the invoice, collect payment, and get a text the moment the money hits.",
-    stat: "Same day",
-    statLabel: "Payouts",
+    title: "Go live & get leads",
+    text: "Your site goes live in days, not months. New leads start landing straight on your phone by text from day one.",
+    stat: "Days",
+    statLabel: "To launch",
   },
 ];
 
@@ -75,6 +114,14 @@ const showcaseCallouts = [
   {
     title: "Loads in a blink",
     text: "A fast, modern build keeps visitors from bouncing on mobile or desktop.",
+  },
+  {
+    title: "Ranks on Google",
+    text: "Built with SEO baked in so your name shows up when locals search for your trade.",
+  },
+  {
+    title: "Looks pro on every screen",
+    text: "Pixel-perfect on mobile, tablet, and desktop — no pinching or squinting.",
   },
 ];
 
@@ -178,34 +225,37 @@ const plans = [
   },
 ];
 
-// Big testimonial + grid
-const bigQuote = {
-  quote:
-    "We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED.",
-  name: "Chris Kick",
-  role: "Jordan Marine Construction",
-};
-
+// Testimonials — orbital carousel
 const reviews = [
   {
+    name: "Chris Kick",
+    role: "Jordan Marine Construction",
+    quote:
+      "We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by Stacked. Quick, responsive, and honest.",
+  },
+  {
     name: "Glenn Robertson",
+    role: "Verified Stacked customer",
     quote:
       "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!",
   },
   {
     name: "Maria Ramirez",
+    role: "Verified Stacked customer",
     quote:
       "The website works PERFECT. Was cheaper than I thought, and I definitely saw a rise in traffic, bookings and sales.",
   },
   {
     name: "Ethan Del Angel",
+    role: "Verified Stacked customer",
     quote:
       "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up.",
   },
   {
     name: "Chelsea Casarez",
+    role: "Verified Stacked customer",
     quote:
-      "I love my Stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already!",
+      "I love my Stacked site, it's bringing in a ton of new leads. We're doing so much better than last month already!",
   },
 ];
 
@@ -233,7 +283,7 @@ const posts = [
 <Layout>
   <!-- 1. Hero -->
   <section class="hero">
-    <canvas id="liquid-bg" aria-hidden="true"></canvas>
+    <PrismBg />
     <div class="container hero-inner text-center">
       <p class="hero-tagline anim-in" style="--delay: 0ms;">
         Built for contractors who want a stacked business.
@@ -290,15 +340,26 @@ const posts = [
     </div>
   </section>
 
-  <!-- 2. Trusted by -->
+  <!-- 2. Trusted by — logo marquee -->
   <section class="trusted">
     <div class="container text-center">
       <p class="trusted-label" data-reveal>
-        Rated 4.4 Excellent on Trustpilot · trusted by contractors in every
-        trade
+        Trusted by contractors in every trade
       </p>
-      <div class="trusted-row" data-reveal-stagger>
-        {trustChips.map((c) => <span class="trusted-chip">{c}</span>)}
+    </div>
+    <div class="logo-marquee" aria-label="Companies that trust Stacked">
+      <div class="logo-track">
+        {
+          [...clientLogos, ...clientLogos].map((c) => (
+            <span class="logo-item" aria-hidden="false">
+              <svg class="logo-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 21V10l9-6 9 6v11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="logo-name">{c.name}</span>
+            </span>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -317,14 +378,140 @@ const posts = [
 
       <div class="showcase-layout" data-reveal>
         <div class="showcase-phone-wrap">
-          <div class="device device-iphone-14-pro device-black showcase-iphone">
+          <div class="device device-iphone-14-pro device-silver showcase-iphone">
             <div class="device-frame">
-              <img
-                class="device-screen"
-                src="/contractor-phone.png"
-                alt="Contractor site on mobile"
-                loading="lazy"
-              />
+              <div class="ios-screen">
+                <!-- iOS status bar -->
+                <div class="ios-statusbar">
+                  <span class="ios-time">9:41</span>
+                  <div class="ios-status-right">
+                    <svg class="ios-signal" viewBox="0 0 18 12" aria-hidden="true">
+                      <rect x="0" y="8" width="3" height="4" rx="1"></rect>
+                      <rect x="5" y="5.5" width="3" height="6.5" rx="1"></rect>
+                      <rect x="10" y="3" width="3" height="9" rx="1"></rect>
+                      <rect x="15" y="0.5" width="3" height="11.5" rx="1"></rect>
+                    </svg>
+                    <svg class="ios-wifi" viewBox="0 0 16 12" aria-hidden="true">
+                      <path d="M8 11.2 9.6 9.3a2.1 2.1 0 0 0-3.2 0L8 11.2Z"></path>
+                      <path d="M8 7.2a4.6 4.6 0 0 1 3.5 1.6l1.3-1.5a6.6 6.6 0 0 0-9.6 0l1.3 1.5A4.6 4.6 0 0 1 8 7.2Z" opacity="0.95"></path>
+                      <path d="M8 3.2a8.7 8.7 0 0 1 6.4 2.8L15.7 4.5a10.7 10.7 0 0 0-15.4 0L1.6 6A8.7 8.7 0 0 1 8 3.2Z" opacity="0.95"></path>
+                    </svg>
+                    <span class="ios-battery">
+                      <span class="ios-battery-level"></span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Mattila Companies — faithful mobile replica (sport theme) -->
+                <div class="ios-content mc">
+                  <!-- Header -->
+                  <header class="mc-header">
+                    <a class="mc-brand">
+                      <img src="/stacked-icon.png" alt="Mattila Companies" />
+                    </a>
+                    <a class="mc-cta">Request a Project Quote</a>
+                    <button class="mc-hamburger" aria-label="Open menu">
+                      <span></span><span></span><span></span>
+                    </button>
+                  </header>
+
+                  <!-- Hero -->
+                  <section class="mc-hero">
+                    <div class="mc-hero-overlay"></div>
+                    <div class="mc-hero-content">
+                      <h1 class="mc-headline">Luxury Outdoor Living &amp; Construction Built To Last</h1>
+                      <p class="mc-sub">Mattila Companies delivers premium inground pool, hardscape, remodeling, and custom construction services designed to combine durability, craftsmanship, and modern design for properties that stand out.</p>
+                      <div class="mc-btns">
+                        <a class="mc-btn-white">Request a Project Quote</a>
+                        <a class="mc-btn-outline">(763)-742-4697</a>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Services -->
+                  <section class="mc-section">
+                    <h2 class="mc-section-title">Concrete Craft</h2>
+                    <p class="mc-section-sub">From custom concrete and luxury hardscapes to remodels and full home builds, Mattila Companies delivers high-quality craftsmanship.</p>
+                    <div class="mc-svc-grid">
+                      <a class="mc-svc-card mc-svc-pool">
+                        <div class="mc-svc-card-bg"></div>
+                        <span class="mc-svc-name">Inground Pools</span>
+                      </a>
+                      <a class="mc-svc-card mc-svc-concrete">
+                        <div class="mc-svc-card-bg"></div>
+                        <span class="mc-svc-name">Custom Concrete</span>
+                      </a>
+                      <a class="mc-svc-card mc-svc-hardscape">
+                        <div class="mc-svc-card-bg"></div>
+                        <span class="mc-svc-name">Hardscape Design</span>
+                      </a>
+                    </div>
+                  </section>
+                </div>
+
+                <!-- Safari dynamic bottom bar -->
+                <div class="ios-safari">
+                  <!-- URL bar row -->
+                  <div class="safari-url">
+                    <span class="safari-url-left">
+                      <svg class="safari-reader" viewBox="0 0 18 16" aria-hidden="true">
+                        <rect x="1" y="2" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"></rect>
+                        <line x1="4" y1="14.5" x2="14" y2="14.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></line>
+                      </svg>
+                      <svg class="safari-eye" viewBox="0 0 20 16" aria-hidden="true">
+                        <path d="M2 8s2.8-5 8-5 8 5 8 5-2.8 5-8 5S2 8 2 8Z" fill="none" stroke="currentColor" stroke-width="1.4"></path>
+                        <circle cx="10" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+                        <line x1="3" y1="14.5" x2="17" y2="1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></line>
+                      </svg>
+                    </span>
+                    <span class="safari-url-center">
+                      <svg class="safari-lock" viewBox="0 0 12 14" aria-hidden="true">
+                        <rect x="1.5" y="6" width="9" height="7" rx="1.5"></rect>
+                        <path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.3"></path>
+                      </svg>
+                      <span class="safari-host">mattilacompanies.com</span>
+                    </span>
+                    <svg class="safari-refresh" viewBox="0 0 14 14" aria-hidden="true">
+                      <path d="M12 7a5 5 0 1 1-1.5-3.5M12 1v3H9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </div>
+
+                  <!-- Toolbar row -->
+                  <div class="safari-toolbar">
+                    <button class="safari-tb safari-disabled" aria-label="Back">
+                      <svg viewBox="0 0 16 22" aria-hidden="true">
+                        <path d="M11 4 5 11l6 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                    <button class="safari-tb safari-disabled" aria-label="Forward">
+                      <svg viewBox="0 0 16 22" aria-hidden="true">
+                        <path d="M5 4l6 7-6 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                    <button class="safari-tb safari-accent" aria-label="Share">
+                      <svg viewBox="0 0 20 24" aria-hidden="true">
+                        <path d="M10 15V3m0 0L6 7m4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M5 11H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                    <button class="safari-tb safari-accent" aria-label="Bookmarks">
+                      <svg viewBox="0 0 22 20" aria-hidden="true">
+                        <path d="M3 4a2 2 0 0 1 2-2h5v15l-3.5-2L3 17V4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                        <path d="M11 2h6a2 2 0 0 1 2 2v13l-3.5-2L11 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                    <button class="safari-tb safari-accent" aria-label="Tabs">
+                      <svg viewBox="0 0 22 20" aria-hidden="true">
+                        <rect x="6" y="5" width="13" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+                        <path d="M3 14V4a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- iOS home indicator (inside the Safari chrome) -->
+                  <span class="ios-home-indicator" aria-hidden="true"></span>
+                </div>
+              </div>
             </div>
             <div class="device-stripe"></div>
             <div class="device-header"></div>
@@ -335,21 +522,28 @@ const posts = [
           <div class="iphone-glow" aria-hidden="true"></div>
         </div>
 
-        <ul class="showcase-callouts">
-          {
-            showcaseCallouts.map((c) => (
-              <li class="showcase-callout">
-                <div>
-                  <strong>{c.title}</strong>
-                  <p>{c.text}</p>
-                </div>
-              </li>
-            ))
-          }
-          <li>
-            <a href="/contact" class="btn btn-primary">Book Call</a>
-          </li>
-        </ul>
+        <div class="showcase-copy">
+          <h2 class="showcase-heading">Built to Get You Paid</h2>
+          <p class="showcase-sub"><em>Get a website that instantly turns leads into text conversations that go directly to your phone.</em></p>
+          <ul class="showcase-callouts">
+            {
+              showcaseCallouts.map((c) => (
+                <li class="showcase-callout">
+                  <span class="showcase-check" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <div>
+                    <strong>{c.title}</strong>
+                    <p>{c.text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+          <a href="/contact" class="btn btn-primary showcase-cta">Book a Call</a>
+        </div>
       </div>
     </div>
   </section>
@@ -370,23 +564,24 @@ const posts = [
               style={`--i: ${i}`}
             >
               <div class="benefit-visual" aria-hidden="true">
-                {p.visual === "devices" && (
-                  <div class="mk mk-devices">
-                    <div class="mk-browser">
-                      <div class="mk-bar">
-                        <span /> <span /> <span />
-                      </div>
-                      <div class="mk-screen">
-                        <span class="mk-pill">★★★★★ 4.4</span>
-                        <span class="mk-h" />
-                        <span class="mk-line" />
-                        <span class="mk-line mk-sm" />
-                        <span class="mk-btn">Get a Quote</span>
+                {p.visual === "reviews" && (
+                  <div class="mk mk-reviews">
+                    <div class="mk-review-card">
+                      <span class="mk-review-stars">★★★★★</span>
+                      <span class="mk-review-q">How was your experience?</span>
+                      <div class="mk-review-actions">
+                        <span class="mk-review-btn mk-review-btn-primary">Leave a review</span>
+                        <span class="mk-review-btn">Maybe later</span>
                       </div>
                     </div>
-                    <div class="mk-phone">
-                      <span class="mk-phone-label">STACKED</span>
-                      <span class="mk-phone-msg">New lead just came in</span>
+                    <div class="mk-review-sms">
+                      <span class="mk-sms-label">STACKED</span>
+                      Quick favor — mind leaving us a ★★★★★ review? Tap here 👉
+                    </div>
+                    <div class="mk-review-badge">
+                      <span class="mk-review-badge-num">4.9</span>
+                      <span class="mk-review-badge-stars">★★★★★</span>
+                      <span class="mk-review-badge-label">128 reviews</span>
                     </div>
                   </div>
                 )}
@@ -449,7 +644,14 @@ const posts = [
                           <path d="M20 6 9 17l-5-5" />
                         </svg>
                       </span>
-                      {pt}
+                      {typeof pt === "string" ? (
+                        pt
+                      ) : (
+                        <span class="benefit-check-text">
+                          <strong>{pt.t}</strong>
+                          <span class="benefit-check-desc">{pt.d}</span>
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -466,20 +668,18 @@ const posts = [
     <div class="container">
       <div class="text-center center-narrow" data-reveal>
         <span class="eyebrow">How it works</span>
-        <h2>Quote → Book → Get paid</h2>
+        <h2>Book a call → We build → You go live</h2>
         <p class="lead" style="margin: 0 auto;">
-          One simple flow that turns a website visitor into money in your
-          account — without you chasing anyone.
+          Getting started is simple. One quick call and we handle the rest —
+          you're live and taking leads in days.
         </p>
       </div>
 
-      <ol class="steps-timeline">
+      <ol class="steps-row-h" data-reveal-stagger>
         {
           howItWorks.map((s, i) => (
-            <li
-              class:list={["steps-row", i % 2 === 0 ? "left" : "right"]}
-              data-reveal
-            >
+            <li class="steps-item">
+              <span class="steps-marker">{s.step}</span>
               <article class="steps-card">
                 <span class="steps-eyebrow">Step {i + 1}</span>
                 <h3>{s.title}</h3>
@@ -489,7 +689,6 @@ const posts = [
                   <span class="steps-stat-label">{s.statLabel}</span>
                 </div>
               </article>
-              <span class="steps-marker">{s.step}</span>
             </li>
           ))
         }
@@ -501,60 +700,80 @@ const posts = [
   <section class="section devices-section">
     <div class="container">
       <div class="text-center center-narrow" data-reveal>
-        <span class="eyebrow">Seamless across devices</span>
-        <h2>Manage everything, from anywhere</h2>
+        <span class="eyebrow">Our Work</span>
+        <h2>Real sites. <span class="hl">Live right now.</span></h2>
+        <p class="lead" style="margin: 0 auto;">These are actual contractor websites built and running on Stacked — not mockups, not demos.</p>
       </div>
 
       <div class="devices-frame" data-reveal>
         <div class="devices-panels">
           <div class="devices-panel active" data-panel="phone">
             <img
-              src="/contractor-phone.png"
-              alt="Contractor phone with Stacked app"
+              src="/client-2.png"
+              alt="Client website example"
               class="devices-photo"
             />
           </div>
           <div class="devices-panel" data-panel="web">
             <img
-              src="/contractor-web.png"
-              alt="Contractor web dashboard"
+              src="/client-1.png"
+              alt="Client website example"
               class="devices-photo"
             />
           </div>
         </div>
 
         <div class="devices-toggle" id="devicesToggle">
-          <button class="devices-btn active" data-target="phone">Mobile App</button>
-          <button class="devices-btn" data-target="web">Web App</button>
+          <button class="devices-btn active" data-target="phone">Site 1</button>
+          <button class="devices-btn" data-target="web">Site 2</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Testimonials -->
+  <!-- 7. Testimonials — orbital carousel -->
   <section class="section surface-soft">
     <div class="container">
-      <blockquote class="big-quote" data-reveal>
-        <span class="stars">★★★★★</span>
-        <p>"{bigQuote.quote}"</p>
-        <footer>
-          <span class="bq-name">{bigQuote.name}</span>
-          <span class="bq-role">{bigQuote.role}</span>
-        </footer>
-      </blockquote>
-
-      <div class="grid grid-2 review-grid" data-reveal-stagger>
-        {
-          reviews.map((r) => (
-            <blockquote class="card quote">
-              <span class="stars">★★★★★</span>
-              <p>"{r.quote}"</p>
-              <footer>— {r.name}</footer>
-            </blockquote>
-          ))
-        }
+      <div class="text-center center-narrow" data-reveal>
+        <span class="eyebrow">Testimonials</span>
+        <h2>Loved by contractors <span class="hl">everywhere</span></h2>
       </div>
-      <div class="text-center" style="margin-top: 36px;">
+
+      <div class="orbital" id="orbital" data-reveal>
+        <div class="orbital-stage">
+          {
+            reviews.map((r, i) => (
+              <article class="orbital-card" data-index={i}>
+                <span class="stars">★★★★★</span>
+                <p class="orbital-quote">"{r.quote}"</p>
+                <footer class="orbital-author">
+                  <span class="orbital-avatar">{r.name.charAt(0)}</span>
+                  <span class="orbital-meta">
+                    <span class="orbital-name">{r.name}</span>
+                    <span class="orbital-role">{r.role}</span>
+                  </span>
+                </footer>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="orbital-controls">
+          <button class="orbital-arrow" data-dir="-1" aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <div class="orbital-dots">
+            {reviews.map((_, i) => (
+              <button class="orbital-dot" data-index={i} aria-label={`Go to testimonial ${i + 1}`} />
+            ))}
+          </div>
+          <button class="orbital-arrow" data-dir="1" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 32px;">
         <a href="/testimonials" class="btn btn-outline">Read all reviews →</a>
       </div>
     </div>
@@ -605,33 +824,9 @@ const posts = [
     </div>
   </section>
 
-  <!-- 9. Blog / Ideas -->
-  <section class="section surface-soft">
-    <div class="container">
-      <div class="text-center center-narrow" data-reveal>
-        <span class="eyebrow">Blog</span>
-        <h2>Ideas to get more jobs</h2>
-      </div>
-      <div class="blog-grid" data-reveal-stagger>
-        {
-          posts.map((p, i) => (
-            <article class:list={["blog-card", { feature: i === 0 }]}>
-              <div class="blog-thumb">
-                <span class="blog-tag">{p.tag}</span>
-              </div>
-              <div class="blog-body">
-                <span class="blog-kind">{p.kind}</span>
-                <h3>{p.title}</h3>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
 
   <CtaBand
-    title="Ready to get your site live?"
+    title="Ready to build your stack?"
     text="Most contractors are online within a week of signing up. Book a call and we'll have you live within a week."
   />
 </Layout>
@@ -652,7 +847,8 @@ const posts = [
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
-    align-items: center;
+    align-items: stretch;
+    min-height: 480px;
     padding: 40px;
     border-radius: 16px;
     background: var(--surface);
@@ -672,7 +868,7 @@ const posts = [
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 320px;
+    min-height: 0;
     background: color-mix(in srgb, var(--surface) 60%, transparent);
     border: 1px solid color-mix(in srgb, var(--surface) 40%, transparent);
     backdrop-filter: blur(16px);
@@ -680,6 +876,9 @@ const posts = [
 
   .benefit-copy {
     padding: 8px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .benefit-eyebrow {
@@ -728,6 +927,30 @@ const posts = [
     color: var(--ink);
   }
 
+  /* Rich bullet: bold title + description */
+  .benefit-checks li:has(.benefit-check-text) {
+    align-items: flex-start;
+  }
+
+  .benefit-check-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .benefit-check-text strong {
+    font-weight: 700;
+    color: var(--brand);
+    line-height: 1.3;
+  }
+
+  .benefit-check-desc {
+    font-weight: 500;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
   .benefit-check-icon {
     flex-shrink: 0;
     width: 24px;
@@ -737,6 +960,10 @@ const posts = [
     place-items: center;
     background: var(--brand-tint);
     color: var(--brand);
+  }
+
+  .benefit-checks li:has(.benefit-check-text) .benefit-check-icon {
+    margin-top: 2px;
   }
 
   .benefit-check-icon svg {
@@ -991,126 +1218,186 @@ const posts = [
     margin-bottom: 3px;
   }
 
-  /* NEW: How it works — alternating timeline */
-  .steps-timeline {
+  /* Review funnel mockup */
+  .mk-reviews {
+    padding: 8px 0;
+  }
+
+  .mk-review-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+    padding: 22px 20px;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .mk-review-stars {
+    color: #f5b50a;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .mk-review-q {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+
+  .mk-review-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .mk-review-btn {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    background: var(--surface-soft);
+  }
+
+  .mk-review-btn-primary {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+  }
+
+  .mk-review-sms {
+    position: relative;
+    margin: 14px 28px 0 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    padding: 11px 13px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mk-review-badge {
+    position: absolute;
+    right: -10px;
+    bottom: -14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow-lg);
+    padding: 10px 14px;
+    display: grid;
+    justify-items: center;
+    gap: 1px;
+  }
+
+  .mk-review-badge-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .mk-review-badge-stars {
+    color: #f5b50a;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .mk-review-badge-label {
+    font-size: 0.56rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  /* NEW: How it works — horizontal steps */
+  .steps-row-h {
     position: relative;
     list-style: none;
-    margin: 72px auto 0;
+    margin: 56px auto 0;
     padding: 0;
-    max-width: 940px;
+    max-width: 1040px;
     display: grid;
-    gap: 80px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
   }
 
-  /* scroll reveal — slide each row in from its side */
-  .steps-row.left[data-reveal] {
-    opacity: 0;
-    transform: translateX(-48px);
-  }
-
-  .steps-row.right[data-reveal] {
-    opacity: 0;
-    transform: translateX(48px);
-  }
-
-  .steps-row[data-reveal].is-visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  .steps-row[data-reveal] .steps-marker {
-    opacity: 0;
-    transform: scale(0.4);
-    transition: opacity 0.5s var(--ease-out) 0.12s,
-      transform 0.5s var(--ease-out) 0.12s;
-  }
-
-  .steps-row[data-reveal].is-visible .steps-marker {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  /* center spine */
-  .steps-timeline::before {
+  /* connecting line across the markers */
+  .steps-row-h::before {
     content: "";
     position: absolute;
-    left: 50%;
-    top: 6px;
-    bottom: 6px;
-    width: 2px;
+    top: 28px;
+    left: 16%;
+    right: 16%;
+    height: 2px;
     background: linear-gradient(
-      to bottom,
+      to right,
       transparent,
-      var(--line) 8%,
-      var(--line) 92%,
+      var(--line) 10%,
+      var(--line) 90%,
       transparent
     );
-    transform: translateX(-50%);
+    z-index: 0;
   }
 
-  .steps-row {
+  .steps-item {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 56px 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    column-gap: 12px;
+    text-align: center;
   }
 
-  .steps-card {
-    grid-row: 1;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 26px 28px;
-    box-shadow: var(--shadow-md);
-    position: relative;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  /* Staggered entrance — each step slides up, marker pops in */
+  @media (prefers-reduced-motion: no-preference) {
+    .steps-row-h[data-reveal-stagger] > .steps-item {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .steps-row-h[data-reveal-stagger].is-visible > .steps-item {
+      opacity: 1;
+      transform: none;
+    }
+
+    .steps-row-h[data-reveal-stagger] > .steps-item .steps-marker {
+      opacity: 0;
+      transform: scale(0.4);
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+    .steps-row-h[data-reveal-stagger].is-visible > .steps-item .steps-marker {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(1) {
+      transition-delay: 0ms;
+    }
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(1) .steps-marker {
+      transition-delay: 140ms;
+    }
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(2) {
+      transition-delay: 160ms;
+    }
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(2) .steps-marker {
+      transition-delay: 300ms;
+    }
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(3) {
+      transition-delay: 320ms;
+    }
+    .steps-row-h[data-reveal-stagger] > .steps-item:nth-child(3) .steps-marker {
+      transition-delay: 460ms;
+    }
   }
 
-  .steps-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  /* little pointer connecting card to the spine */
-  .steps-card::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 14px;
-    height: 14px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  .steps-row.left .steps-card {
-    grid-column: 1;
-    text-align: right;
-  }
-
-  .steps-row.left .steps-card::after {
-    right: -8px;
-    border-left: 0;
-    border-bottom: 0;
-  }
-
-  .steps-row.right .steps-card {
-    grid-column: 3;
-    text-align: left;
-  }
-
-  .steps-row.right .steps-card::after {
-    left: -8px;
-    border-right: 0;
-    border-top: 0;
-  }
-
-  /* center number marker */
   .steps-marker {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
+    position: relative;
     z-index: 1;
     width: 56px;
     height: 56px;
@@ -1123,6 +1410,22 @@ const posts = [
     background: var(--brand);
     border: 4px solid var(--surface-soft);
     box-shadow: 0 0 0 1px var(--line), var(--shadow-sm);
+    margin-bottom: 24px;
+  }
+
+  .steps-card {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 26px 28px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .steps-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
   }
 
   .steps-eyebrow {
@@ -1149,12 +1452,9 @@ const posts = [
   .steps-stat {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 10px;
     margin-top: 18px;
-  }
-
-  .steps-row.left .steps-stat {
-    justify-content: flex-end;
   }
 
   .steps-stat-value {
@@ -1170,37 +1470,14 @@ const posts = [
     color: var(--muted);
   }
 
-  @media (max-width: 720px) {
-    .steps-timeline {
-      gap: 44px;
+  @media (max-width: 860px) {
+    .steps-row-h {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      max-width: 460px;
     }
-    .steps-timeline::before {
-      left: 27px;
-    }
-    .steps-row {
-      grid-template-columns: 56px 1fr;
-      column-gap: 18px;
-    }
-    .steps-marker {
-      grid-column: 1;
-      justify-self: start;
-    }
-    .steps-row.left .steps-card,
-    .steps-row.right .steps-card {
-      grid-column: 2;
-      text-align: left;
-    }
-    .steps-row.left .steps-stat {
-      justify-content: flex-start;
-    }
-    .steps-row.left .steps-card::after,
-    .steps-row.right .steps-card::after {
-      left: -8px;
-      right: auto;
-      border-right: 0;
-      border-top: 0;
-      border-left: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+    .steps-row-h::before {
+      display: none;
     }
   }
 
@@ -1210,7 +1487,7 @@ const posts = [
     grid-template-columns: 1fr 1.1fr;
     gap: 48px;
     align-items: center;
-    margin-top: 48px;
+    margin-top: 20px;
   }
 
   /* ── devices.css iPhone wrapper ── */
@@ -1247,64 +1524,892 @@ const posts = [
 
   .showcase-iphone {
     /* scale down the 868×428 native size to fit the column */
-    transform: scale(0.62) perspective(1000px) rotateY(0deg) rotateX(4deg);
+    transform: scale(0.76) perspective(1000px) rotateY(0deg) rotateX(1deg);
     transform-origin: center center;
     transition: transform 0.4s ease;
     position: relative;
     z-index: 1;
     /* preserve intrinsic size so layout isn't affected */
-    margin: calc(868px * -0.19) calc(428px * -0.19);
+    margin: calc(868px * -0.12) calc(428px * -0.12);
     animation: phoneSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   .showcase-iphone:hover {
-    transform: scale(0.62) perspective(1000px) rotateY(0deg) rotateX(2deg);
+    transform: scale(0.76) perspective(1000px) rotateY(0deg) rotateX(0deg);
   }
 
-  .showcase-iphone .device-screen {
+  /* ── iOS screen chrome (status bar + Safari) ── */
+  .showcase-iphone .ios-screen {
+    position: relative;
+    width: 390px;
+    height: 830px;
+    border-radius: 49px;
+    display: flex;
+    flex-direction: column;
+    background: #f7f7f7;
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .showcase-iphone .ios-screen {
+    background: #1c1c1e;
+  }
+
+  /* Status bar */
+  .ios-statusbar {
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    height: 54px;
+    padding: 0 34px 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    background: #f7f7f7;
+    color: #000;
+  }
+
+  .ios-time {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    padding-top: 6px;
+  }
+
+  .ios-status-right {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding-top: 6px;
+  }
+
+  .ios-signal { width: 18px; height: 12px; fill: #000; }
+  .ios-wifi { width: 16px; height: 12px; fill: #000; }
+
+  .ios-battery {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 12px;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 3px;
+    padding: 1.5px;
+  }
+
+  .ios-battery::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5px;
+    height: 4px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 0 1px 1px 0;
+  }
+
+  .ios-battery-level {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    background: #000;
+    border-radius: 1px;
+  }
+
+  /* Scrolling content */
+  .ios-content {
+    flex: 1;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+  }
+
+  /* ── Mattila Companies mobile replica (sport theme, real CSS) ── */
+  .mc {
+    --primary: #045bb6;
+    --header-bg: #c9c9c9;
+    --font-heading: "Anton", sans-serif;
+    --font-body: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-body);
+    color: #111827;
+    background: #fff;
+  }
+
+  /* Header (sport, mobile) */
+  .mc-header {
+    height: 60px;
+    background: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .mc-brand {
+    order: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .mc-brand img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .mc-cta {
+    order: 2;
+    margin: 0 auto;
+    background: var(--primary);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.65rem;
+    white-space: nowrap;
+    border-radius: 0;
+    line-height: 1.2;
+  }
+
+  .mc-hamburger {
+    order: 3;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    color: #374151;
+  }
+
+  .mc-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  /* Hero (sport) */
+  .mc-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 1.25rem 6.5rem;
+    text-align: center;
+    background: var(--primary) url('/mattila-hero.webp') center / cover no-repeat;
+  }
+
+  .mc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.38);
+  }
+
+  .mc-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .mc-headline {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.04;
+    color: #fff;
+    margin: 0 0 1.25rem;
+  }
+
+  .mc-sub {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.55;
+    margin: 0 auto 2.25rem;
+  }
+
+  .mc-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .mc-btn-white {
+    width: 100%;
+    background: #fff;
+    color: var(--primary);
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.9rem;
+    padding: 0.875rem 2rem;
+    text-align: center;
+  }
+
+  .mc-btn-outline {
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.9rem;
+    padding: 0.875rem 2rem;
+    text-align: center;
+  }
+
+  /* Services */
+  .mc-section {
+    padding: 3rem 1.25rem;
+    background: #fff;
+  }
+
+  .mc-section-title {
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 400;
+    text-align: center;
+    color: #111827;
+    margin: 0 0 0.5rem;
+    line-height: 1.1;
+  }
+
+  .mc-section-sub {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 2rem;
+  }
+
+  .mc-svc-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .mc-svc-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.125rem;
+    min-height: 130px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem 1.25rem;
+    background: #111827;
+  }
+
+  .mc-svc-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .mc-svc-pool .mc-svc-card-bg     { background-image: linear-gradient(135deg, #0d4d70, #1486c4); }
+  .mc-svc-concrete .mc-svc-card-bg { background-image: linear-gradient(135deg, #4b5563, #9ca3af); }
+  .mc-svc-hardscape .mc-svc-card-bg{ background-image: linear-gradient(135deg, #3f5a3f, #6b9a6b); }
+
+  .mc-svc-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55), transparent 60%);
+  }
+
+  .mc-svc-name {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-body);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.55);
+  }
+
+  /* Safari bottom bar (URL row + toolbar row) */
+  .ios-safari {
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f7f7f7;
+    border-top: 0.5px solid rgba(0,0,0,0.1);
+  }
+
+  /* URL bar row */
+  .safari-url {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 12px 6px;
+    padding: 8px 12px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    min-width: 0;
+  }
+
+  .safari-url-left {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+
+  .safari-reader {
+    width: 17px;
+    height: 15px;
+    color: #3c3c43;
+  }
+
+  .safari-eye {
+    width: 18px;
+    height: 15px;
+    color: #007aff;
+  }
+
+  .safari-url-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .safari-lock {
+    width: 10px;
+    height: 12px;
+    fill: #6b6b70;
+    flex-shrink: 0;
+  }
+
+  .safari-host {
+    font-size: 15px;
+    color: #1c1c1e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .safari-refresh {
+    width: 15px;
+    height: 15px;
+    color: #1c1c1e;
+    flex-shrink: 0;
+  }
+
+  /* Toolbar row */
+  .safari-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 20px 0;
+  }
+
+  .safari-tb {
+    background: none;
+    border: 0;
+    padding: 4px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: #007aff;
+  }
+
+  .safari-tb svg {
+    width: 22px;
+    height: 24px;
+  }
+
+  .safari-disabled {
+    color: #b0b0b5;
+  }
+
+  /* Home indicator */
+  .ios-home-indicator {
+    display: block;
+    width: 135px;
+    height: 5px;
+    margin: 10px auto 9px;
+    border-radius: 999px;
+    background: #1c1c1e;
+  }
+
+  /* ── Dark theme: iOS chrome flips to dark Safari ── */
+  :global([data-theme="dark"]) .ios-statusbar {
+    background: #1c1c1e;
+    color: #fff;
+  }
+
+  :global([data-theme="dark"]) .ios-signal,
+  :global([data-theme="dark"]) .ios-wifi {
+    fill: #fff;
+  }
+
+  :global([data-theme="dark"]) .ios-battery {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  :global([data-theme="dark"]) .ios-battery::after {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  :global([data-theme="dark"]) .ios-battery-level {
+    background: #fff;
+  }
+
+  :global([data-theme="dark"]) .ios-safari {
+    background: #1c1c1e;
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+
+  :global([data-theme="dark"]) .safari-url {
+    background: #2c2c2e;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  :global([data-theme="dark"]) .safari-host,
+  :global([data-theme="dark"]) .safari-refresh {
+    color: #f2f2f7;
+  }
+
+  :global([data-theme="dark"]) .safari-reader {
+    color: #aeaeb2;
+  }
+
+  :global([data-theme="dark"]) .safari-eye {
+    color: #0a84ff;
+  }
+
+  :global([data-theme="dark"]) .safari-lock {
+    fill: #8e8e93;
+  }
+
+  :global([data-theme="dark"]) .safari-tb.safari-accent {
+    color: #0a84ff;
+  }
+
+  :global([data-theme="dark"]) .safari-tb.safari-disabled {
+    color: #5a5a5e;
+  }
+
+  :global([data-theme="dark"]) .ios-home-indicator {
+    background: #f2f2f7;
+  }
+
+  /* ── Phone demo — Mattila Companies replica ── */
+  .phone-demo {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 100%;
+  }
+
+  /* Navbar */
+  .pd-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #1a2332;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid #c8811a;
+  }
+
+  .pd-logo { flex: 1; }
+
+  .pd-logo-img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  .pd-nav-cta {
+    background: #c8811a;
+    color: #fff;
+    border: 0;
+    font-weight: 700;
+    font-size: 7.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 6px 9px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .pd-nav-menu {
+    background: none;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    padding: 4px 2px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .pd-nav-menu span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #fff;
+    border-radius: 1px;
+  }
+
+  /* Hero */
+  .pd-hero {
+    position: relative;
+    min-height: 360px;
+    background: url('/gravel-bg.png') center / cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .pd-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(10, 18, 32, 0.92) 0%,
+      rgba(10, 18, 32, 0.55) 55%,
+      rgba(10, 18, 32, 0.2) 100%
+    );
+  }
+
+  .pd-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px 16px 22px;
+    color: #fff;
+  }
+
+  .pd-hero-content h1 {
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.12;
+    margin: 0 0 11px;
+    letter-spacing: -0.01em;
+  }
+
+  .pd-hero-content p {
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.78);
+    margin: 0 0 18px;
+    line-height: 1.55;
+  }
+
+  .pd-hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pd-btn-primary {
+    display: block;
+    background: #c8811a;
+    color: #fff;
+    border: 2px solid #c8811a;
+    font-weight: 800;
+    font-size: 9.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .pd-btn-outline {
+    display: block;
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.75);
+    font-weight: 700;
+    font-size: 9.5px;
+    letter-spacing: 0.03em;
+    padding: 10px 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* Trust bar */
+  .pd-trust {
+    display: flex;
+    background: #c8811a;
+    color: #fff;
+  }
+
+  .pd-trust-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 6px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+    text-align: center;
+  }
+
+  .pd-trust-item:last-child { border-right: 0; }
+
+  .pd-trust-item strong {
+    font-size: 15px;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .pd-trust-item span {
+    font-size: 8px;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  /* Services section */
+  .pd-section {
+    padding: 24px 16px;
+    background: #f5f5f5;
+  }
+
+  .pd-eyebrow {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8811a;
+    margin-bottom: 4px;
+  }
+
+  .pd-section h2 {
+    font-size: 17px;
+    font-weight: 900;
+    color: #1a2332;
+    margin: 0 0 14px;
+    line-height: 1.2;
+  }
+
+  .pd-service-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pd-service-card {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    display: flex;
+  }
+
+  .pd-service-img {
+    width: 70px;
+    flex-shrink: 0;
+    background: #1a2332 center/cover no-repeat;
+  }
+
+  .pd-img-pool     { background-color: #1a4a6b; background-image: linear-gradient(135deg,#1a4a6b,#0d7cba); }
+  .pd-img-concrete { background-color: #555; background-image: linear-gradient(135deg,#555,#888); }
+  .pd-img-hardscape{ background-color: #3a5a3a; background-image: linear-gradient(135deg,#3a5a3a,#5a8a5a); }
+  .pd-img-remodel  { background-color: #5a3a1a; background-image: linear-gradient(135deg,#5a3a1a,#8a6030); }
+
+  .pd-service-body {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .pd-service-body strong {
+    font-size: 11px;
+    font-weight: 800;
+    color: #1a2332;
+    display: block;
+  }
+
+  .pd-service-body p {
+    font-size: 9.5px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* CTA band */
+  .pd-cta-band {
+    background: #1a2332;
+    color: #fff;
+    padding: 28px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pd-cta-band h2 {
+    font-size: 16px;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .pd-cta-band p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    margin: 0 0 4px;
+  }
+
+  .pd-cta-band .pd-btn-primary {
+    border-color: #c8811a;
   }
 
   /* Force true black metal — override devices.css pink/purple tint */
+  /* Light mode — silver metal rail with a black front bezel.
+     border = silver rail edge, inset highlight = silver rim,
+     6px inner ring + face = black bezel around the screen. */
   .showcase-iphone .device-frame {
+    background: #050505;
+    border-color: #c8cacb;
+    box-shadow: inset 0 0 4px 2px #e2e3e4, inset 0 0 0 6px #050505;
+    /* contain the screen's z-indexes so the status bar can't paint
+       over the Dynamic Island, which renders as a sibling above the frame */
+    isolation: isolate;
+  }
+
+  /* Dark mode — black metal */
+  :global([data-theme="dark"]) .showcase-iphone .device-frame {
     background: #050505;
     border-color: #1a1a1a;
     box-shadow: inset 0 0 4px 2px #333, inset 0 0 0 6px #1c1c1e;
   }
 
+  /* keep the Dynamic Island / sensors above the screen chrome */
+  .showcase-iphone .device-header,
+  .showcase-iphone .device-sensors {
+    z-index: 5;
+  }
+
+  /* Side buttons — silver in light mode */
   .showcase-iphone .device-btns,
   .showcase-iphone .device-btns::before,
   .showcase-iphone .device-btns::after,
   .showcase-iphone .device-power {
+    background: #b4b4b8;
+  }
+
+  /* Side buttons — dark in dark mode */
+  :global([data-theme="dark"]) .showcase-iphone .device-btns,
+  :global([data-theme="dark"]) .showcase-iphone .device-btns::before,
+  :global([data-theme="dark"]) .showcase-iphone .device-btns::after,
+  :global([data-theme="dark"]) .showcase-iphone .device-power {
     background: #1c1c1e;
+  }
+
+  .showcase-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .showcase-heading {
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    margin: 0 0 14px;
+  }
+
+  .showcase-sub {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0 0 28px;
   }
 
   .showcase-callouts {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 32px;
     display: grid;
-    gap: 22px;
+    gap: 20px;
   }
 
   .showcase-callout {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: flex-start;
+  }
+
+  .showcase-check {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--brand);
+    color: #fff;
+    margin-top: 2px;
+  }
+
+  .showcase-check svg {
+    width: 14px;
+    height: 14px;
   }
 
   .showcase-callout strong {
     display: block;
     font-size: 1.05rem;
+    color: var(--brand);
     margin-bottom: 4px;
   }
 
   .showcase-callout p {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .showcase-cta {
+    align-self: flex-start;
   }
 
   @media (max-width: 860px) {
@@ -1312,8 +2417,8 @@ const posts = [
       grid-template-columns: 1fr;
     }
     .showcase-iphone {
-      transform: scale(0.4) perspective(1000px) rotateY(0deg) rotateX(3deg);
-      margin: calc(868px * -0.3) calc(428px * -0.3);
+      transform: scale(0.52) perspective(1000px) rotateY(0deg) rotateX(1deg);
+      margin: calc(868px * -0.24) calc(428px * -0.24);
     }
   }
 
@@ -1329,15 +2434,6 @@ const posts = [
 
   :global([data-theme="dark"]) .hero {
     background: var(--bg);
-  }
-
-  #liquid-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 0.45;
   }
 
   .hero > .container {
@@ -1485,12 +2581,12 @@ const posts = [
 
   /* Browser mockup */
   .hero-visual {
-    margin-top: 64px;
+    margin-top: 24px;
   }
 
   .hero-tilt {
-    transform: perspective(1200px) rotateX(22deg) scale(0.88, 0.88);
-    transform-origin: 50% 0%;
+    transform: perspective(1800px) rotateX(18deg) scale(0.88, 0.88);
+    transform-origin: 50% 50%;
     will-change: transform;
     max-width: 1340px;
     margin: 0 auto;
@@ -1518,21 +2614,79 @@ const posts = [
     margin-bottom: 18px;
   }
 
-  .trusted-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+  /* Logo marquee */
+  .logo-marquee {
+    position: relative;
+    margin-top: 6px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
   }
 
-  .trusted-chip {
-    color: var(--ink-soft);
-    font-weight: 700;
-    font-size: 0.95rem;
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
+  .logo-track {
+    display: flex;
+    width: max-content;
+    gap: 56px;
+    padding: 20px 28px;
+    animation: logoScroll 60s linear infinite;
+  }
+
+  .logo-marquee:hover .logo-track {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .logo-item:hover {
+    color: var(--ink);
+  }
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+
+  .logo-name {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  @keyframes logoScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 
   .surface-soft {
@@ -1669,6 +2823,7 @@ const posts = [
     object-position: center;
   }
 
+
   /* browser scene */
   .devices-browser-scene {
     display: flex;
@@ -1774,7 +2929,7 @@ const posts = [
     gap: 4px;
     padding: 5px;
     background: color-mix(in srgb, var(--ink) 88%, transparent);
-    border-radius: 999px;
+    border-radius: 10px;
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow-lg);
     z-index: 2;
@@ -1788,7 +2943,7 @@ const posts = [
     font-weight: 700;
     color: rgba(255,255,255,0.55);
     padding: 9px 22px;
-    border-radius: 999px;
+    border-radius: 6px;
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease;
     white-space: nowrap;
@@ -1811,44 +2966,147 @@ const posts = [
     }
   }
 
-  /* 7. Testimonials */
-  .big-quote {
-    margin: 0 auto 32px;
-    max-width: 820px;
-    text-align: center;
+  /* 7. Testimonials — orbital carousel */
+  .orbital {
+    margin-top: 48px;
+    border-radius: 28px;
+    padding: 40px 24px 28px;
+    background:
+      radial-gradient(
+        600px 280px at 50% 0%,
+        rgba(74, 127, 212, 0.18),
+        transparent 70%
+      ),
+      linear-gradient(160deg, #16213a, #0d1729);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
   }
 
-  .big-quote p {
-    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
-    font-weight: 700;
+  .orbital-stage {
+    position: relative;
+    height: 340px;
+    perspective: 1400px;
+  }
+
+  .orbital-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(360px, 80vw);
+    box-sizing: border-box;
+    padding: 28px 28px 24px;
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.6);
+    transform: translate(-50%, -50%);
+    transition: transform 0.55s var(--ease-out), opacity 0.55s var(--ease-out);
+    will-change: transform, opacity;
+  }
+
+  .orbital-card .stars {
+    font-size: 1.05rem;
+  }
+
+  .orbital-quote {
+    margin: 12px 0 22px;
     color: var(--ink);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .orbital-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .orbital-avatar {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+  }
+
+  .orbital-meta {
+    display: flex;
+    flex-direction: column;
     line-height: 1.3;
-    margin: 14px 0 18px;
   }
 
-  .big-quote .bq-name {
+  .orbital-name {
     font-weight: 700;
     color: var(--ink);
   }
 
-  .big-quote .bq-role {
+  .orbital-role {
+    font-size: 0.85rem;
     color: var(--muted);
-    margin-left: 8px;
   }
 
-  .review-grid {
-    gap: 24px;
+  .orbital-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 28px;
   }
 
-  .quote p {
-    color: var(--ink);
-    font-size: 1.02rem;
-    margin: 12px 0;
+  .orbital-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.15s ease, transform 0.15s ease;
   }
 
-  .quote footer {
-    font-weight: 700;
-    color: var(--ink-soft);
+  .orbital-arrow:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.06);
+  }
+
+  .orbital-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .orbital-dots {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .orbital-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.28);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .orbital-dot.is-active {
+    background: #fff;
+    transform: scale(1.25);
+  }
+
+  @media (max-width: 620px) {
+    .orbital-stage {
+      height: 380px;
+    }
   }
 
   /* 8. Pricing */
@@ -2064,16 +3322,13 @@ const posts = [
     .home-pricing {
       grid-template-columns: 1fr;
     }
-    .review-grid {
-      grid-template-columns: 1fr;
-    }
   }
 
   /* Tint card containers a light blue so they pop on white sections */
   .benefit-card,
   .steps-card,
   .steps-card::after,
-  .quote,
+  .orbital-card,
   .plan,
   .blog-card {
     background: color-mix(in srgb, var(--brand) 7%, var(--surface));
@@ -2129,14 +3384,13 @@ const posts = [
       margin-top: 36px;
     }
 
-    /* Trusted bar */
-    .trusted-row {
-      gap: 8px;
+    /* Logo marquee */
+    .logo-track {
+      gap: 40px;
     }
 
-    .trusted-chip {
-      font-size: 0.82rem;
-      padding: 6px 12px;
+    .logo-name {
+      font-size: 1rem;
     }
 
     /* Benefit cards — already stacked by 860px rule, just tighten padding */
@@ -2185,13 +3439,75 @@ const posts = [
     }
 
     /* Testimonials */
-    .big-quote p {
-      font-size: 1.2rem;
+    .orbital-quote {
+      font-size: 0.98rem;
     }
   }
 </style>
 
 <script>
+  // Orbital testimonials — cinematic depth carousel
+  (function () {
+    const root = document.getElementById("orbital");
+    if (!root) return;
+
+    const cards = Array.from(
+      root.querySelectorAll<HTMLElement>(".orbital-card")
+    );
+    const dots = Array.from(root.querySelectorAll<HTMLElement>(".orbital-dot"));
+    const arrows = Array.from(
+      root.querySelectorAll<HTMLElement>(".orbital-arrow")
+    );
+    const n = cards.length;
+    if (!n) return;
+
+    let active = Math.floor(n / 2);
+
+    function render() {
+      cards.forEach((card, i) => {
+        let offset = i - active;
+        if (offset > n / 2) offset -= n;
+        if (offset < -n / 2) offset += n;
+        const abs = Math.abs(offset);
+        const x = offset * 56;
+        const scale = Math.max(1 - abs * 0.12, 0.74);
+        const opacity = abs === 0 ? 1 : Math.max(0.55 - (abs - 1) * 0.22, 0);
+        card.style.transform = `translate(-50%, -50%) translateX(${x}%) scale(${scale})`;
+        card.style.opacity = abs > 2 ? "0" : String(opacity);
+        card.style.zIndex = String(100 - abs);
+        card.style.pointerEvents = offset === 0 ? "auto" : "none";
+        card.classList.toggle("is-active", offset === 0);
+      });
+      dots.forEach((d, i) => d.classList.toggle("is-active", i === active));
+    }
+
+    function go(dir: number) {
+      active = (active + dir + n) % n;
+      render();
+    }
+
+    arrows.forEach((a) =>
+      a.addEventListener("click", () =>
+        go(Number(a.getAttribute("data-dir")) || 1)
+      )
+    );
+    dots.forEach((d, i) =>
+      d.addEventListener("click", () => {
+        active = i;
+        render();
+      })
+    );
+
+    // Auto-advance, pause on hover
+    let timer = window.setInterval(() => go(1), 5000);
+    root.addEventListener("mouseenter", () => clearInterval(timer));
+    root.addEventListener("mouseleave", () => {
+      timer = window.setInterval(() => go(1), 5000);
+    });
+
+    render();
+  })();
+
   // Hero browser scroll tilt (lerped, runs on a continuous rAF loop)
   (function () {
     const visual = document.querySelector<HTMLElement>(".hero-visual");
@@ -2203,7 +3519,7 @@ const posts = [
       return;
     }
 
-    const MAX_TILT = 22;
+    const MAX_TILT = 18;
     const MIN_SCALE = 0.88;
     const LERP = 0.12; // lower = smoother/slower chase
 
@@ -2227,7 +3543,7 @@ const posts = [
       currentTilt += (tilt - currentTilt) * LERP;
       currentScale += (scale - currentScale) * LERP;
       currentScaleY += (scaleY - currentScaleY) * LERP;
-      tiltEl.style.transform = `perspective(1200px) rotateX(${currentTilt.toFixed(3)}deg) scale(${currentScale.toFixed(4)}, ${currentScaleY.toFixed(4)})`;
+      tiltEl.style.transform = `perspective(1800px) rotateX(${currentTilt.toFixed(3)}deg) scale(${currentScale.toFixed(4)}, ${currentScaleY.toFixed(4)})`;
       requestAnimationFrame(frame);
     }
 
@@ -2248,11 +3564,6 @@ const posts = [
       );
     });
   });
-</script>
-
-<script>
-  import { initLiquidBg } from "../scripts/liquid-bg";
-  initLiquidBg();
 </script>
 
 <script is:inline>

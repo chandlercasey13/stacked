@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CtaBand from "../components/CtaBand.astro";
+import PrismBg from "../components/PrismBg.astro";
 
 const values = [
   { icon: "🛠️", title: "Built for contractors", text: "We're web designers who specialize with contractors. Every decision is made for people who'd rather be on a job site." },
@@ -22,13 +23,13 @@ const numbers = [
   description="Stacked builds simple, affordable marketing systems for home-service businesses. No agency runaround, no contracts, no bull."
 >
   <section class="page-hero">
+    <PrismBg />
     <div class="container center-narrow text-center">
       <span class="eyebrow">About</span>
-      <h1>Websites built for contractors, by people who get it</h1>
+      <h1>Built for contractors,<br />by people who get it</h1>
       <p class="lead" style="margin: 0 auto;">
-        Stacked is built by SWE Contracting — web designers who specialize with
-        contractors. We make sites that load fast, rank high, and send leads
-        straight to your phone.
+        Web designers who specialize with contractors. We make sites that load
+        fast, rank high, and send leads straight to your phone.
       </p>
     </div>
   </section>
@@ -86,7 +87,7 @@ const numbers = [
   </section>
 
   <CtaBand
-    title="Let's get your site live"
+    title="Ready to build your stack?"
     text="Start your 7-day free trial today. No contracts, cancel anytime."
   />
 </Layout>
@@ -96,6 +97,17 @@ const numbers = [
     background: var(--surface-soft);
     padding: 80px 0 56px;
     border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .page-hero {
+    background: var(--bg);
+  }
+
+  .page-hero > .container {
+    position: relative;
+    z-index: 1;
   }
 
   .about-split {

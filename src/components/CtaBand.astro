@@ -4,8 +4,8 @@ interface Props {
   text?: string;
 }
 const {
-  title = "Your first step to a stacked business begins here",
-  text = "Most contractors are online within a week of signing up. Start your 7-day free trial — no contracts, cancel anytime.",
+  title = "Ready to build your stack?",
+  text = "Most contractors are online within a week of signing up. Book a call and we'll have you live within a week.",
 } = Astro.props;
 ---
 
@@ -27,12 +27,12 @@ const {
         <svg class="cta-spark" viewBox="0 0 220 70" fill="none" preserveAspectRatio="none">
           <path
             d="M2 56 L40 48 L72 52 L104 34 L140 40 L176 18 L218 8"
-            stroke="#3a6bc8"
+            stroke="#4a7fd4"
             stroke-width="3"
             stroke-linecap="round"
             stroke-linejoin="round"
           ></path>
-          <circle cx="218" cy="8" r="5" fill="#3a6bc8"></circle>
+          <circle cx="218" cy="8" r="5" fill="#4a7fd4"></circle>
         </svg>
         <span class="cta-mini-foot">Lead activity · this month</span>
       </div>
@@ -82,10 +82,10 @@ const {
     background:
       radial-gradient(
         700px 320px at 50% -8%,
-        rgba(255, 255, 255, 0.55),
+        rgba(255, 255, 255, 0.18),
         transparent 70%
       ),
-      linear-gradient(150deg, #5d92f0, #3a6bc8 55%, #2348a0);
+      linear-gradient(150deg, #1e3a6e, #162d58 55%, #0f1e3d);
     box-shadow: var(--shadow-lg);
     isolation: isolate;
   }
@@ -134,7 +134,7 @@ const {
 
   .cta-btn-light {
     background: #fff;
-    color: #2348a0;
+    color: #0f1e3d;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   }
 
@@ -243,7 +243,7 @@ const {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #3a6bc8;
+    background: #4a7fd4;
     flex-shrink: 0;
   }
 

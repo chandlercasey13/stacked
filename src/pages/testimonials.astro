@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CtaBand from "../components/CtaBand.astro";
+import PrismBg from "../components/PrismBg.astro";
 
 const testimonials = [
   { name: "Glenn Robertson", date: "Mar 4, 2026", quote: "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!" },
@@ -24,12 +25,13 @@ const stats = [
   description="Real reviews from contractors who grew their business with Stacked's marketing systems."
 >
   <section class="page-hero">
+    <PrismBg />
     <div class="container center-narrow text-center">
       <span class="eyebrow">Testimonials</span>
       <h1>The proof is in the pudding</h1>
       <p class="lead" style="margin: 0 auto;">
-        Don't take our word for it — here's what contractors across the country
-        say about working with Stacked.
+        Here's what contractors across the country say about working with
+        Stacked.
       </p>
     </div>
   </section>
@@ -74,7 +76,7 @@ const stats = [
   </section>
 
   <CtaBand
-    title="Want results like these?"
+    title="Ready to build your stack?"
     text="Start your 7-day free trial and get your site live within a week. No contracts, cancel anytime."
   />
 </Layout>
@@ -84,6 +86,17 @@ const stats = [
     background: var(--surface-soft);
     padding: 80px 0 56px;
     border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global([data-theme="dark"]) .page-hero {
+    background: var(--bg);
+  }
+
+  .page-hero > .container {
+    position: relative;
+    z-index: 1;
   }
 
   .grid-4 {
