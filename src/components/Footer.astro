@@ -23,11 +23,17 @@ const cols = [
   <div class="container footer-grid">
     <div class="footer-brand">
       <a href="/" class="brand">
-        <span class="brand-mark">▚</span>
         <span class="brand-name">Stacked</span>
+        <svg class="brand-icon" viewBox="165 115 430 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="currentColor" stroke="var(--bg)" stroke-width="18" stroke-linejoin="round">
+            <path d="M275 124.5H579C592.531 124.5 603.5 135.469 603.5 149V373C603.5 386.531 592.531 397.5 579 397.5H275C261.469 397.5 250.5 386.531 250.5 373V149C250.5 135.469 261.469 124.5 275 124.5Z"/>
+            <path d="M235 164.5H539C552.531 164.5 563.5 175.469 563.5 189V413C563.5 426.531 552.531 437.5 539 437.5H235C221.469 437.5 210.5 426.531 210.5 413V189C210.5 175.469 221.469 164.5 235 164.5Z"/>
+            <path d="M195 204.5H499C512.531 204.5 523.5 215.469 523.5 229V453C523.5 466.531 512.531 477.5 499 477.5H195C181.469 477.5 170.5 466.531 170.5 453V229C170.5 215.469 181.469 204.5 195 204.5Z"/>
+          </g>
+        </svg>
       </a>
       <p>Done-for-you websites for contractors. Load fast, rank high, get paid.</p>
-      <a href="/pricing" class="btn btn-primary btn-sm">Start Free Trial</a>
+      <a href="/contact" class="btn btn-primary btn-sm">Book Call</a>
     </div>
 
     {
@@ -65,20 +71,22 @@ const cols = [
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 800;
     font-size: 1.25rem;
     color: #fff;
     margin-bottom: 14px;
   }
 
-  .brand-mark {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
-    color: #fff;
+  .brand-name {
+    font-weight: 400;
+    line-height: 1;
+    align-self: center;
+  }
+
+  .brand-icon {
+    width: 28px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--brand);
   }
 
   .footer-grid {

@@ -13,7 +13,7 @@ const isActive = (href: string) =>
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand" aria-label="Stacked home">
-      <span class="brand-name">STACKED</span>
+      <span class="brand-name">Stacked</span>
       <svg class="brand-icon" viewBox="165 115 430 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g fill="currentColor" stroke="var(--surface)" stroke-width="18" stroke-linejoin="round">
           <path d="M275 124.5H579C592.531 124.5 603.5 135.469 603.5 149V373C603.5 386.531 592.531 397.5 579 397.5H275C261.469 397.5 250.5 386.531 250.5 373V149C250.5 135.469 261.469 124.5 275 124.5Z"/>
@@ -44,7 +44,7 @@ const isActive = (href: string) =>
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
         </svg>
       </button>
-      <a href="/pricing" class="btn btn-primary btn-sm">Start Free Trial</a>
+      <a href="/contact" class="btn btn-primary btn-sm">Book Call</a>
     </div>
 
     <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">
@@ -54,7 +54,7 @@ const isActive = (href: string) =>
 
   <div class="mobile-menu" id="mobileMenu">
     {links.map((l) => <a href={l.href} class="mobile-link">{l.label}</a>)}
-    <a href="/pricing" class="btn btn-primary">Start Free Trial</a>
+    <a href="/contact" class="btn btn-primary">Book Call</a>
   </div>
 </header>
 
@@ -222,8 +222,11 @@ const isActive = (href: string) =>
   }
 
   @media (max-width: 860px) {
-    .nav,
-    .header-cta {
+    .nav {
+      display: none;
+    }
+    /* Keep theme toggle visible but hide the Book Call button */
+    .header-cta .btn {
       display: none;
     }
     .nav-toggle {

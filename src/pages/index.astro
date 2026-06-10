@@ -247,7 +247,7 @@ const posts = [
         months.
       </p>
       <div class="hero-actions anim-in" style="--delay: 340ms;">
-        <a href="/pricing" class="btn btn-primary">Start 7-Day Free Trial</a>
+        <a href="/contact" class="btn btn-primary">Book Call</a>
         <a href="#features" class="btn btn-outline">See features</a>
       </div>
 
@@ -474,7 +474,7 @@ const posts = [
             ))
           }
           <li>
-            <a href="/pricing" class="btn btn-primary">Start 7-Day Free Trial</a>
+            <a href="/contact" class="btn btn-primary">Book Call</a>
           </li>
         </ul>
       </div>
@@ -568,14 +568,14 @@ const posts = [
                 <span class="cadence">/mo</span>
               </div>
               <a
-                href="/pricing"
+                href="/contact"
                 class:list={[
                   "btn",
                   "plan-cta",
                   p.featured ? "btn-primary" : "btn-outline",
                 ]}
               >
-                Start Free Trial
+                Book Call
               </a>
               <ul class="plan-features">
                 {p.features.map((f) => (
@@ -616,7 +616,7 @@ const posts = [
 
   <CtaBand
     title="Ready to get your site live?"
-    text="Most contractors are online within a week of signing up. Start your 7-day free trial — no contracts, cancel anytime."
+    text="Most contractors are online within a week of signing up. Book a call and we'll have you live within a week."
   />
 </Layout>
 
@@ -2029,6 +2029,117 @@ const posts = [
   .plan,
   .blog-card {
     background: color-mix(in srgb, var(--brand) 7%, var(--surface));
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+
+    /* Hero */
+    .hero {
+      padding-top: calc(60px + 72px);
+    }
+
+    .hero-inner h1 {
+      white-space: normal;
+      font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero-tagline {
+      font-size: 0.78rem;
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+    }
+
+    .hero-trust {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 14px;
+      white-space: normal;
+      text-align: center;
+      justify-content: center;
+    }
+
+    /* Disable 3-D tilt on small screens — just show image flat */
+    .hero-tilt {
+      transform: none !important;
+    }
+
+    .hero-visual {
+      margin-top: 36px;
+    }
+
+    /* Trusted bar */
+    .trusted-row {
+      gap: 8px;
+    }
+
+    .trusted-chip {
+      font-size: 0.82rem;
+      padding: 6px 12px;
+    }
+
+    /* Benefit cards — already stacked by 860px rule, just tighten padding */
+    .benefit-section {
+      padding-block: 64px;
+    }
+
+    .benefit-card {
+      padding: 18px;
+      border-radius: 20px;
+    }
+
+    .benefit-visual {
+      min-height: 200px;
+      padding: 20px;
+    }
+
+    /* Showcase */
+    .showcase-layout {
+      gap: 28px;
+    }
+
+    /* Devices */
+    .devices-frame {
+      min-height: 380px;
+      border-radius: 16px;
+    }
+
+    .devices-btn {
+      padding: 8px 16px;
+      font-size: 0.82rem;
+    }
+
+    /* Pricing */
+    .home-pricing {
+      gap: 20px;
+    }
+
+    .plan {
+      padding: 28px 22px;
+    }
+
+    /* Blog */
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Testimonials */
+    .big-quote p {
+      font-size: 1.2rem;
+    }
   }
 </style>
 
