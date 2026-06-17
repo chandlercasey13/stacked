@@ -4,18 +4,28 @@ import CtaBand from "../components/CtaBand.astro";
 import PrismBg from "../components/PrismBg.astro";
 
 const values = [
-  { icon: "🛠️", title: "Built for contractors", text: "We're web designers who specialize with contractors. Every decision is made for people who'd rather be on a job site." },
-  { icon: "📱", title: "Leads over dashboards", text: "We text leads straight to your phone. No app to check, no dashboard to learn." },
-  { icon: "🤝", title: "No contracts", text: "Month-to-month, cancel anytime. We earn your business every single month." },
-  { icon: "⚡", title: "Fast to launch", text: "Most contractors are online within a week. Onboarding takes about five minutes." },
+  {
+    icon: '<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/>',
+    title: "Built for contractors",
+    text: "We're web designers who specialize with contractors. Every decision is made for people who'd rather be on a job site.",
+  },
+  {
+    icon: '<rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/>',
+    title: "Leads over dashboards",
+    text: "We text leads straight to your phone. No app to check, no dashboard to learn.",
+  },
+  {
+    icon: '<path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M14 4v5h5"/><path d="m8.5 14.5 2 2 4-4"/>',
+    title: "No contracts",
+    text: "Month-to-month, cancel anytime. We earn your business every single month.",
+  },
+  {
+    icon: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
+    title: "Fast to launch",
+    text: "Most contractors are online within a week. Onboarding takes about five minutes.",
+  },
 ];
 
-const numbers = [
-  { value: "4.4★", label: "Trustpilot rating" },
-  { value: "~1 wk", label: "Time to go live" },
-  { value: "$99", label: "Starting price /mo" },
-  { value: "0", label: "Long-term contracts" },
-];
 ---
 
 <Layout
@@ -41,28 +51,35 @@ const numbers = [
           <span class="eyebrow">Our story</span>
           <h2>We got tired of watching good contractors lose work to bad websites</h2>
           <p>
-            Too many hard-working pros were overpaying for slow, pretty sites
-            that never generated a single lead. As web designers who work with
-            contractors every day, we knew there was a better way.
+            We're a new generation of contractors based out of Texas — a lean
+            team of developers and strategists. Having worked across both
+            industrial and high-tech environments, from Bell Flight to refinery
+            sites, we saw firsthand how far behind most contractors are when it
+            comes to technology — and how transformative even simple
+            innovations can be.
           </p>
           <p>
-            So we built Stacked: done-for-you websites that load fast, rank on
-            Google, and text every new lead straight to your phone. No
-            dashboards to babysit, no contracts, no excuses — just more booked
-            jobs. Most contractors are online within a week.
+            In an industry where ten years of experience too often means ten
+            years of bad habits, we're bringing a fresh perspective. So we built
+            Stacked: done-for-you websites that load fast, rank on Google, and
+            text every new lead straight to your phone. Every project is
+            hand-coded from scratch — no templates, no shortcuts — and we
+            measure success in leads generated, rankings earned, and work
+            booked. Most contractors are online within a week.
           </p>
         </div>
-        <div class="numbers">
-          {
-            numbers.map((n) => (
-              <div class="num-card">
-                <span class="num-value">{n.value}</span>
-                <span class="num-label">{n.label}</span>
-              </div>
-            ))
-          }
+        <div class="about-photo-wrap">
+          <img
+            class="about-photo"
+            src="/our-story.png"
+            alt="The Stacked founders"
+            width="1024"
+            height="1024"
+            loading="lazy"
+          />
         </div>
       </div>
+
     </div>
   </section>
 
@@ -76,7 +93,9 @@ const numbers = [
         {
           values.map((v) => (
             <article class="card">
-              <div class="icon-badge">{v.icon}</div>
+              <div class="icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={v.icon} />
+              </div>
               <h3>{v.title}</h3>
               <p>{v.text}</p>
             </article>
@@ -115,35 +134,23 @@ const numbers = [
     gap: 56px;
   }
 
-  .numbers {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+  .icon-badge svg {
+    width: 24px;
+    height: 24px;
   }
 
-  .num-card {
-    background: var(--bg);
-    color: #fff;
+  .about-photo-wrap {
     border-radius: var(--radius-lg);
-    padding: 30px 24px;
-    text-align: center;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
   }
 
-  .num-value {
+  .about-photo {
     display: block;
-    font-size: 2.4rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    background: linear-gradient(120deg, var(--brand), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .num-label {
-    color: #aab6cd;
-    font-weight: 600;
-    font-size: 0.9rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
   }
 
   .grid-4 {

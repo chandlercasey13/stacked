@@ -279,12 +279,16 @@ export function initLiquidBg() {
     };
   }
 
-  let mount = new ShaderMount(canvas, warpFragmentShader, makeUniforms(), 0.2, -299 * 10);
+  // Seed the animation further along so the prism is already nicely
+  // framed on load instead of drifting into view over the first second.
+  const startSeed = -240 * 10;
+
+  let mount = new ShaderMount(canvas, warpFragmentShader, makeUniforms(), 0.2, startSeed);
 
   // Re-create shader with new colors when theme changes
   const themeObserver = new MutationObserver(() => {
     mount.dispose();
-    mount = new ShaderMount(canvas, warpFragmentShader, makeUniforms(), 0.2, -299 * 10);
+    mount = new ShaderMount(canvas, warpFragmentShader, makeUniforms(), 0.2, startSeed);
     if (isVisible) mount.setSpeed(0.2);
     else mount.setSpeed(0);
   });

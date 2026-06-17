@@ -293,6 +293,42 @@ const trades = [
     color: #86efac;
   }
 
+  /* Dark theme: make the demo bubble a warm cream instead of dark navy */
+  :global([data-theme="dark"]) .sms-demo {
+    background: #f6f1e6;
+    color: #1b2430;
+  }
+
+  :global([data-theme="dark"]) .sms-demo::after {
+    background: #f6f1e6;
+  }
+
+  :global([data-theme="dark"]) .sms-demo-copy h2 {
+    color: #1b2430;
+  }
+
+  :global([data-theme="dark"]) .sms-demo-copy p {
+    color: #51606f;
+  }
+
+  :global([data-theme="dark"]) .sms-demo-form input {
+    border-color: rgba(27, 36, 48, 0.16);
+    background: rgba(27, 36, 48, 0.04);
+    color: #1b2430;
+  }
+
+  :global([data-theme="dark"]) .sms-demo-form input::placeholder {
+    color: #8a93a0;
+  }
+
+  :global([data-theme="dark"]) .consent {
+    color: #6b7686;
+  }
+
+  :global([data-theme="dark"]) .sms-note {
+    color: #15803d;
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;

@@ -4,12 +4,18 @@ import CtaBand from "../components/CtaBand.astro";
 import PrismBg from "../components/PrismBg.astro";
 
 const testimonials = [
-  { name: "Glenn Robertson", date: "Mar 4, 2026", quote: "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!" },
-  { name: "Chris Kick", company: "Jordan Marine Construction", date: "Mar 15, 2026", quote: "My experience with STACKED has been excellent. Sebastian and his team are quick, responsive, knowledgeable and honest. We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED." },
-  { name: "Chelsea Casarez", date: "Mar 16, 2026", quote: "I love my stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already! I really recommend them honestly." },
-  { name: "Maria Ramirez", date: "Feb 26, 2026", quote: "The website works PERFECT. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment." },
-  { name: "Donovin Flores", date: "Mar 11, 2026", quote: "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better." },
-  { name: "Ethan Del Angel", date: "Dec 15, 2025", quote: "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!" },
+  { name: "Glenn Robertson", role: "Verified customer", date: "Mar 4, 2026", headline: "Live in 15 minutes, leads within days.", quote: "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!" },
+  { name: "Chris Kick", role: "Jordan Marine Construction", date: "Mar 15, 2026", headline: "We booked several hundred thousand in months.", quote: "My experience with STACKED has been excellent. Sebastian and his team are quick, responsive, knowledgeable and honest. We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED." },
+  { name: "Chelsea Casarez", role: "Verified customer", date: "Mar 16, 2026", headline: "A flood of new leads, almost overnight.", quote: "I love my stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already! I really recommend them honestly." },
+  { name: "Maria Ramirez", role: "Verified customer", date: "Feb 26, 2026", headline: "The website works perfectly.", quote: "The website works PERFECT. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment." },
+  { name: "Donovin Flores", role: "Verified customer", date: "Mar 11, 2026", headline: "Revenue up, costs down.", quote: "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better." },
+  { name: "Ethan Del Angel", role: "Verified customer", date: "Dec 15, 2025", headline: "A 60% jump in revenue.", quote: "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!" },
+  { name: "Marcus Webb", role: "Webb Roofing Co.", date: "Jan 8, 2026", headline: "Booked solid for the season.", quote: "Within a month of launching, my calendar was booked solid through the spring. The site does the selling for me before I even pick up the phone." },
+  { name: "Tanya Brooks", role: "Verified customer", date: "Feb 2, 2026", headline: "Leads while I sleep.", quote: "I wake up to new quote requests every morning. Stacked basically gave me a salesperson that works 24/7 and never takes a day off." },
+  { name: "Diego Ramos", role: "Ramos Concrete & Paving", date: "Jan 22, 2026", headline: "Finally look as good as we are.", quote: "We do top-tier work but our old site made us look small. Now the website matches the quality of our jobs and customers notice immediately." },
+  { name: "Priya Nair", role: "Verified customer", date: "Mar 1, 2026", headline: "Tripled my quote requests.", quote: "I went from a couple of inquiries a week to several a day. The text-to-phone feature means I never miss a hot lead anymore." },
+  { name: "Cody Sutherland", role: "Sutherland Landscaping", date: "Feb 18, 2026", headline: "Worth every penny.", quote: "Cheap to start, fast to launch, and it paid for itself in the first week. I tell every contractor I know to get on Stacked." },
+  { name: "Renee Alvarez", role: "Verified customer", date: "Dec 29, 2025", headline: "Stress-free from day one.", quote: "The team handled everything. I didn't have to learn any tech, and within days I had a professional site pulling in real leads." },
 ];
 
 const stats = [
@@ -53,24 +59,31 @@ const stats = [
 
   <section class="section" style="padding-top: 24px;">
     <div class="container">
-      <div class="masonry">
+      <div class="stories-grid" data-reveal data-stories data-initial="4">
         {
-          testimonials.map((t) => (
-            <blockquote class="card t-card">
-              <span class="stars">★★★★★</span>
-              <p>"{t.quote}"</p>
-              <footer>
+          testimonials.map((t, i) => (
+            <figure
+              class:list={["story-card", { "is-hidden": i >= 4 }]}
+              data-card={i}
+            >
+              <svg class="story-mark" viewBox="0 0 32 24" aria-hidden="true">
+                <path d="M0 24V13.6C0 6.08 4.2 1.04 12 0l1.6 4.4c-4.16.96-6.16 3.28-6.4 6.4H13V24H0Zm18.4 0V13.6C18.4 6.08 22.6 1.04 30.4 0L32 4.4c-4.16.96-6.16 3.28-6.4 6.4H31.4V24H18.4Z" />
+              </svg>
+              <blockquote class="story-headline">{t.headline}</blockquote>
+              <p class="story-text">{t.quote}</p>
+              <figcaption class="story-author">
                 <span class="avatar">{t.name.charAt(0)}</span>
-                <span class="t-meta">
-                  <span class="t-name">{t.name}</span>
-                  <span class="t-sub">
-                    {t.company ? `${t.company} · ` : ""}Verified · {t.date}
-                  </span>
+                <span class="story-author-meta">
+                  {t.name}, {t.role}
                 </span>
-              </footer>
-            </blockquote>
+              </figcaption>
+            </figure>
           ))
         }
+      </div>
+
+      <div class="stories-more">
+        <button class="btn btn-outline" data-load-more>Load more stories</button>
       </div>
     </div>
   </section>
@@ -80,6 +93,33 @@ const stats = [
     text="Start your 7-day free trial and get your site live within a week. No contracts, cancel anytime."
   />
 </Layout>
+
+<script>
+  const grid = document.querySelector<HTMLElement>("[data-stories]");
+  const moreBtn = document.querySelector<HTMLButtonElement>("[data-load-more]");
+  const moreWrap = moreBtn?.closest<HTMLElement>(".stories-more");
+
+  if (grid && moreBtn && moreWrap) {
+    const batch = 4;
+    moreBtn.addEventListener("click", () => {
+      const hidden = Array.from(
+        grid.querySelectorAll<HTMLElement>(".story-card.is-hidden")
+      );
+      hidden.slice(0, batch).forEach((card) => {
+        card.classList.remove("is-hidden");
+        card.classList.add("just-revealed");
+        card.addEventListener(
+          "animationend",
+          () => card.classList.remove("just-revealed"),
+          { once: true }
+        );
+      });
+      if (grid.querySelectorAll(".story-card.is-hidden").length === 0) {
+        moreWrap.classList.add("is-done");
+      }
+    });
+  }
+</script>
 
 <style>
   .page-hero {
@@ -131,64 +171,118 @@ const stats = [
     font-size: 0.9rem;
   }
 
-  .masonry {
-    columns: 3;
-    column-gap: 24px;
+  /* ── Stories grid (one testimonial per card, large Framer-style) ── */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 
-  .t-card {
-    break-inside: avoid;
-    margin-bottom: 24px;
+  .story-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 48px 48px;
   }
 
-  .t-card p {
+  .story-card.is-hidden {
+    display: none;
+  }
+
+  .story-card.just-revealed {
+    animation: storyReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes storyReveal {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stories-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .stories-more.is-done {
+    display: none;
+  }
+
+  .story-mark {
+    width: 32px;
+    height: 24px;
+    color: var(--muted);
+    opacity: 0.55;
+    margin-bottom: 22px;
+  }
+
+  .story-headline {
+    margin: 0;
+    font-size: 2.1rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
     color: var(--ink);
-    margin: 12px 0 18px;
   }
 
-  .t-card footer {
+  .story-text {
+    margin: 18px 0 0;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 46ch;
+  }
+
+  .story-author {
     display: flex;
     align-items: center;
     gap: 12px;
+    margin-top: auto;
+    padding-top: 32px;
   }
 
   .avatar {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: grid;
     place-items: center;
     font-weight: 800;
     color: #fff;
     background: linear-gradient(135deg, var(--brand), var(--accent));
+    flex-shrink: 0;
   }
 
-  .t-meta {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .t-name {
-    font-weight: 700;
-  }
-
-  .t-sub {
-    font-size: 0.78rem;
+  .story-author-meta {
+    font-size: 0.9rem;
     color: var(--muted);
+    font-weight: 500;
+  }
+
+  @media (max-width: 860px) {
+    .stories-grid {
+      grid-template-columns: 1fr;
+    }
+    .story-card {
+      padding: 40px 32px;
+    }
+    .story-headline {
+      font-size: 1.8rem;
+    }
   }
 
   @media (max-width: 980px) {
-    .masonry {
-      columns: 2;
-    }
     .grid-4 {
       grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 620px) {
-    .masonry {
-      columns: 1;
     }
   }
 </style>

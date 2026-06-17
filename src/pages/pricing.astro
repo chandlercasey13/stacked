@@ -5,28 +5,11 @@ import PrismBg from "../components/PrismBg.astro";
 
 const plans = [
   {
-    name: "Launch",
-    price: "$99",
-    cadence: "/mo",
-    blurb: "Everything you need to get online and start catching leads.",
-    featured: false,
-    cta: "Book Call",
-    features: [
-      { label: "Max leads per month", value: "30" },
-      { label: "SEO pages", value: false },
-      { label: "Hosting & support", value: true },
-      { label: "Custom domain", value: true },
-      { label: "SMS lead notifications", value: true },
-      { label: "Website editor", value: true },
-      { label: "About Us page", value: true },
-      { label: "Embedded reviews", value: true },
-      { label: "Review collection", value: false },
-    ],
-  },
-  {
     name: "Max",
-    price: "$250",
-    cadence: "/mo",
+    priceMonthly: "$250",
+    priceAnnual: "$208",
+    annualBilledNote: "$2,500 billed yearly — save $500",
+    monthlyBilledNote: "Billed monthly · cancel anytime",
     blurb: "Unlimited leads, full SEO, and review collection to scale.",
     featured: true,
     cta: "Book Call",
@@ -42,6 +25,18 @@ const plans = [
       { label: "Review collection", value: true },
     ],
   },
+];
+
+// Trust bar — real client quotes (condensed)
+const trustQuotes = [
+  { quote: "After a few days I already saw 4–7 leads a day texted to my phone.", name: "Glenn R." },
+  { quote: "We booked several hundred thousand dollars of work in the first few months.", name: "Chris K." },
+  { quote: "I've seen a 60% increase in revenue since having this website up!", name: "Ethan D." },
+  { quote: "The website works PERFECT — a real rise in traffic, bookings and sales.", name: "Maria R." },
+  { quote: "It's bringing in a ton of new leads. So much better than last month already!", name: "Chelsea C." },
+  { quote: "Revenue is up, it was quick and easy, and it kept my costs down.", name: "Donovin F." },
+  { quote: "Within a month my calendar was booked solid through the spring.", name: "Marcus W." },
+  { quote: "I wake up to new quote requests every single morning.", name: "Tanya B." },
 ];
 
 const faqs = [
@@ -70,7 +65,7 @@ const faqs = [
 
 <Layout
   title="Pricing — Stacked"
-  description="Simple pricing for contractor websites. Launch at $99/mo or Max at $250/mo. 7-day free trial, no contracts, cancel anytime."
+  description="Simple pricing for contractor websites. One plan at $250/mo. 7-day free trial, no contracts, cancel anytime."
 >
   <section class="page-hero">
     <PrismBg />
@@ -86,6 +81,16 @@ const faqs = [
 
   <section class="section">
     <div class="container">
+      <div class="billing-toggle" data-billing-toggle>
+        <button class="billing-opt is-active" data-billing="monthly">
+          Monthly
+        </button>
+        <button class="billing-opt" data-billing="annual">
+          Annually
+          <span class="billing-save">2 months free</span>
+        </button>
+      </div>
+
       <div class="pricing-grid">
         {
           plans.map((p) => (
@@ -94,9 +99,22 @@ const faqs = [
               <h3 class="plan-name">{p.name}</h3>
               <p class="plan-blurb">{p.blurb}</p>
               <div class="plan-price">
-                <span class="amount">{p.price}</span>
-                <span class="cadence">{p.cadence}</span>
+                <span
+                  class="amount"
+                  data-monthly={p.priceMonthly}
+                  data-annual={p.priceAnnual}
+                >
+                  {p.priceMonthly}
+                </span>
+                <span class="cadence">/mo</span>
               </div>
+              <span
+                class="plan-billed"
+                data-monthly={p.monthlyBilledNote}
+                data-annual={p.annualBilledNote}
+              >
+                {p.monthlyBilledNote}
+              </span>
               <span class="trial">7-day free trial included</span>
               <a
                 href="/contact"
@@ -153,6 +171,26 @@ const faqs = [
     </div>
   </section>
 
+  <section class="section trust-section">
+    <div class="container text-center">
+      <span class="eyebrow">Don't take our word for it</span>
+      <h2>The proof is in the pudding</h2>
+    </div>
+    <div class="trust-marquee">
+      <div class="trust-track">
+        {
+          [...trustQuotes, ...trustQuotes].map((t) => (
+            <figure class="trust-chip">
+              <span class="trust-stars">★★★★★</span>
+              <p>"{t.quote}"</p>
+              <figcaption>— {t.name}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <CtaBand
     title="Ready to build your stack?"
     text="Get your site live, see the leads come in, then decide. No contracts, cancel anytime."
@@ -177,9 +215,68 @@ const faqs = [
     z-index: 1;
   }
 
+  /* Billing toggle */
+  .billing-toggle {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px;
+    margin: 0 auto 36px;
+    border-radius: 999px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .billing-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    background: transparent;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+
+  .billing-opt.is-active {
+    background: var(--brand);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .billing-save {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    color: var(--accent);
+  }
+
+  .billing-opt.is-active .billing-save {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+
+  .plan-billed {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+  }
+
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 360px));
+    grid-template-columns: minmax(0, 540px);
     gap: 28px;
     justify-content: center;
     align-items: start;
@@ -342,9 +439,125 @@ const faqs = [
     margin: 0;
   }
 
+  /* Trust bar marquee */
+  .trust-section {
+    overflow: hidden;
+  }
+
+  .trust-marquee {
+    margin-top: 40px;
+    position: relative;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  .trust-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: trustScroll 50s linear infinite;
+  }
+
+  .trust-marquee:hover .trust-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes trustScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .trust-chip {
+    flex-shrink: 0;
+    width: 320px;
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .trust-stars {
+    color: #f5a623;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .trust-chip p {
+    margin: 10px 0 12px;
+    color: var(--ink);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .trust-chip figcaption {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trust-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+    .trust-marquee {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
   @media (max-width: 760px) {
     .pricing-grid {
       grid-template-columns: 1fr;
     }
+    .billing-opt {
+      padding: 9px 16px;
+      font-size: 0.85rem;
+    }
   }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLElement>("[data-billing-toggle]");
+  if (toggle) {
+    const opts = Array.from(
+      toggle.querySelectorAll<HTMLButtonElement>(".billing-opt")
+    );
+    const swap = (mode: string) => {
+      document
+        .querySelectorAll<HTMLElement>("[data-monthly][data-annual]")
+        .forEach((el) => {
+          const val = el.getAttribute(`data-${mode}`);
+          if (val) el.textContent = val;
+        });
+      opts.forEach((o) =>
+        o.classList.toggle("is-active", o.getAttribute("data-billing") === mode)
+      );
+    };
+    opts.forEach((o) =>
+      o.addEventListener("click", () =>
+        swap(o.getAttribute("data-billing") || "monthly")
+      )
+    );
+  }
+</script>
