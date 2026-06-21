@@ -4,17 +4,31 @@ import CtaBand from "../components/CtaBand.astro";
 import PrismBg from "../components/PrismBg.astro";
 
 // Example client wordmarks for the logo marquee
+// Real client logos (transparent PNGs in /public/logos)
 const clientLogos = [
-  { name: "Summit Roofing Co.", trade: "Roofing" },
-  { name: "Ironclad Plumbing", trade: "Plumbing" },
-  { name: "Evergreen Landscapes", trade: "Landscaping" },
-  { name: "BlueLine Electric", trade: "Electrical" },
-  { name: "Cornerstone Remodeling", trade: "Remodeling" },
-  { name: "Harbor Marine Co.", trade: "Marine" },
-  { name: "TrueNorth HVAC", trade: "HVAC" },
-  { name: "Oakwood Exteriors", trade: "Siding" },
-  { name: "Apex Concrete", trade: "Concrete" },
-  { name: "Riverstone Builders", trade: "General" },
+  { src: "/logos/mattilacompanies_com.png", name: "Mattila Companies" },
+  { src: "/logos/paradisepropertymgmtllc_com.png", name: "Paradise Property Management" },
+  { src: "/logos/arcelectrichouston_com.png", name: "ARC Electric Houston" },
+  { src: "/logos/guardianprohome_com.png", name: "Guardian Pro Home" },
+  { src: "/logos/powervalleyconstruction_com.png", name: "Power Valley Construction" },
+  { src: "/logos/starsstripesconstruction_com.png", name: "Stars & Stripes Construction" },
+  { src: "/logos/jrroofingslc_com.png", name: "JR Roofing SLC" },
+  { src: "/logos/ortizlawnscaping_com.png", name: "Ortiz Lawnscaping" },
+  { src: "/logos/triplejconstructionms_com.png", name: "Triple J Construction" },
+  { src: "/logos/lakesareasurfacing_com.png", name: "Lakes Area Surfacing" },
+  { src: "/logos/zakfixes_com.png", name: "Zak Fixes" },
+  { src: "/logos/bostboyselectric_com.png", name: "Bost Boys Electric" },
+  { src: "/logos/duranconstructionllc_org.png", name: "Duran Construction" },
+  { src: "/logos/jy-painting_com.png", name: "JY Painting" },
+];
+
+// Live client landing-page screenshots for the "Real sites" section
+const siteShots = [
+  { id: "jrroofing", label: "JR Roofing", src: "/sites/jrroofingslc.png", url: "https://jrroofingslc.com" },
+  { id: "mattila", label: "Mattila Companies", src: "/sites/mattilacompanies.png", url: "https://mattilacompanies.com" },
+  { id: "paradise", label: "Paradise Property", src: "/sites/paradisepropertymgmtllc.png", url: "https://paradisepropertymgmtllc.com" },
+  { id: "arc", label: "ARC Electric", src: "/sites/arcelectrichouston.png", url: "https://arcelectrichouston.com" },
+  { id: "lakesarea", label: "Lakes Area Surfacing", src: "/sites/lakesareasurfacing.png", url: "https://lakesareasurfacing.com" },
 ];
 
 // Benefit cards — sticky stacking on scroll
@@ -36,10 +50,6 @@ const painPoints = [
         t: "Ask For Reviews In One Click",
         d: "As promised, we keep it simple. One tap and your customer is on their way to leaving a review.",
       },
-      {
-        t: "Stop Worrying About Bad Reviews",
-        d: "We take the guesswork out by guiding every happy customer straight to a 5-star review.",
-      },
     ],
     visual: "reviews",
   },
@@ -56,20 +66,12 @@ const painPoints = [
     text: "Everyone misses calls, but not everyone texts back. Be the one who does. Outshine your competition.",
     points: [
       {
-        t: "Stand out from your competition",
-        d: "Everyone misses calls, but not everyone texts back. Be the one who does and outshine your competition.",
-      },
-      {
         t: "No More Lost Leads",
-        d: "On a job site and can't answer the phone? No problem, we'll fire off a text and start the conversation for you.",
-      },
-      {
-        t: "Show Customers You Care",
-        d: "Missed their call? At least send a text so they know you care and you'll get right back to them.",
+        d: "On a job site and can't answer? No problem — we'll fire off a text and start the conversation for you.",
       },
       {
         t: "Be available 24/7",
-        d: "Missed a call after hours? No worries, we'll make sure everyone feels looked after even while you sleep.",
+        d: "Missed a call after hours? We make sure everyone feels looked after — even while you sleep.",
       },
     ],
     visual: "sms",
@@ -305,12 +307,8 @@ const posts = [
       <div class="logo-track">
         {
           [...clientLogos, ...clientLogos].map((c) => (
-            <span class="logo-item" aria-hidden="false">
-              <svg class="logo-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3 21V10l9-6 9 6v11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span class="logo-name">{c.name}</span>
+            <span class="logo-item">
+              <img class="logo-img" src={c.src} alt={c.name} loading="lazy" />
             </span>
           ))
         }
@@ -363,51 +361,13 @@ const posts = [
                   aria-hidden="true"
                 />
 
-                <!-- Mattila Companies — faithful mobile replica (sport theme) -->
-                <div class="ios-content mc">
-                  <!-- Header -->
-                  <header class="mc-header">
-                    <a class="mc-brand">
-                      <img src="/stacked-icon.png" alt="Mattila Companies" />
-                    </a>
-                    <a class="mc-cta">Request a Project Quote</a>
-                    <button class="mc-hamburger" aria-label="Open menu">
-                      <span></span><span></span><span></span>
-                    </button>
-                  </header>
-
-                  <!-- Hero -->
-                  <section class="mc-hero">
-                    <div class="mc-hero-overlay"></div>
-                    <div class="mc-hero-content">
-                      <h1 class="mc-headline">Luxury Outdoor Living &amp; Construction Built To Last</h1>
-                      <p class="mc-sub">Mattila Companies delivers premium inground pool, hardscape, remodeling, and custom construction services designed to combine durability, craftsmanship, and modern design for properties that stand out.</p>
-                      <div class="mc-btns">
-                        <a class="mc-btn-white">Request a Project Quote</a>
-                        <a class="mc-btn-outline">(763)-742-4697</a>
-                      </div>
-                    </div>
-                  </section>
-
-                  <!-- Services -->
-                  <section class="mc-section">
-                    <h2 class="mc-section-title">Concrete Craft</h2>
-                    <p class="mc-section-sub">From custom concrete and luxury hardscapes to remodels and full home builds, Mattila Companies delivers high-quality craftsmanship.</p>
-                    <div class="mc-svc-grid">
-                      <a class="mc-svc-card mc-svc-pool">
-                        <div class="mc-svc-card-bg"></div>
-                        <span class="mc-svc-name">Inground Pools</span>
-                      </a>
-                      <a class="mc-svc-card mc-svc-concrete">
-                        <div class="mc-svc-card-bg"></div>
-                        <span class="mc-svc-name">Custom Concrete</span>
-                      </a>
-                      <a class="mc-svc-card mc-svc-hardscape">
-                        <div class="mc-svc-card-bg"></div>
-                        <span class="mc-svc-name">Hardscape Design</span>
-                      </a>
-                    </div>
-                  </section>
+                <!-- Live client site — Lakes Area Surfacing (slow showcase pan) -->
+                <div class="ios-content ios-shot">
+                  <img
+                    class="ios-shot-img"
+                    src="/sites/lakesareasurfacing-mobile.png"
+                    alt="Lakes Area Surfacing — built on Stacked"
+                  />
                 </div>
 
                 <!-- Safari dynamic bottom bar -->
@@ -430,7 +390,7 @@ const posts = [
                         <rect x="1.5" y="6" width="9" height="7" rx="1.5"></rect>
                         <path d="M3.5 6V4a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.3"></path>
                       </svg>
-                      <span class="safari-host">mattilacompanies.com</span>
+                      <span class="safari-host">lakesareasurfacing.com</span>
                     </span>
                     <svg class="safari-refresh" viewBox="0 0 14 14" aria-hidden="true">
                       <path d="M12 7a5 5 0 1 1-1.5-3.5M12 1v3H9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -525,102 +485,63 @@ const posts = [
             >
               <div class="benefit-visual" aria-hidden="true">
                 {p.visual === "reviews" && (
-                  <div class="mk mk-reviews">
-                    <div class="mk-review-card">
-                      <span class="mk-review-logo">G</span>
-                      <span class="mk-review-q">How did we do?</span>
-                      <span class="mk-review-stars">
-                        <i style="--s: 0">★</i>
-                        <i style="--s: 1">★</i>
-                        <i style="--s: 2">★</i>
-                        <i style="--s: 3">★</i>
-                        <i style="--s: 4">★</i>
-                      </span>
-                      <span class="mk-review-btn mk-review-btn-primary">Post review</span>
+                  <div class="rvk">
+                    <div class="rvk-card">
+                      <div class="rvk-head">
+                        <svg class="rvk-glogo" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z" /><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24z" /><path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l4-3.1z" /><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1C6.2 6.9 8.9 4.8 12 4.8z" /></svg>
+                        <div>
+                          <div class="rvk-rating"><span class="rvk-score">4.9</span><span class="rvk-gstars">★★★★★</span></div>
+                          <div class="rvk-sub">Based on 128 Google reviews</div>
+                        </div>
+                        <span class="rvk-verified">✓ Verified</span>
+                      </div>
+                      <div class="rvk-review">
+                        <span class="rvk-av">CL</span>
+                        <span class="rvk-name">Cassandra Lee</span>
+                        <span class="rvk-rstars">★★★★★</span>
+                        <span class="rvk-when">2 days ago</span>
+                        <p class="rvk-text">"Showed up on time, finished on time, and the work looks amazing. They transformed our whole backyard."</p>
+                      </div>
                     </div>
-                    <div class="mk-review-badge">
-                      <span class="mk-review-badge-stars">★★★★★</span>
-                      <span class="mk-review-badge-col">
-                        <span class="mk-review-badge-num">4.9</span>
-                        <span class="mk-review-badge-trend">▲ +37 this month</span>
-                      </span>
-                    </div>
+                    <div class="rvk-sms">Hi Cassandra! Thanks for choosing us 🙌 Mind leaving a quick review? <span class="rvk-link">g.page/r/review</span></div>
+                    <div class="rvk-deliv">Delivered · Today 9:41 AM</div>
                   </div>
                 )}
                 {p.visual === "search" && (
-                  <div class="mk mk-search">
-                    <div class="mk-searchbar">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
-                      </svg>
-                      <span class="mk-query">inground pool builder near me</span>
-                      <span class="mk-caret" />
+                  <div class="serp">
+                    <div class="serp-bar">
+                      <svg class="serp-glens" viewBox="0 0 24 24" fill="none" stroke="#9aa0a6" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+                      <span class="serp-q">roofing contractor near me</span>
+                      <svg class="serp-gmic" viewBox="0 0 24 24"><path fill="#4285F4" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z" /><path fill="#34A853" d="M18 12a6 6 0 0 1-12 0H4a8 8 0 0 0 7 7.9V22h2v-2.1A8 8 0 0 0 20 12z" /><path fill="#EA4335" d="M11 19.9h2V22h-2z" /></svg>
                     </div>
-
-                    <div class="mk-result mk-result-top">
-                      <span class="mk-rank">1</span>
-                      <span class="mk-rankup">▲ #1</span>
-                      <div class="mk-result-body">
-                        <span class="mk-r-site">
-                          <span class="mk-favicon">M</span>
-                          <span class="mk-r-host">
-                            mattilacompanies.com
-                          </span>
-                        </span>
-                        <span class="mk-r-title">
-                          Mattila Companies — Luxury Outdoor Living &amp;
-                          Construction
-                        </span>
-                        <span class="mk-r-snippet">
-                          Premium inground pools, hardscape, remodeling &amp;
-                          custom construction built to last. Request a
-                          project quote today.
-                        </span>
-                        <span class="mk-r-rating">
-                          <span class="mk-rstars">★★★★★</span> 4.9 · 128
-                          Google reviews
-                        </span>
+                    <div class="serp-tabs"><span class="serp-tab active">All</span><span class="serp-tab">Maps</span><span class="serp-tab">Images</span><span class="serp-tab">Reviews</span></div>
+                    <div class="serp-res">
+                      <div class="serp-res-top">
+                        <span class="serp-pin">Top result</span>
+                        <div class="serp-site"><span class="serp-fav">J</span><div class="serp-host"><b>JR Roofing</b><span>https://jrroofingslc.com</span></div></div>
+                        <div class="serp-title">JR Roofing — Trusted Local Roofers You Can Count On</div>
+                        <div class="serp-snip">Residential &amp; commercial roofing, repairs &amp; replacements in Salt Lake City. Free inspections — request a fast quote today.</div>
+                        <div class="serp-meta"><span class="gold">★★★★★</span> <span>4.9</span> · <span>128</span> Google reviews · Open now</div>
                       </div>
-                    </div>
-
-                    <div class="mk-result">
-                      <div class="mk-result-body">
-                        <span class="mk-result-title" />
-                        <span class="mk-result-url" />
-                      </div>
-                    </div>
-                    <div class="mk-result">
-                      <div class="mk-result-body">
-                        <span class="mk-result-title" />
-                        <span class="mk-result-url" />
-                      </div>
+                      <div class="serp-ghost"><span class="l1" /><span class="l2" /><span class="l3" /></div>
+                      <div class="serp-ghost"><span class="l1" /><span class="l2" /><span class="l3" /></div>
                     </div>
                   </div>
                 )}
                 {p.visual === "sms" && (
-                  <div class="mk mk-convo">
-                    <div class="mk-missed">
-                      <span class="mk-missed-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M22 2 16 8M16 2l6 6" />
-                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" />
-                        </svg>
-                      </span>
-                      <span class="mk-missed-text">
-                        <strong>Missed call</strong>
-                        <span>(216) 555-0148 · just now</span>
-                      </span>
+                  <div class="imsg">
+                    <div class="imsg-head">
+                      <span class="imsg-back">‹</span>
+                      <span class="imsg-av">S</span>
+                      <span class="imsg-name">Stacked Leads <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg></span>
                     </div>
-                    <div class="mk-bubble mk-bubble-out">
-                      Hey! Sorry I missed you — I'm out on a job. What can I help
-                      you with?
-                      <span class="mk-bubble-meta">Auto-sent by Stacked</span>
-                    </div>
-                    <div class="mk-bubble mk-bubble-in">
-                      Need a quote for a kitchen remodel 🙌
-                    </div>
-                    <div class="mk-typing" aria-hidden="true">
-                      <span /> <span /> <span />
+                    <div class="imsg-body">
+                      <div class="imsg-day">Today 9:41 AM</div>
+                      <div class="imsg-bub"><b>New quote request</b><br />Maria R. — Kitchen remodel · $18k budget</div>
+                      <div class="imsg-bub"><b>Payment received</b> <span class="amt">+$2,400</span><br />Deposit · Invoice #1042</div>
+                      <div class="imsg-bub"><b>Meeting booked</b><br />Thu 9:00 AM — on-site estimate</div>
+                      <div class="imsg-time">Delivered</div>
+                      <div class="imsg-pill">3 new leads today</div>
                     </div>
                   </div>
                 )}
@@ -729,25 +650,30 @@ const posts = [
 
       <div class="devices-frame" data-reveal>
         <div class="devices-panels">
-          <div class="devices-panel active" data-panel="phone">
-            <img
-              src="/client-2.png"
-              alt="Client website example"
-              class="devices-photo"
-            />
-          </div>
-          <div class="devices-panel" data-panel="web">
-            <img
-              src="/client-1.png"
-              alt="Client website example"
-              class="devices-photo"
-            />
-          </div>
+          {
+            siteShots.map((s, i) => (
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener"
+                class:list={["devices-panel", { active: i === 0 }]}
+                data-panel={s.id}
+              >
+                <img src={s.src} alt={`${s.label} — built on Stacked`} class="devices-photo" />
+                <span class="devices-visit">Visit live site ↗</span>
+              </a>
+            ))
+          }
         </div>
 
         <div class="devices-toggle" id="devicesToggle">
-          <button class="devices-btn active" data-target="phone">Site 1</button>
-          <button class="devices-btn" data-target="web">Site 2</button>
+          {
+            siteShots.map((s, i) => (
+              <button class:list={["devices-btn", { active: i === 0 }]} data-target={s.id}>
+                {s.label}
+              </button>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -887,63 +813,15 @@ const posts = [
     order: 2;
   }
 
-  /* cinematic dark stage behind the benefit-card mockups */
   .benefit-visual {
     position: relative;
-    border-radius: 20px;
-    padding: 44px;
+    border-radius: 12px;
+    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 0;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        80% 90% at 50% 0%,
-        rgba(74, 127, 212, 0.22),
-        transparent 70%
-      ),
-      linear-gradient(160deg, #16213a, #0d1729);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 30px 60px -30px rgba(0, 0, 0, 0.6);
-  }
-
-  /* soft dotted texture behind the mockups */
-  .benefit-visual::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    );
-    background-size: 18px 18px;
-    -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
-    mask-image: radial-gradient(70% 70% at 50% 50%, #000, transparent);
-    pointer-events: none;
-  }
-
-  .mk {
-    position: relative;
-    width: 100%;
-    z-index: 1;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .mk {
-      animation: mkFloat 7s ease-in-out infinite;
-    }
-  }
-
-  @keyframes mkFloat {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-7px);
-    }
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    border: 1px solid color-mix(in srgb, var(--surface) 40%, transparent);
   }
 
   .benefit-copy {
@@ -1063,6 +941,397 @@ const posts = [
     .benefit-stack {
       gap: 24px;
     }
+  }
+
+  /* ── Realistic Google review widget ── */
+  .rvk {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .rvk-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px -14px rgba(11, 17, 32, 0.28);
+    overflow: hidden;
+  }
+  .rvk-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .rvk-glogo {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+  .rvk-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
+  }
+  .rvk-score {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #202124;
+    letter-spacing: -0.02em;
+  }
+  .rvk-gstars {
+    color: #fbbc04;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+  .rvk-sub {
+    font-size: 0.72rem;
+    color: #5f6368;
+    margin-top: 4px;
+  }
+  .rvk-verified {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    color: #1a73e8;
+    background: #e8f0fe;
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+  .rvk-review {
+    padding: 16px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 4px 12px;
+    align-items: center;
+  }
+  .rvk-av {
+    grid-row: span 2;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+  }
+  .rvk-name {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #202124;
+  }
+  .rvk-when {
+    font-size: 0.7rem;
+    color: #5f6368;
+  }
+  .rvk-rstars {
+    align-self: start;
+    color: #fbbc04;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+  }
+  .rvk-text {
+    grid-column: 2 / 4;
+    margin: 6px 0 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #3c4043;
+  }
+  .rvk-sms {
+    position: relative;
+    align-self: flex-start;
+    max-width: 90%;
+    background: linear-gradient(180deg, #2997ff, #0a78f0);
+    color: #fff;
+    border-radius: 18px;
+    border-bottom-left-radius: 5px;
+    padding: 11px 14px;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    box-shadow: 0 8px 20px -8px rgba(10, 120, 240, 0.6);
+  }
+  .rvk-link {
+    display: inline-block;
+    margin-top: 2px;
+    text-decoration: underline;
+    opacity: 0.95;
+    font-weight: 600;
+  }
+  .rvk-deliv {
+    margin: 5px 6px 0;
+    font-size: 0.62rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ── Realistic Google SERP ── */
+  .serp {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px -14px rgba(11, 17, 32, 0.28);
+    padding: 16px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .serp-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border: 1px solid #dfe1e5;
+    border-radius: 999px;
+    box-shadow: 0 1px 4px rgba(32, 33, 36, 0.1);
+  }
+  .serp-bar .serp-q {
+    flex: 1;
+    font-size: 0.86rem;
+    color: #202124;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .serp-glens {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .serp-gmic {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .serp-tabs {
+    display: flex;
+    gap: 18px;
+    font-size: 0.72rem;
+    color: #5f6368;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 7px;
+    margin-top: -2px;
+  }
+  .serp-tab.active {
+    color: #1a73e8;
+    font-weight: 600;
+    border-bottom: 2px solid #1a73e8;
+    padding-bottom: 7px;
+    margin-bottom: -8px;
+  }
+  .serp-res {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .serp-res-top {
+    position: relative;
+    padding: 12px;
+    border: 1px solid #d2e3fc;
+    background: #f6faff;
+    border-radius: 12px;
+  }
+  .serp-pin {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    color: #1a73e8;
+    background: #e8f0fe;
+    padding: 3px 8px;
+    border-radius: 999px;
+  }
+  .serp-site {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .serp-fav {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+  }
+  .serp-host {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    min-width: 0;
+  }
+  .serp-host b {
+    font-size: 0.74rem;
+    color: #202124;
+    font-weight: 600;
+  }
+  .serp-host span {
+    font-size: 0.66rem;
+    color: #5f6368;
+  }
+  .serp-title {
+    font-size: 0.96rem;
+    color: #1a0dab;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 2px 0 4px;
+  }
+  .serp-snip {
+    font-size: 0.74rem;
+    color: #4d5156;
+    line-height: 1.5;
+  }
+  .serp-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    color: #70757a;
+  }
+  .serp-meta .gold {
+    color: #fbbc04;
+    letter-spacing: 0.5px;
+  }
+  .serp-ghost {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 11px 12px;
+  }
+  .serp-ghost .l1 {
+    height: 9px;
+    width: 38%;
+    border-radius: 999px;
+    background: #e3e6ea;
+  }
+  .serp-ghost .l2 {
+    height: 11px;
+    width: 62%;
+    border-radius: 999px;
+    background: #d6e2f7;
+  }
+  .serp-ghost .l3 {
+    height: 7px;
+    width: 88%;
+    border-radius: 999px;
+    background: #eceef0;
+  }
+
+  /* ── Realistic iOS Messages thread ── */
+  .imsg {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -18px rgba(11, 17, 32, 0.4);
+  }
+  .imsg-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 14px 12px 12px;
+    background: rgba(247, 247, 247, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+    position: relative;
+  }
+  .imsg-back {
+    position: absolute;
+    left: 14px;
+    top: 18px;
+    color: #0a84ff;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+  .imsg-av {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--brand), var(--accent));
+  }
+  .imsg-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .imsg-name svg {
+    width: 11px;
+    height: 11px;
+    color: #8e8e93;
+  }
+  .imsg-body {
+    padding: 14px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    background: #fff;
+  }
+  .imsg-day {
+    align-self: center;
+    font-size: 0.62rem;
+    color: #8e8e93;
+    font-weight: 600;
+    margin: 2px 0 4px;
+  }
+  .imsg-bub {
+    align-self: flex-start;
+    max-width: 84%;
+    background: #e9e9eb;
+    color: #000;
+    border-radius: 18px;
+    border-bottom-left-radius: 5px;
+    padding: 9px 13px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .imsg-bub b {
+    font-weight: 700;
+  }
+  .imsg-bub .amt {
+    color: #1ca64c;
+    font-weight: 700;
+  }
+  .imsg-time {
+    align-self: flex-start;
+    font-size: 0.58rem;
+    color: #8e8e93;
+    margin: -4px 0 2px 6px;
+  }
+  .imsg-pill {
+    align-self: center;
+    margin-top: 4px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--brand);
+    padding: 6px 14px;
+    border-radius: 999px;
   }
 
   .mk-browser {
@@ -1997,6 +2266,28 @@ const posts = [
     overflow: hidden;
     background: #fff;
     position: relative;
+  }
+
+  /* Live client screenshot inside the phone — slow showcase pan */
+  .ios-shot-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ios-shot-img {
+      animation: iosPan 32s ease-in-out 1s infinite alternate;
+    }
+  }
+
+  @keyframes iosPan {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-68%);
+    }
   }
 
   /* ── Mattila Companies mobile replica (sport theme, real CSS) ── */
@@ -3013,8 +3304,8 @@ const posts = [
   .logo-track {
     display: flex;
     width: max-content;
-    gap: 56px;
-    padding: 20px 28px;
+    gap: 24px;
+    padding: 20px 12px;
     animation: logoScroll 60s linear infinite;
   }
 
@@ -3023,28 +3314,37 @@ const posts = [
   }
 
   .logo-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--muted);
-    white-space: nowrap;
-    transition: color 0.2s ease;
-  }
-
-  .logo-item:hover {
-    color: var(--ink);
-  }
-
-  .logo-mark {
-    width: 30px;
-    height: 30px;
     flex-shrink: 0;
+    width: 168px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .logo-name {
-    font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: -0.02em;
+  .logo-img {
+    max-height: 52px;
+    max-width: 140px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.65;
+    filter: grayscale(1);
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+
+  .logo-item:hover .logo-img {
+    opacity: 1;
+    filter: grayscale(0);
+  }
+
+  :global([data-theme="dark"]) .logo-img {
+    filter: grayscale(1) brightness(0) invert(1);
+    opacity: 0.7;
+  }
+
+  :global([data-theme="dark"]) .logo-item:hover .logo-img {
+    filter: none;
+    opacity: 1;
   }
 
   @keyframes logoScroll {
@@ -3170,18 +3470,11 @@ const posts = [
   .devices-panel {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 40px 90px;
+    display: block;
+    padding: 0;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
-  }
-
-  .devices-panel[data-panel="phone"],
-  .devices-panel[data-panel="web"] {
-    padding: 0;
   }
 
   .devices-panel.active {
@@ -3195,7 +3488,29 @@ const posts = [
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top center;
+  }
+
+  /* "Visit live site" overlay on hover */
+  .devices-visit {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(15, 23, 42, 0.72);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .devices-panel:hover .devices-visit {
+    opacity: 1;
+    transform: translateY(0);
   }
 
 
@@ -3300,14 +3615,21 @@ const posts = [
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    display: inline-flex;
+    display: flex;
     gap: 4px;
     padding: 5px;
+    max-width: calc(100% - 32px);
+    overflow-x: auto;
+    scrollbar-width: none;
     background: color-mix(in srgb, var(--ink) 88%, transparent);
     border-radius: 10px;
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow-lg);
     z-index: 2;
+  }
+
+  .devices-toggle::-webkit-scrollbar {
+    display: none;
   }
 
   .devices-btn {
@@ -3331,13 +3653,14 @@ const posts = [
 
   @media (max-width: 640px) {
     .devices-frame {
-      min-height: 460px;
+      min-height: 320px;
     }
-    .devices-panel {
-      padding: 40px 16px 80px;
+    .devices-panels {
+      min-height: 320px;
     }
-    .devices-phone {
-      width: 220px;
+    .devices-btn {
+      padding: 8px 14px;
+      font-size: 0.8rem;
     }
   }
 
@@ -3772,11 +4095,17 @@ const posts = [
 
     /* Logo marquee */
     .logo-track {
-      gap: 40px;
+      gap: 16px;
     }
 
-    .logo-name {
-      font-size: 1rem;
+    .logo-item {
+      width: 128px;
+      height: 52px;
+    }
+
+    .logo-img {
+      max-height: 40px;
+      max-width: 108px;
     }
 
     /* Benefit cards — already stacked by 860px rule, just tighten padding */

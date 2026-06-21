@@ -279,9 +279,11 @@ export function initLiquidBg() {
     };
   }
 
-  // Seed the animation further along so the prism is already nicely
-  // framed on load instead of drifting into view over the first second.
-  const startSeed = -240 * 10;
+  // Same prism as the homepage hero. Interior page heroes just get a bigger
+  // head start in the timeline so the blue is already drifted in on load,
+  // rather than fading up from white.
+  const isPageHero = !!canvas.closest(".page-hero");
+  const startSeed = isPageHero ? 9000 : -240 * 10;
 
   let mount = new ShaderMount(canvas, warpFragmentShader, makeUniforms(), 0.2, startSeed);
 

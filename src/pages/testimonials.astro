@@ -10,12 +10,6 @@ const testimonials = [
   { name: "Maria Ramirez", role: "Verified customer", date: "Feb 26, 2026", headline: "The website works perfectly.", quote: "The website works PERFECT. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment." },
   { name: "Donovin Flores", role: "Verified customer", date: "Mar 11, 2026", headline: "Revenue up, costs down.", quote: "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better." },
   { name: "Ethan Del Angel", role: "Verified customer", date: "Dec 15, 2025", headline: "A 60% jump in revenue.", quote: "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!" },
-  { name: "Marcus Webb", role: "Webb Roofing Co.", date: "Jan 8, 2026", headline: "Booked solid for the season.", quote: "Within a month of launching, my calendar was booked solid through the spring. The site does the selling for me before I even pick up the phone." },
-  { name: "Tanya Brooks", role: "Verified customer", date: "Feb 2, 2026", headline: "Leads while I sleep.", quote: "I wake up to new quote requests every morning. Stacked basically gave me a salesperson that works 24/7 and never takes a day off." },
-  { name: "Diego Ramos", role: "Ramos Concrete & Paving", date: "Jan 22, 2026", headline: "Finally look as good as we are.", quote: "We do top-tier work but our old site made us look small. Now the website matches the quality of our jobs and customers notice immediately." },
-  { name: "Priya Nair", role: "Verified customer", date: "Mar 1, 2026", headline: "Tripled my quote requests.", quote: "I went from a couple of inquiries a week to several a day. The text-to-phone feature means I never miss a hot lead anymore." },
-  { name: "Cody Sutherland", role: "Sutherland Landscaping", date: "Feb 18, 2026", headline: "Worth every penny.", quote: "Cheap to start, fast to launch, and it paid for itself in the first week. I tell every contractor I know to get on Stacked." },
-  { name: "Renee Alvarez", role: "Verified customer", date: "Dec 29, 2025", headline: "Stress-free from day one.", quote: "The team handled everything. I didn't have to learn any tech, and within days I had a professional site pulling in real leads." },
 ];
 
 const stats = [
@@ -124,7 +118,10 @@ const stats = [
 <style>
   .page-hero {
     background: var(--surface-soft);
-    padding: 80px 0 56px;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    padding: 72px 0;
     border-bottom: 1px solid var(--line);
     position: relative;
     overflow: hidden;
