@@ -11,48 +11,54 @@ const {
 
 <section class="section cta-section">
   <div class="container">
-    <div class="cta-panel">
+    <div class="cta-panel" data-reveal>
       <!-- floating mockups -->
       <div class="cta-float cta-float-left" aria-hidden="true">
-        <div class="cta-mini-stats">
-          <div class="cta-mini-stat">
-            <span class="cta-mini-label">Quotes Sent</span>
-            <span class="cta-mini-val">28</span>
+        <div class="cta-card cta-card-left">
+          <div class="cta-mini-stats">
+            <div class="cta-mini-stat">
+              <span class="cta-mini-label">Quotes Sent</span>
+              <span class="cta-mini-val">28</span>
+            </div>
+            <div class="cta-mini-stat">
+              <span class="cta-mini-label">Jobs Won</span>
+              <span class="cta-mini-val">12</span>
+            </div>
           </div>
-          <div class="cta-mini-stat">
-            <span class="cta-mini-label">Jobs Won</span>
-            <span class="cta-mini-val">12</span>
-          </div>
+          <svg viewBox="0 0 220 70" fill="none" preserveAspectRatio="none" style="width:100%;height:56px;display:block;">
+            <path class="cta-chart-path" d="M2 56 L40 48 L72 52 L104 34 L140 40 L176 18 L218 8" stroke="#4a7fd4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle class="cta-chart-dot" cx="218" cy="8" r="5" fill="#4a7fd4"></circle>
+          </svg>
+          <span class="cta-mini-foot">Lead activity · this month</span>
         </div>
-        <svg class="cta-spark" viewBox="0 0 220 70" fill="none" preserveAspectRatio="none">
-          <path
-            d="M2 56 L40 48 L72 52 L104 34 L140 40 L176 18 L218 8"
-            stroke="#4a7fd4"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          ></path>
-          <circle cx="218" cy="8" r="5" fill="#4a7fd4"></circle>
-        </svg>
-        <span class="cta-mini-foot">Lead activity · this month</span>
+      </div>
+
+      <div class="cta-float cta-float-top" aria-hidden="true">
+        <div class="cta-badge-pill">
+          <span class="cta-badge-stars">★★★★★</span>
+          <span class="cta-badge-score">4.9</span>
+          <span class="cta-badge-label">128 reviews</span>
+        </div>
       </div>
 
       <div class="cta-float cta-float-right" aria-hidden="true">
-        <span class="cta-mini-head">This week</span>
-        <div class="cta-mini-item">
-          <span class="cta-mini-dot"></span>
-          <span class="cta-mini-text">New lead — Maria R.</span>
-          <span class="cta-mini-amt">+$2,400</span>
-        </div>
-        <div class="cta-mini-item">
-          <span class="cta-mini-dot"></span>
-          <span class="cta-mini-text">Payment received</span>
-          <span class="cta-mini-amt">+$1,200</span>
-        </div>
-        <div class="cta-mini-item">
-          <span class="cta-mini-dot"></span>
-          <span class="cta-mini-text">Job booked — Thu 9 AM</span>
-          <span class="cta-mini-amt">✓</span>
+        <div class="cta-card cta-card-right">
+          <span class="cta-mini-head">This week</span>
+          <div class="cta-mini-item">
+            <span class="cta-mini-dot"></span>
+            <span class="cta-mini-text">New lead — Maria R.</span>
+            <span class="cta-mini-amt">+$2,400</span>
+          </div>
+          <div class="cta-mini-item">
+            <span class="cta-mini-dot"></span>
+            <span class="cta-mini-text">Payment received</span>
+            <span class="cta-mini-amt">+$1,200</span>
+          </div>
+          <div class="cta-mini-item">
+            <span class="cta-mini-dot"></span>
+            <span class="cta-mini-text">Job booked — Thu 9 AM</span>
+            <span class="cta-mini-amt">✓</span>
+          </div>
         </div>
       </div>
 
@@ -77,7 +83,7 @@ const {
     position: relative;
     overflow: hidden;
     border-radius: 32px;
-    padding: clamp(56px, 9vw, 120px) 24px;
+    padding: clamp(56px, 9vw, 116px) 24px;
     text-align: center;
     background:
       radial-gradient(
@@ -101,7 +107,6 @@ const {
     color: #fff;
     font-size: clamp(2rem, 5vw, 3.4rem);
     line-height: 1.08;
-    letter-spacing: -0.02em;
     margin: 0 0 18px;
   }
 
@@ -128,7 +133,6 @@ const {
     border-radius: 999px;
     font-weight: 700;
     font-size: 0.98rem;
-    text-decoration: none;
     transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   }
 
@@ -140,7 +144,6 @@ const {
 
   .cta-btn-light:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
   }
 
   .cta-btn-outline {
@@ -154,66 +157,81 @@ const {
     transform: translateY(-2px);
   }
 
-  /* floating mockup cards */
+  /* floating mockups */
   .cta-float {
     position: absolute;
     z-index: 1;
     bottom: clamp(24px, 6%, 64px);
     width: 240px;
-    padding: 18px 20px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 24px 50px rgba(15, 35, 80, 0.32);
-    backdrop-filter: blur(4px);
   }
 
   .cta-float-left {
     left: clamp(-90px, 2%, 40px);
-    transform: rotate(-8deg);
   }
 
   .cta-float-right {
     right: clamp(-90px, 2%, 40px);
+  }
+
+  .cta-float-top {
+    top: clamp(20px, 7%, 52px);
+    right: clamp(-40px, 5%, 72px);
+    width: auto;
+  }
+
+  .cta-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 24px 50px rgba(15, 35, 80, 0.32);
+  }
+
+  .cta-card-left {
+    transform: rotate(-8deg);
+  }
+
+  .cta-card-right {
     transform: rotate(7deg);
   }
 
-  .cta-mini-stats {
-    display: flex;
-    gap: 22px;
-    margin-bottom: 6px;
+  .cta-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 10px 16px;
+    box-shadow: 0 18px 40px rgba(15, 35, 80, 0.3);
+    transform: rotate(5deg);
+    white-space: nowrap;
   }
 
-  .cta-mini-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    text-align: left;
+  .cta-badge-stars {
+    color: #f5a623;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
   }
 
-  .cta-mini-label {
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: #6b7280;
-  }
-
-  .cta-mini-val {
-    font-size: 1.25rem;
+  .cta-badge-score {
+    font-size: 0.92rem;
     font-weight: 800;
     color: #1f2937;
   }
 
-  .cta-spark {
-    width: 100%;
-    height: 56px;
-    display: block;
+  .cta-badge-label {
+    font-size: 0.66rem;
+    font-weight: 600;
+    color: #6b7280;
   }
 
-  .cta-mini-foot {
-    display: block;
-    text-align: left;
-    font-size: 0.62rem;
-    font-weight: 600;
-    color: #9ca3af;
+  .cta-chart-path {
+    stroke-dasharray: 280;
+    stroke-dashoffset: 0;
+  }
+
+  .cta-chart-dot {
+    transform-box: fill-box;
+    transform-origin: center;
   }
 
   .cta-mini-head {
@@ -265,9 +283,137 @@ const {
     flex-shrink: 0;
   }
 
-  @media (max-width: 980px) {
+  .cta-mini-stats {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 6px;
+  }
+
+  .cta-mini-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+  }
+
+  .cta-mini-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .cta-mini-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1f2937;
+  }
+
+  .cta-mini-foot {
+    display: block;
+    text-align: left;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: #9ca3af;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 760px) {
     .cta-float {
       display: none;
     }
   }
 </style>
+
+<script>
+  // CTA visuals: entrance tween + gentle idle float, driven per-frame with
+  // inline styles. Triggers when the panel scrolls into view.
+  (function () {
+    const panel = Array.from(
+      document.querySelectorAll<HTMLElement>(".cta-panel")
+    ).find((p) => p.querySelector(".cta-float"));
+    if (!panel) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const items = [
+      { el: panel.querySelector<HTMLElement>(".cta-card-left"), rot: -8, delay: 120, amp: 7, dur: 6000, ph: 0 },
+      { el: panel.querySelector<HTMLElement>(".cta-card-right"), rot: 7, delay: 280, amp: 6, dur: 7000, ph: 1.7 },
+      { el: panel.querySelector<HTMLElement>(".cta-badge-pill"), rot: 5, delay: 460, amp: 5, dur: 5200, ph: 3.1 },
+    ].filter((i): i is { el: HTMLElement; rot: number; delay: number; amp: number; dur: number; ph: number } => !!i.el);
+
+    const chart = panel.querySelector<SVGPathElement>(".cta-chart-path");
+    const dot = panel.querySelector<SVGCircleElement>(".cta-chart-dot");
+
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const settle = () => {
+      items.forEach((i) => {
+        i.el.style.opacity = "1";
+        i.el.style.transform = `rotate(${i.rot}deg)`;
+      });
+      if (chart) chart.style.strokeDashoffset = "0";
+      if (dot) {
+        dot.style.opacity = "1";
+        dot.style.transform = "scale(1)";
+      }
+    };
+
+    if (reduce) {
+      settle();
+      return;
+    }
+
+    // Hide initially (panel sits below the fold, so no flash on load)
+    items.forEach((i) => {
+      i.el.style.opacity = "0";
+    });
+    if (chart) chart.style.strokeDashoffset = "280";
+    if (dot) dot.style.opacity = "0";
+
+    let frames = 0;
+    let start = 0;
+    // Hard fallback: if rAF never advances, force the visible resting state.
+    setTimeout(() => {
+      if (frames === 0) settle();
+    }, 3000);
+
+    const inView = () => {
+      const r = panel.getBoundingClientRect();
+      return r.top < (window.innerHeight || 800) * 0.82 && r.bottom > 0;
+    };
+
+    const tick = (now: number) => {
+      frames++;
+      if (!start) {
+        if (inView()) start = now;
+        else {
+          requestAnimationFrame(tick);
+          return;
+        }
+      }
+      const t = now - start;
+      items.forEach((i) => {
+        const p = Math.max(0, Math.min(1, (t - i.delay) / 700));
+        const e = easeOut(p);
+        const entranceY = (1 - e) * 30;
+        const scale = 0.9 + 0.1 * e;
+        const idleY = p >= 1 ? Math.sin((now / i.dur) * Math.PI * 2 + i.ph) * i.amp : 0;
+        i.el.style.opacity = String(e);
+        i.el.style.transform = `rotate(${i.rot}deg) translateY(${(entranceY + idleY).toFixed(2)}px) scale(${scale.toFixed(3)})`;
+      });
+      if (chart) {
+        const cp = Math.max(0, Math.min(1, (t - 500) / 1300));
+        chart.style.strokeDashoffset = String((1 - easeOut(cp)) * 280);
+      }
+      if (dot) {
+        const dp = Math.max(0, Math.min(1, (t - 1700) / 360));
+        const ds = dp < 0.6 ? (dp / 0.6) * 1.4 : 1.4 - ((dp - 0.6) / 0.4) * 0.4;
+        dot.style.opacity = String(Math.min(1, dp * 2));
+        dot.style.transform = `scale(${dp > 0 ? ds.toFixed(3) : 0})`;
+      }
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  })();
+</script>
