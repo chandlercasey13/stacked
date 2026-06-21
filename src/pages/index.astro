@@ -316,6 +316,49 @@ const posts = [
     </div>
   </section>
 
+  <!-- Featured pull-quote — full-bleed blue band -->
+  <section class="pquote">
+    <div class="container">
+      <div class="pquote-panel" data-reveal>
+        <span class="pquote-glow" aria-hidden="true"></span>
+        <span class="pquote-bigmark" aria-hidden="true">“</span>
+        <div class="pquote-inner">
+          <div class="pquote-stars" aria-label="5 out of 5 stars">
+            <span class="pquote-star">★</span><span class="pquote-star">★</span><span class="pquote-star">★</span><span class="pquote-star">★</span><span class="pquote-star">★</span>
+          </div>
+          <p class="pquote-text">
+            {
+              "It took me 15 minutes to set up. A few days later I had |4–7 leads a day| texted straight to my phone. I think I'll double revenue this month."
+                .split("|")
+                .map((chunk, ci) =>
+                  chunk.split(" ").filter(Boolean).map((w) => (
+                    <Fragment>
+                      <span class:list={["pquote-word", { "pquote-hl": ci === 1 }]}>{w}</span>{" "}
+                    </Fragment>
+                  ))
+                )
+            }
+          </p>
+          <div class="pquote-author">
+            <span class="pquote-face" style="background:#0f766e;">GR</span>
+            <div class="pquote-id">
+              <div class="pquote-name">Glenn Robertson</div>
+              <div class="pquote-role">Founder · Texas State Builders</div>
+            </div>
+            <span class="pquote-src" aria-label="Google review">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z" />
+                <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24z" />
+                <path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l4-3.1z" />
+                <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1C6.2 6.9 8.9 4.8 12 4.8z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- NEW: Product showcase / demo -->
   <section class="section showcase-section">
     <div class="container">
@@ -361,13 +404,27 @@ const posts = [
                   aria-hidden="true"
                 />
 
-                <!-- Live client site — Lakes Area Surfacing (slow showcase pan) -->
-                <div class="ios-content ios-shot">
-                  <img
-                    class="ios-shot-img"
-                    src="/sites/lakesareasurfacing-mobile.png"
-                    alt="Lakes Area Surfacing — built on Stacked"
-                  />
+                <!-- Live client site — Lakes Area Surfacing (rebuilt from site markup) -->
+                <div class="ios-content las">
+                  <section class="las-hero">
+                    <div class="las-hero-overlay"></div>
+                    <header class="las-head">
+                      <a class="las-brand">
+                        <img class="las-logo" src="/sites/las-logo.webp" alt="Lakes Area Surfacing" />
+                        <span>Lakes Area Surfacing</span>
+                      </a>
+                      <span class="las-cta">Get a Free Estimate</span>
+                    </header>
+                    <div class="las-hero-inner">
+                      <p class="las-eyebrow">Brainerd, MN</p>
+                      <h1 class="las-headline">Professional<br />Vuba Stone<br />Surfacing</h1>
+                      <p class="las-sub">Expert Vuba Stone installation for driveways, patios, and commercial spaces built to perform and impress</p>
+                      <div class="las-btns">
+                        <span class="las-btn-white">Get a Free Estimate</span>
+                        <span class="las-btn-outline">(218) 841-4137</span>
+                      </div>
+                    </div>
+                  </section>
                 </div>
 
                 <!-- Safari dynamic bottom bar -->
@@ -2268,26 +2325,127 @@ const posts = [
     position: relative;
   }
 
-  /* Live client screenshot inside the phone — slow showcase pan */
-  .ios-shot-img {
+  /* ── Lakes Area Surfacing — rebuilt from the site's own markup ── */
+  .las {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: #0b2238;
+    overflow: hidden;
+  }
+
+  .las-hero {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: url("/sites/las-hero.webp") center / cover no-repeat;
+  }
+
+  .las-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+  }
+
+  .las-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .las-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .las-logo {
+    height: 40px;
+    width: auto;
     display: block;
-    width: 100%;
-    height: auto;
+    flex-shrink: 0;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .ios-shot-img {
-      animation: iosPan 32s ease-in-out 1s infinite alternate;
-    }
+  .las-brand span {
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1.05;
   }
 
-  @keyframes iosPan {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-68%);
-    }
+  .las-cta {
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 8px 13px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+  }
+
+  .las-hero-inner {
+    position: relative;
+    z-index: 1;
+    margin-top: 26px;
+    padding: 0 20px 32px;
+  }
+
+  .las-eyebrow {
+    margin: 0 0 12px;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .las-headline {
+    margin: 0 0 16px;
+    font-size: 2.05rem;
+    line-height: 0.96;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .las-sub {
+    margin: 0 0 22px;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .las-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .las-btn-white {
+    text-align: center;
+    background: #fff;
+    color: #111827;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 13px 20px;
+    border-radius: 12px;
+  }
+
+  .las-btn-outline {
+    text-align: center;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: 12px;
   }
 
   /* ── Mattila Companies mobile replica (sport theme, real CSS) ── */
@@ -3364,6 +3522,145 @@ const posts = [
     }
   }
 
+  /* Featured pull-quote — full-bleed blue band */
+  .pquote {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(64px, 9vw, 104px) 0;
+    background:
+      radial-gradient(760px 340px at 12% -10%, rgba(59, 130, 246, 0.32), transparent 70%),
+      linear-gradient(150deg, #1e3a6e, #162d58 55%, #0f1e3d);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pquote-panel {
+    position: relative;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 clamp(8px, 2vw, 24px);
+  }
+
+  .pquote-glow {
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 65%);
+    filter: blur(60px);
+    z-index: 0;
+    top: -180px;
+    right: -40px;
+    animation: pqGlow 9s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes pqGlow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-34px, 34px) scale(1.16); }
+  }
+
+  .pquote-bigmark {
+    position: absolute;
+    top: clamp(-50px, -4vw, -20px);
+    left: clamp(-6px, 1vw, 20px);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(150px, 20vw, 260px);
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.08);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pquote-inner {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+  }
+
+  .pquote-stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 26px;
+  }
+
+  .pquote-star {
+    color: #fbbf24;
+    font-size: 1.2rem;
+  }
+
+  .pquote-text {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.34;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .pquote-word {
+    display: inline-block;
+  }
+
+  .pquote-hl {
+    color: #7fb3ff;
+  }
+
+  .pquote-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 38px;
+  }
+
+  .pquote-face {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.18);
+  }
+
+  .pquote-id {
+    text-align: left;
+  }
+
+  .pquote-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.02rem;
+    line-height: 1.2;
+  }
+
+  .pquote-role {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.3;
+  }
+
+  .pquote-src {
+    width: 30px;
+    height: 30px;
+    margin-left: 6px;
+    background: #fff;
+    border-radius: 7px;
+    padding: 4px;
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (max-width: 640px) {
+    .pquote {
+      padding: 56px 0;
+    }
+  }
+
   .surface-soft {
     background: var(--surface-soft);
   }
@@ -4156,6 +4453,67 @@ const posts = [
 </style>
 
 <script>
+  // Featured pull-quote — word-by-word reveal on scroll into view
+  (function () {
+    const sec = document.querySelector<HTMLElement>(".pquote");
+    if (!sec) return;
+    const words = Array.from(sec.querySelectorAll<HTMLElement>(".pquote-word"));
+    const stars = Array.from(sec.querySelectorAll<HTMLElement>(".pquote-star"));
+    const author = sec.querySelector<HTMLElement>(".pquote-author");
+    const clamp = (x: number) => Math.max(0, Math.min(1, x));
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const settle = () => {
+      words.forEach((w) => { w.style.opacity = "1"; w.style.transform = "none"; });
+      stars.forEach((s) => { s.style.opacity = "1"; s.style.transform = "none"; });
+      if (author) { author.style.opacity = "1"; author.style.transform = "none"; }
+    };
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      settle();
+      return;
+    }
+
+    words.forEach((w) => { w.style.opacity = "0"; w.style.transform = "translateY(15px)"; });
+    stars.forEach((s) => { s.style.opacity = "0"; s.style.transform = "scale(0)"; s.style.transformOrigin = "center"; });
+    if (author) { author.style.opacity = "0"; author.style.transform = "translateY(18px)"; }
+
+    let frames = 0;
+    let start = 0;
+    setTimeout(() => { if (frames === 0) settle(); }, 3400);
+
+    const inView = () => {
+      const r = sec.getBoundingClientRect();
+      return r.top < (window.innerHeight || 800) * 0.8 && r.bottom > 0;
+    };
+
+    const tick = (now: number) => {
+      frames++;
+      if (!start) {
+        if (inView()) start = now;
+        else { requestAnimationFrame(tick); return; }
+      }
+      const t = now - start;
+      stars.forEach((s, i) => {
+        const e = easeOut(clamp((t - i * 70) / 320));
+        s.style.opacity = String(e);
+        s.style.transform = `scale(${(0.3 + 0.7 * e).toFixed(3)})`;
+      });
+      words.forEach((w, i) => {
+        const e = easeOut(clamp((t - 360 - i * 42) / 470));
+        w.style.opacity = String(e);
+        w.style.transform = `translateY(${((1 - e) * 15).toFixed(2)}px)`;
+      });
+      if (author) {
+        const e = easeOut(clamp((t - (360 + words.length * 42 + 160)) / 520));
+        author.style.opacity = String(e);
+        author.style.transform = `translateY(${((1 - e) * 18).toFixed(2)}px)`;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
+
   // Hero browser scroll tilt (lerped, runs on a continuous rAF loop)
   (function () {
     const visual = document.querySelector<HTMLElement>(".hero-visual");
