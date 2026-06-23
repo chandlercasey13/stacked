@@ -1,14 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2563eb" />
-      <stop offset="1" stop-color="#3b82f6" />
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)" />
-  <g fill="#fff">
-    <rect x="16" y="34" width="32" height="6" rx="3" />
-    <rect x="16" y="24" width="32" height="6" rx="3" opacity="0.85" />
-    <rect x="16" y="14" width="32" height="6" rx="3" opacity="0.7" />
+  <g transform="translate(-7.32 1.42) scale(0.1016)" fill="#2563eb" stroke="#fff" stroke-width="20" stroke-linejoin="round">
+    <path d="M275 124.5H579C592.531 124.5 603.5 135.469 603.5 149V373C603.5 386.531 592.531 397.5 579 397.5H275C261.469 397.5 250.5 386.531 250.5 373V149C250.5 135.469 261.469 124.5 275 124.5Z" />
+    <path d="M235 164.5H539C552.531 164.5 563.5 175.469 563.5 189V413C563.5 426.531 552.531 437.5 539 437.5H235C221.469 437.5 210.5 426.531 210.5 413V189C210.5 175.469 221.469 164.5 235 164.5Z" />
+    <path d="M195 204.5H499C512.531 204.5 523.5 215.469 523.5 229V453C523.5 466.531 512.531 477.5 499 477.5H195C181.469 477.5 170.5 466.531 170.5 453V229C170.5 215.469 181.469 204.5 195 204.5Z" />
   </g>
 </svg>

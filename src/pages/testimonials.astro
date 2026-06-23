@@ -3,75 +3,158 @@ import Layout from "../layouts/Layout.astro";
 import CtaBand from "../components/CtaBand.astro";
 import PrismBg from "../components/PrismBg.astro";
 
+// Genuine customer testimonials (real reviewers + roles we can stand behind)
 const testimonials = [
-  { name: "Glenn Robertson", role: "Verified customer", date: "Mar 4, 2026", headline: "Live in 15 minutes, leads within days.", quote: "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily texted to my phone. I think I'm gonna double my revenue this month!" },
-  { name: "Chris Kick", role: "Jordan Marine Construction", date: "Mar 15, 2026", headline: "We booked several hundred thousand in months.", quote: "My experience with STACKED has been excellent. Sebastian and his team are quick, responsive, knowledgeable and honest. We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by STACKED." },
-  { name: "Chelsea Casarez", role: "Verified customer", date: "Mar 16, 2026", headline: "A flood of new leads, almost overnight.", quote: "I love my stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already! I really recommend them honestly." },
-  { name: "Maria Ramirez", role: "Verified customer", date: "Feb 26, 2026", headline: "The website works perfectly.", quote: "The website works PERFECT. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment." },
-  { name: "Donovin Flores", role: "Verified customer", date: "Mar 11, 2026", headline: "Revenue up, costs down.", quote: "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better." },
-  { name: "Ethan Del Angel", role: "Verified customer", date: "Dec 15, 2025", headline: "A 60% jump in revenue.", quote: "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!" },
+  {
+    name: "Glenn Robertson",
+    role: "Verified customer",
+    bg: "#2563eb",
+    src: "trustpilot",
+    feat: true,
+    headline: "Live in 15 minutes, leads within days.",
+    quote:
+      "It took me 15 minutes to set up my site and after a few days I already saw 4–7 leads coming in daily, texted straight to my phone. I think I'm gonna double my revenue this month!",
+  },
+  {
+    name: "Chris Kick",
+    role: "Owner · Jordan Marine Construction",
+    bg: "#0f766e",
+    src: "google",
+    headline: "We booked several hundred thousand in months.",
+    quote:
+      "My experience with Stacked has been excellent. Sebastian and his team are quick, responsive, knowledgeable and honest. We've booked several hundred thousand dollars of work in the first few months after rolling out our new websites built by Stacked.",
+  },
+  {
+    name: "Chelsea Casarez",
+    role: "Verified customer",
+    bg: "#be185d",
+    src: "google",
+    headline: "A flood of new leads, almost overnight.",
+    quote:
+      "I love my Stacked site, it's bringing in a ton of new leads — we're doing so much better than last month already! I really recommend them honestly.",
+  },
+  {
+    name: "Maria Ramirez",
+    role: "Verified customer",
+    bg: "#b45309",
+    src: "google",
+    headline: "The website works perfectly.",
+    quote:
+      "The website works perfect. Was cheaper than I originally thought, and definitely saw a rise in traffic, booking and sales. It's also a BIG help with clients when I'm unavailable. Definitely worth the investment.",
+  },
+  {
+    name: "Donovin Flores",
+    role: "Verified customer",
+    bg: "#7c3aed",
+    src: "google",
+    headline: "Revenue up, costs down.",
+    quote:
+      "The website I had constructed via Stacked is working wonders! Revenue is up, it was quick and easy, and most importantly, it kept my costs down. Couldn't ask for anything better.",
+  },
+  {
+    name: "Ethan Del Angel",
+    role: "Verified customer",
+    bg: "#0369a1",
+    src: "trustpilot",
+    headline: "A 60% jump in revenue.",
+    quote:
+      "Amazing customer service and speed of service! I've seen a 60% increase in revenue since having this website up! Can't recommend enough!!!",
+  },
 ];
 
-const stats = [
-  { value: "4.4", label: "Trustpilot rating" },
-  { value: "Excellent", label: "Rated on Trustpilot" },
-  { value: "~1 wk", label: "Time to go live" },
-  { value: "0", label: "Long-term contracts" },
-];
+const initials = (name: string) =>
+  name
+    .split(" ")
+    .map((p) => p[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 ---
 
 <Layout
-  title="Testimonials — Stacked"
+  title="Testimonials | Stacked"
   description="Real reviews from contractors who grew their business with Stacked's marketing systems."
 >
   <section class="page-hero">
     <PrismBg />
     <div class="container center-narrow text-center">
       <span class="eyebrow">Testimonials</span>
-      <h1>The proof is in the pudding</h1>
+      <h1>The proof is in <span class="hl">the pudding</span></h1>
       <p class="lead" style="margin: 0 auto;">
         Here's what contractors across the country say about working with
-        Stacked.
+        Stacked. Real names, real numbers, real work booked.
       </p>
     </div>
   </section>
 
-  <section class="section-tight">
+  <section class="section">
     <div class="container">
-      <div class="grid grid-4 stats">
-        {
-          stats.map((s) => (
-            <div class="stat">
-              <span class="stat-value">{s.value}</span>
-              <span class="stat-label">{s.label}</span>
-            </div>
-          ))
-        }
+      <div class="tpage-trust" data-reveal>
+        <div class="tpage-trust-item">
+          <span class="tpage-trust-stars">★★★★★</span>
+          <span class="tpage-trust-num">4.4</span>
+          <span class="tpage-trust-label">Average rating</span>
+        </div>
+        <div class="tpage-trust-item">
+          <span class="tpage-trust-top">
+            <svg class="tpage-trust-tp" viewBox="0 0 24 24" aria-hidden="true">
+              <rect width="24" height="24" rx="5" fill="#00B67A"></rect>
+              <path fill="#fff" d="M12 4.5l1.8 5.4h5.7l-4.6 3.3 1.8 5.4L12 15.3l-4.5 3.3 1.8-5.4-4.6-3.3h5.7z"></path>
+            </svg>
+            <span class="tpage-trust-num" style="color:#00b67a;">Excellent</span>
+          </span>
+          <span class="tpage-trust-label">Rated on Trustpilot</span>
+        </div>
+        <div class="tpage-trust-item">
+          <span class="tpage-trust-num">&lt;1 wk</span>
+          <span class="tpage-trust-label">Time to go live</span>
+        </div>
+        <div class="tpage-trust-item">
+          <span class="tpage-trust-num">0</span>
+          <span class="tpage-trust-label">Long-term contracts</span>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section" style="padding-top: 24px;">
-    <div class="container">
-      <div class="stories-grid" data-reveal data-stories data-initial="4">
+      <div class="tgrid" data-reveal data-stories data-initial="4">
         {
           testimonials.map((t, i) => (
-            <figure
-              class:list={["story-card", { "is-hidden": i >= 4 }]}
+            <article
+              class:list={["tcard", { "tcard-feat": t.feat, "is-hidden": i >= 4 }]}
               data-card={i}
             >
-              <svg class="story-mark" viewBox="0 0 32 24" aria-hidden="true">
-                <path d="M0 24V13.6C0 6.08 4.2 1.04 12 0l1.6 4.4c-4.16.96-6.16 3.28-6.4 6.4H13V24H0Zm18.4 0V13.6C18.4 6.08 22.6 1.04 30.4 0L32 4.4c-4.16.96-6.16 3.28-6.4 6.4H31.4V24H18.4Z" />
-              </svg>
-              <blockquote class="story-headline">{t.headline}</blockquote>
-              <p class="story-text">{t.quote}</p>
-              <figcaption class="story-author">
-                <span class="avatar">{t.name.charAt(0)}</span>
-                <span class="story-author-meta">
-                  {t.name}, {t.role}
+              <div class="tcard-q">“</div>
+              <div class="tcard-stars">★★★★★</div>
+              <h3 class="tcard-head">{t.headline}</h3>
+              <p class="tcard-body">{t.quote}</p>
+              <div class="tcard-author">
+                {t.logo ? (
+                  <img class="tcard-face" src={t.logo} alt={t.role} loading="lazy" />
+                ) : (
+                  <span class="tcard-face" style={`background:${t.bg};`}>
+                    {initials(t.name)}
+                  </span>
+                )}
+                <div class="tcard-id">
+                  <div class="tcard-name">{t.name}</div>
+                  <div class="tcard-role">{t.role}</div>
+                </div>
+                <span class="tcard-src" aria-label={`${t.src} review`}>
+                  {t.src === "google" ? (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.7-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8z" />
+                      <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24z" />
+                      <path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l4-3.1z" />
+                      <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4C18 1.2 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1C6.2 6.9 8.9 4.8 12 4.8z" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect width="24" height="24" rx="5" fill="#00B67A" />
+                      <path fill="#fff" d="M12 4.5l1.8 5.4h5.7l-4.6 3.3 1.8 5.4L12 15.3l-4.5 3.3 1.8-5.4-4.6-3.3h5.7z" />
+                    </svg>
+                  )}
                 </span>
-              </figcaption>
-            </figure>
+              </div>
+            </article>
           ))
         }
       </div>
@@ -97,7 +180,7 @@ const stats = [
     const batch = 4;
     moreBtn.addEventListener("click", () => {
       const hidden = Array.from(
-        grid.querySelectorAll<HTMLElement>(".story-card.is-hidden")
+        grid.querySelectorAll<HTMLElement>(".tcard.is-hidden")
       );
       hidden.slice(0, batch).forEach((card) => {
         card.classList.remove("is-hidden");
@@ -108,7 +191,7 @@ const stats = [
           { once: true }
         );
       });
-      if (grid.querySelectorAll(".story-card.is-hidden").length === 0) {
+      if (grid.querySelectorAll(".tcard.is-hidden").length === 0) {
         moreWrap.classList.add("is-done");
       }
     });
@@ -136,60 +219,92 @@ const stats = [
     z-index: 1;
   }
 
-  .grid-4 {
-    grid-template-columns: repeat(4, 1fr);
+  /* Trust stat bar */
+  .tpage-trust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px 0;
+    padding-bottom: 40px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
   }
 
-  .stats {
-    text-align: center;
-  }
-
-  .stat {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 26px 16px;
-  }
-
-  .stat-value {
-    display: block;
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    background: linear-gradient(120deg, var(--brand), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .stat-label {
-    color: var(--ink-soft);
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  /* ── Stories grid (one testimonial per card, large Framer-style) ── */
-  .stories-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .story-card {
-    margin: 0;
+  .tpage-trust-item {
     display: flex;
     flex-direction: column;
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 28px;
-    padding: 48px 48px;
+    align-items: center;
+    gap: 4px;
+    padding: 0 30px;
+    border-left: 1px solid var(--line);
   }
 
-  .story-card.is-hidden {
+  .tpage-trust-item:first-child {
+    border-left: 0;
+  }
+
+  .tpage-trust-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tpage-trust-tp {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tpage-trust-stars {
+    color: #00b67a;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .tpage-trust-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .tpage-trust-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  /* Masonry testimonial cards */
+  .tgrid {
+    columns: 2;
+    column-gap: 24px;
+    margin-top: 18px;
+  }
+
+  .tcard {
+    break-inside: avoid;
+    margin-bottom: 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 30px 30px 26px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out),
+      border-color 0.2s ease;
+  }
+
+  .tcard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--brand) 30%, var(--line));
+  }
+
+  .tcard.is-hidden {
     display: none;
   }
 
-  .story-card.just-revealed {
+  .tcard.just-revealed {
     animation: storyReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
@@ -214,72 +329,113 @@ const stats = [
     display: none;
   }
 
-  .story-mark {
-    width: 32px;
-    height: 24px;
-    color: var(--muted);
-    opacity: 0.55;
-    margin-bottom: 22px;
+  .tcard-feat {
+    background: radial-gradient(
+        520px 260px at 100% -20%,
+        rgba(37, 99, 235, 0.1),
+        transparent 70%
+      ),
+      var(--surface);
+    border-color: color-mix(in srgb, var(--brand) 28%, var(--line));
   }
 
-  .story-headline {
-    margin: 0;
-    font-size: 2.1rem;
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.025em;
+  .tcard-q {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 3rem;
+    line-height: 0.7;
+    color: var(--brand);
+    height: 30px;
+  }
+
+  .tcard-stars {
+    color: #f5a623;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    margin: 14px 0 10px;
+  }
+
+  .tcard-head {
+    font-size: 1.4rem;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
     color: var(--ink);
   }
 
-  .story-text {
-    margin: 18px 0 0;
-    color: var(--ink-soft);
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 46ch;
+  .tcard-feat .tcard-head {
+    font-size: 1.7rem;
   }
 
-  .story-author {
+  .tcard-body {
+    font-size: 0.96rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .tcard-author {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: auto;
-    padding-top: 32px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
   }
 
-  .avatar {
-    width: 40px;
-    height: 40px;
+  .tcard-face {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
+    flex-shrink: 0;
     display: grid;
     place-items: center;
-    font-weight: 800;
     color: #fff;
-    background: linear-gradient(135deg, var(--brand), var(--accent));
+    font-weight: 800;
+    font-size: 1rem;
+    object-fit: cover;
+  }
+
+  .tcard-id {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tcard-name {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.96rem;
+    line-height: 1.25;
+  }
+
+  .tcard-role {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.3;
+  }
+
+  .tcard-src {
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
   }
 
-  .story-author-meta {
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-weight: 500;
+  .tcard-src svg {
+    width: 100%;
+    height: 100%;
   }
 
-  @media (max-width: 860px) {
-    .stories-grid {
-      grid-template-columns: 1fr;
-    }
-    .story-card {
-      padding: 40px 32px;
-    }
-    .story-headline {
-      font-size: 1.8rem;
+  @media (max-width: 760px) {
+    .tgrid {
+      columns: 1;
     }
   }
 
-  @media (max-width: 980px) {
-    .grid-4 {
-      grid-template-columns: repeat(2, 1fr);
+  @media (max-width: 560px) {
+    .tpage-trust-item {
+      padding: 0 18px;
+    }
+    .tpage-trust-num {
+      font-size: 1.25rem;
     }
   }
 </style>

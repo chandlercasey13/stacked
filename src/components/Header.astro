@@ -1,9 +1,9 @@
 ---
 const { pathname } = Astro.url;
 const links = [
+  { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/testimonials", label: "Testimonials" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 const isActive = (href: string) =>
