@@ -101,7 +101,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-size: clamp(2rem, 3.9vw, 2.9rem);
 }
 
 p {

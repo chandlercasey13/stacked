@@ -1,31 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import CtaBand from "../components/CtaBand.astro";
 import PrismBg from "../components/PrismBg.astro";
-
-const values = [
-  {
-    icon: '<path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/>',
-    title: "Built for contractors",
-    text: "We're web designers who specialize with contractors. Every decision is made for people who'd rather be on a job site.",
-  },
-  {
-    icon: '<rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/>',
-    title: "Leads over dashboards",
-    text: "We text leads straight to your phone. No app to check, no dashboard to learn.",
-  },
-  {
-    icon: '<path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M14 4v5h5"/><path d="m8.5 14.5 2 2 4-4"/>',
-    title: "No contracts",
-    text: "Month-to-month, cancel anytime. We earn your business every single month.",
-  },
-  {
-    icon: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
-    title: "Fast to launch",
-    text: "Most contractors are online within a week. Onboarding takes about five minutes.",
-  },
-];
-
 ---
 
 <Layout
@@ -35,7 +10,6 @@ const values = [
   <section class="page-hero">
     <PrismBg />
     <div class="container center-narrow text-center">
-      <span class="eyebrow">About</span>
       <h1>Built for contractors,<br />by people who get it</h1>
       <p class="lead" style="margin: 0 auto;">
         Web designers who specialize with contractors. We make sites that load
@@ -83,32 +57,64 @@ const values = [
     </div>
   </section>
 
-  <section class="section surface-soft">
+  <section class="section surface-soft principles-section">
     <div class="container">
-      <div class="text-center center-narrow">
-        <span class="eyebrow">What we stand for</span>
-        <h2>The principles behind everything we build</h2>
-      </div>
-      <div class="grid grid-4 values" style="margin-top: 44px;">
-        {
-          values.map((v) => (
-            <article class="card">
-              <div class="icon-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={v.icon} />
-              </div>
-              <h3>{v.title}</h3>
-              <p>{v.text}</p>
-            </article>
-          ))
-        }
+      <div class="principles" data-reveal>
+        <div class="prin-head">
+          <h2>The principles behind everything we build</h2>
+        </div>
+        <div class="prin-grid">
+          <div class="pg-text">
+            <span class="pg-num">01</span>
+            <h3>Built for contractors</h3>
+            <p>Every decision is made for people who'd rather be on a job site than behind a keyboard.</p>
+          </div>
+          <div class="pg-block">
+            <div class="vs-layer vs-l1" aria-hidden="true">
+              <span class="vs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1Z" /><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" /><path d="M4 15v-3a6 6 0 0 1 6-6" /><path d="M14 6a6 6 0 0 1 6 6v3" /></svg></span>
+              <span class="vs-n">01</span>
+            </div>
+          </div>
+
+          <div class="pg-text">
+            <span class="pg-num">02</span>
+            <h3>Leads over dashboards</h3>
+            <p>Leads text straight to your phone. No app to check, no dashboard to learn.</p>
+          </div>
+          <div class="pg-block">
+            <div class="vs-layer vs-l2" aria-hidden="true">
+              <span class="vs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /><path d="M7 9h10" /><path d="M7 13h6" /></svg></span>
+              <span class="vs-n">02</span>
+            </div>
+          </div>
+
+          <div class="pg-text">
+            <span class="pg-num">03</span>
+            <h3>No contracts</h3>
+            <p>Month-to-month, cancel anytime. We earn your business every single month.</p>
+          </div>
+          <div class="pg-block">
+            <div class="vs-layer vs-l3" aria-hidden="true">
+              <span class="vs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 9.9-1" /></svg></span>
+              <span class="vs-n">03</span>
+            </div>
+          </div>
+
+          <div class="pg-text">
+            <span class="pg-num">04</span>
+            <h3>Fast to launch</h3>
+            <p>Most contractors are online within a week. Onboarding takes about five minutes.</p>
+          </div>
+          <div class="pg-block">
+            <div class="vs-layer vs-l4" aria-hidden="true">
+              <span class="vs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z" /><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg></span>
+              <span class="vs-n">04</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <CtaBand
-    title="Ready to build your stack?"
-    text="Start your 7-day free trial today. No contracts, cancel anytime."
-  />
 </Layout>
 
 <style>
@@ -137,10 +143,6 @@ const values = [
     gap: 56px;
   }
 
-  .icon-badge svg {
-    width: 24px;
-    height: 24px;
-  }
 
   .about-photo-wrap {
     border-radius: var(--radius-lg);
@@ -156,13 +158,178 @@ const values = [
     aspect-ratio: 1 / 1;
   }
 
-  .grid-4 {
-    grid-template-columns: repeat(4, 1fr);
+  /* Principles — manifesto layout */
+  .principles-section {
+    padding-bottom: 140px;
   }
 
-  @media (max-width: 980px) {
-    .grid-4 {
-      grid-template-columns: repeat(2, 1fr);
+  .principles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .prin-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .prin-grid {
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    column-gap: 54px;
+    row-gap: 14px;
+    align-items: center;
+    margin-top: 52px;
+    width: 100%;
+  }
+
+  .pg-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pg-num {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+
+  .pg-text h3 {
+    font-size: 1.55rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .pg-text p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .pg-block {
+    position: relative;
+  }
+
+  /* 3D value slab (echoes the Stacked logo) */
+  .vs-layer {
+    position: relative;
+    margin-right: 16px;
+    height: 104px;
+    border-radius: 0 0 0 7px;
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    background: var(--c);
+  }
+
+  .vs-layer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -16px;
+    height: 16px;
+    background: color-mix(in srgb, var(--c) 74%, #fff);
+    transform: skewX(-45deg);
+    transform-origin: bottom left;
+    border-radius: 7px 0 0 0;
+  }
+
+  .vs-layer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 16px;
+    background: color-mix(in srgb, var(--c) 64%, #000);
+    transform: skewY(-45deg);
+    transform-origin: top left;
+    border-radius: 0 7px 7px 0;
+  }
+
+  .vs-layer .vs-ic {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+  }
+
+  .vs-layer .vs-ic svg {
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    stroke: #fff;
+  }
+
+  .vs-layer .vs-n {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .vs-l1 { --c: #1d4ed8; }
+  .vs-l2 { --c: #2563eb; }
+  .vs-l3 { --c: #3b82f6; }
+  .vs-l4 { --c: #60a5fa; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* Hidden until the section scrolls into view */
+    .principles[data-reveal] .vs-layer {
+      opacity: 0;
+    }
+
+    /* Each slab drops down and stacks into place, top-to-bottom,
+       then settles into a gentle continuous bob. */
+    .principles[data-reveal].is-visible .vs-layer {
+      animation:
+        vsDrop 0.62s var(--ease-out) both,
+        vsBob 3.2s ease-in-out infinite;
+    }
+    .principles[data-reveal].is-visible .vs-l1 { animation-delay: 0ms, 0.74s; }
+    .principles[data-reveal].is-visible .vs-l2 { animation-delay: 150ms, 0.89s; }
+    .principles[data-reveal].is-visible .vs-l3 { animation-delay: 300ms, 1.04s; }
+    .principles[data-reveal].is-visible .vs-l4 { animation-delay: 450ms, 1.19s; }
+
+    @keyframes vsDrop {
+      0% {
+        opacity: 0;
+        transform: translateY(-46px) scaleY(0.9);
+      }
+      55% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+
+    @keyframes vsBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+  }
+
+  @media (max-width: 760px) {
+    .prin-grid {
+      grid-template-columns: 1fr;
+      row-gap: 10px;
+    }
+    .pg-text {
+      padding-top: 6px;
     }
   }
 </style>
